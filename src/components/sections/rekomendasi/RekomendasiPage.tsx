@@ -84,7 +84,7 @@ export default function RekomendasiPage() {
             onChange={setSelectedRegion}
           />
           <FilterSelect
-            label="Category"
+            label="Kategori"
             value={selectedCategory}
             options={["Semua kategori", ...categories]}
             onChange={setSelectedCategory}
@@ -119,9 +119,17 @@ export default function RekomendasiPage() {
                     <h2 className="text-base font-bold leading-6 text-[#202d41] sm:text-lg">
                       {item.title}
                     </h2>
-                    <p className="mt-2 max-w-2xl text-sm leading-5 text-slate-500">
-                      {item.description}
-                    </p>
+                    <div className="mt-2 max-w-2xl text-sm leading-5 text-slate-500">
+                      {item.descriptionItems ? (
+                        <ul className="list-disc space-y-1 pl-5">
+                          {item.descriptionItems.map((descriptionItem) => (
+                            <li key={descriptionItem}>{descriptionItem}</li>
+                          ))}
+                        </ul>
+                      ) : (
+                        item.description
+                      )}
+                    </div>
                     <span
                       className={`mt-4 inline-flex rounded-full px-4 py-1 text-xs font-semibold ${style.background} ${style.text}`}
                     >
@@ -161,9 +169,7 @@ function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        onInput={(event) =>
-          onChange((event.target as HTMLSelectElement).value)
-        }
+        onInput={(event) => onChange((event.target as HTMLSelectElement).value)}
         className="h-12 w-full appearance-none rounded-lg border border-slate-200 bg-white px-3 pr-9 text-sm font-medium text-slate-700 shadow-sm outline-none transition focus:border-[#6e67fb] focus:ring-2 focus:ring-[#6e67fb]/20"
       >
         {options.map((option) => (

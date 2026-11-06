@@ -20,22 +20,45 @@ export const top5Prioritas = [
   { no: 5, wilayah: "Sulawesi Selatan", jenis: "Cluster 3", skor: 82 },
 ];
 
-export const rankingPrioritas = [
-  { no: 1, wilayah: "Nusa Tenggara Timur", skor: 92, jenis: "Cluster 1" },
-  { no: 2, wilayah: "Kalimantan Timur", skor: 89, jenis: "Cluster 1" },
-  { no: 3, wilayah: "Maluku", skor: 86, jenis: "Cluster 2" },
-  { no: 4, wilayah: "Sulawesi Utara", skor: 84, jenis: "Cluster 2" },
-  { no: 5, wilayah: "Sulawesi Selatan", skor: 82, jenis: "Cluster 3" },
-  { no: 6, wilayah: "Papua", skor: 79, jenis: "Cluster 1" },
-  { no: 7, wilayah: "Papua Barat", skor: 77, jenis: "Cluster 1" },
-  { no: 8, wilayah: "Gorontalo", skor: 75, jenis: "Cluster 2" },
-  { no: 9, wilayah: "Kalimantan Barat", skor: 73, jenis: "Cluster 2" },
-  { no: 10, wilayah: "Nusa Tenggara Barat", skor: 71, jenis: "Cluster 3" },
-  { no: 11, wilayah: "Aceh", skor: 69, jenis: "Cluster 2" },
-  { no: 12, wilayah: "Sulawesi Tengah", skor: 67, jenis: "Cluster 3" },
-  { no: 13, wilayah: "Lampung", skor: 65, jenis: "Cluster 3" },
-  { no: 14, wilayah: "Bengkulu", skor: 63, jenis: "Cluster 3" },
-  { no: 15, wilayah: "Sumatera Selatan", skor: 61, jenis: "Cluster 3" },
+export const clusterData = [
+  { no: 1, Provinsi: "Aceh", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 2, Provinsi: "Sumatera Utara", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 3, Provinsi: "Sumatera Barat", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 4, Provinsi: "Riau", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 5, Provinsi: "Jambi", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 6, Provinsi: "Sumatera Selatan", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 7, Provinsi: "Bengkulu", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 8, Provinsi: "Lampung", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 9, Provinsi: "Kep. Bangka Belitung", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 10, Provinsi: "Kepulauan Riau", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 11, Provinsi: "D.K.I. Jakarta", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
+  { no: 12, Provinsi: "Jawa Barat", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
+  { no: 13, Provinsi: "Jawa Tengah", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 14, Provinsi: "D.I. Yogyakarta", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 15, Provinsi: "Jawa Timur", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 16, Provinsi: "Banten", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
+  { no: 17, Provinsi: "Bali", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 18, Provinsi: "Nusa Tenggara Barat", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 19, Provinsi: "Nusa Tenggara Timur", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 20, Provinsi: "Kalimantan Barat", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 21, Provinsi: "Kalimantan Tengah", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 22, Provinsi: "Kalimantan Selatan", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 23, Provinsi: "Kalimantan Timur", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 24, Provinsi: "Kalimantan Utara", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 25, Provinsi: "Sulawesi Utara", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 26, Provinsi: "Sulawesi Tengah", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 27, Provinsi: "Sulawesi Selatan", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 28, Provinsi: "Sulawesi Tenggara", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 29, Provinsi: "Gorontalo", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 30, Provinsi: "Sulawesi Barat", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
+  { no: 31, Provinsi: "Maluku", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 32, Provinsi: "Maluku Utara", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 33, Provinsi: "Papua Barat", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 34, Provinsi: "Papua Barat Daya", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 35, Provinsi: "Papua", jenis: "Cluster C", keterangan: "Relatif Baik" },
+  { no: 36, Provinsi: "Papua Tengah", jenis: "Cluster A", keterangan: "Kritis" },
+  { no: 37, Provinsi: "Papua Selatan", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
+  { no: 38, Provinsi: "Papua Pegunungan", jenis: "Cluster A", keterangan: "Kritis" },
 ];
 
 export type Dataset = {
@@ -406,13 +429,6 @@ export const datasetPreviewData = [
 
 export const insights = [
   {
-    icon: "graduation" as const,
-    title: "Partisipasi sekolah menengah di Maluku masih rendah",
-    description:
-      "Angka partisipasi sekolah (APS) jenjang SMA/SMK di Maluku sebesar 63,2% lebih rendah dari rata-rata nasional 72,8%.",
-    category: "Partisipasi",
-  },
-  {
     icon: "users" as const,
     title: "Ketimpangan guru/murid di Kalimantan Timur",
     description:
@@ -425,6 +441,34 @@ export const insights = [
     description:
       "Sebanyak 80% sekolah di Nusa Tenggara Timur masih kekurangan fasilitas dasar tertinggi dibandingkan daerah lain.",
     category: "Fasilitas",
+  },
+  {
+    icon: "building" as const,
+    title: "Provinsi yang memiliki persentase ruang kelas rusak paling tinggi, dan kondisi indikator kapasitas pendidikannya",
+    description:
+      "Sulawesi Barat memiliki persentase kerusakan ruang kelas sekitar 6,6 kali lebih tinggi dibandingkan D.I. Yogyakarta yang memiliki nilai terendah, yaitu 3,17%. Menariknya, kelima provinsi tersebut tidak memiliki rasio murid-guru yang sangat tinggi. Nilainya hanya berkisar 12–14 murid per guru. Artinya, permasalahan infrastruktur fisik tidak selalu berjalan beriringan dengan tingginya beban guru.",
+      category: "Fasilitas",
+  },
+  {
+    icon: "building" as const,
+    title: "Hubungan antara kerusakan ruang kelas dengan angka putus sekolah",
+    description:
+      "Hasil korelasi Pearson 0,012 Hubungan linear sangat lemah. Berdasarkan data ini, tidak ditemukan hubungan linear yang berarti antara persentase ruang kelas rusak dan jumlah siswa putus sekolah.",
+    category: "Fasilitas",
+  },
+  {
+    icon: "graduation" as const,
+    title: "Provinsi yang memiliki rasio murid-guru paling tinggi",
+    description:
+      "Papua Tengah dan Papua Pegunungan menunjukkan tekanan kapasitas yang menonjol pada dua indikator sekaligus. Artinya, tingginya rasio murid-guru di kedua provinsi tersebut juga diikuti rasio murid-rombel yang tinggi. Namun, Jawa Barat dan Banten menunjukkan pola berbeda: rasio murid-gurunya tinggi, tetapi jumlah murid per rombongan belajar juga mencapai 27. Ini menunjukkan bahwa tantangan kapasitas pendidikan tidak hanya ditemukan di wilayah timur Indonesia, tetapi juga di provinsi dengan jumlah penduduk besar di Pulau Jawa.",
+    category: "Partisipasi",
+  },
+  {
+    icon: "graduation" as const,
+    title: "perbandingan rata-rata beban guru berdasarkan rasio murid-guru antara provinsi di Pulau Jawa dan Pulau Papua",
+    description:
+      "Rata-rata rasio murid-guru di enam provinsi Pulau Papua sekitar 6,33 poin lebih tinggi daripada Pulau Jawa. Secara relatif, angka tersebut sekitar 33,6% lebih tinggi. Perbedaan ini menunjukkan adanya indikasi ketimpangan kapasitas guru antara kedua kelompok wilayah. Namun, hasil ini masih merupakan perbandingan deskriptif. Kita belum dapat menyatakan bahwa perbedaannya signifikan secara statistik atau menyimpulkan penyebabnya.",
+    category: "Partisipasi",
   },
 ];
 
@@ -459,6 +503,51 @@ export const rekomendasi = [
     title: "Perkuat distribusi guru di Kalimantan Timur",
     description:
       "Evaluasi kebutuhan guru dan pertimbangkan insentif untuk daerah dengan rasio guru/murid tinggi.",
+    category: "SDM",
+    wilayah: "Kalimantan Timur",
+  },
+  {
+    icon: "users" as const,
+    title: "Cluster A — Kritis",
+    description:
+      "Provinsi yang memiliki setidaknya dua dari tiga indikator pendidikan yang melewati ambang batas. Provinsi dalam Cluster A menghadapi beberapa jenis permasalahan pendidikan secara bersamaan. Artinya, penanganannya mungkin membutuhkan lebih dari satu jenis intervensi.",
+    descriptionItems: [
+     "Evaluasi distribusi guru: Identifikasi sekolah yang memiliki rasio murid-guru tinggi dan periksa kebutuhan guru berdasarkan jumlah siswa serta kondisi pembelajaran.",
+     "Redistribusi tenaga pendidik: Pertimbangkan penempatan atau redistribusi guru berdasarkan kebutuhan aktual sekolah.",
+     "Evaluasi kapasitas ruang belajar: Identifikasi sekolah dengan jumlah murid per rombongan belajar tinggi.",
+     "Penyesuaian rombongan belajar: Kaji kebutuhan penambahan rombel atau ruang kelas jika kapasitas sekolah tidak memadai.",
+     "Monitoring kapasitas pendidikan: Pantau perubahan rasio murid-guru dan murid-rombel secara berkala."
+    ],
+    category: "SDM",
+    wilayah: "Kalimantan Timur",
+  },
+  {
+    icon: "users" as const,
+    title: "Cluster B — Perlu Perhatian",
+    description:
+      "Provinsi yang hanya memiliki satu indikator pendidikan melewati ambang batas.",
+    descriptionItems: [
+      "Penanganan infrastruktur: Sulawesi Barat perlu diprioritaskan untuk pemeriksaan kondisi bangunan dan rehabilitasi ruang kelas yang mengalami kerusakan.",
+      "Evaluasi kepadatan kelas: D.K.I. Jakarta, Jawa Barat, dan Banten perlu mengidentifikasi sekolah dengan jumlah murid per rombongan belajar yang tinggi.",
+      "Evaluasi kebutuhan guru: Papua Selatan perlu memeriksa distribusi dan kebutuhan guru pada sekolah-sekolah yang memiliki rasio murid-guru tinggi.",
+      "Pencegahan peningkatan masalah: Lakukan monitoring indikator secara berkala untuk mengidentifikasi perubahan kondisi.",
+      "Intervensi berbasis sekolah: Hindari memberikan program yang sama kepada seluruh provinsi dalam cluster ini karena jenis masalahnya berbeda."
+    ],
+    category: "SDM",
+    wilayah: "Kalimantan Timur",
+  },
+  {
+    icon: "users" as const,
+    title: "Cluster C — Relatif Baik",
+    description:
+      "Evaluasi kebutuhan guru dan pertimbangkan insentif untuk daerah dengan rasio guru/murid tinggi.",
+    descriptionItems: [
+      "Pemeliharaan fasilitas: Melakukan pemeriksaan dan pemeliharaan ruang kelas secara rutin untuk mencegah kerusakan.",
+      "Monitoring kapasitas guru: Memastikan distribusi guru tetap sesuai dengan kebutuhan sekolah.",
+      "Pengawasan kapasitas rombel: Memantau perkembangan jumlah siswa dan rombongan belajar.",
+      "Pencegahan kerusakan: Melakukan perawatan preventif terhadap fasilitas pendidikan.",
+      "Evaluasi berkala: Memperbarui data indikator untuk mengetahui apakah suatu provinsi mengalami perubahan kategori."
+    ],
     category: "SDM",
     wilayah: "Kalimantan Timur",
   },
@@ -925,9 +1014,9 @@ export const faqData = [
   },
   {
     id: 6,
-    question: "Apa yang membedakan antara Clauster 1 dan yang lainnya?",
+    question: "Apa yang membedakan antara Cluster 1 dan yang lainnya?",
     answer:
-      "Cluster 1 merupakan daerah dengan tingkat kesenjangan tertinggi dan urgensi penanganan darurat (fasilitas rusak parah, kekurangan guru berat, minim konektivitas). Cluster 2 berada pada tingkat kesenjangan moderat yang memerlukan penguatan bertahap, sedangkan Cluster 3 memiliki fasilitas relatif memadai dengan fokus pada pemeliharaan mutu.",
+      "Pengelompokan ditentukan secara rule-based berdasarkan tiga ambang batas: kelas rusak total ≥ 20%, rasio murid-guru ≥ 25, dan rasio murid-rombel ≥ 25. Cluster 1 (Kritis) memiliki minimal dua indikator yang melewati ambang batas sehingga memerlukan beberapa jenis intervensi. Cluster 2 (Perlu Perhatian) hanya memiliki satu indikator yang melewati ambang batas sehingga membutuhkan penanganan khusus pada indikator tersebut. Cluster 3 (Relatif Baik) tidak memiliki indikator yang melewati ambang batas, tetapi tetap perlu dipantau dan dipelihara. Jadi, cluster ditentukan berdasarkan jumlah masalah, bukan nama atau lokasi provinsi.",
   },
   {
     id: 7,
@@ -975,4 +1064,3 @@ export const indikatorList = [
   "Rasio Murid Rombel",
   "Angka Putus Sekolah",
 ];
-
