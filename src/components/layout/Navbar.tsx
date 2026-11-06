@@ -1,0 +1,95 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { navigationLinks } from "@/data/navigation";
+
+export default function Navbar() {
+  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white">
+      <nav className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6 lg:px-8">
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center gap-2 group transition-transform hover:scale-[1.02]">
+          <Image
+            src="/logo-navbar-clean.png"
+            alt="Logo KelasKita"
+            width={110}
+            height={90}
+            className="h-16 w-auto object-contain"
+            priority
+          />
+        </Link>
+
+        {/* Desktop Navigation Links */}
+        <div className="hidden items-center gap-8 lg:flex">
+          {navigationLinks.map((link) => {
+            const isActive =
+              (link.href === "/" && pathname === "/") ||
+              (link.href !== "/" && pathname.startsWith(link.href));
+
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`relative py-2 text-[15px] font-medium transition-colors ${
+                  isActive
+                    ? "font-semibold text-slate-900 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:rounded-full after:bg-[#6E67FB]"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
+        </div>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          type="button"
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className="inline-flex items-center justify-center rounded-lg p-2.5 text-slate-700 transition hover:bg-slate-100 lg:hidden"
+          aria-label="Toggle Navigation Menu"
+        >
+          {mobileOpen ? <X size={26} /> : <Menu size={26} />}
+        </button>
+      </nav>
+
+      {/* Mobile Dropdown Menu */}
+      {mobileOpen && (
+        <div className="border-t border-slate-200 bg-white px-6 py-4 shadow-lg lg:hidden">
+          <div className="flex flex-col gap-2">
+            {navigationLinks.map((link) => {
+              const isActive =
+                (link.href === "/" && pathname === "/") ||
+                (link.href !== "/" && pathname.startsWith(link.href));
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition ${
+                    isActive
+                      ? "bg-[#6E67FB]/10 font-semibold text-[#6E67FB]"
+                      : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  {isActive && (
+                    <span className="h-2 w-2 rounded-full bg-[#6E67FB]" />
+                  )}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}
