@@ -26,7 +26,7 @@ const LeafletMapInner = dynamic(() => import("./LeafletMapInner"), {
   ssr: false,
   loading: () => (
     <div className="w-full h-[420px] sm:h-[480px] rounded-xl bg-slate-100 flex flex-col items-center justify-center text-slate-500 gap-3 border border-slate-200">
-      <Loader2 className="w-8 h-8 animate-spin text-[#6E67FB]" />
+      <Loader2 className="w-8 h-8 animate-spin text-primary" />
       <p className="text-xs font-medium text-slate-600">
         Memuat Peta Interaktif Indonesia (Leaflet)...
       </p>
@@ -66,7 +66,7 @@ export default function IndonesiaInteractiveMap() {
             placeholder="Cari provinsi..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#6E67FB]/30 focus:border-[#6E67FB] transition-all"
+            className="w-full pl-8 pr-7 py-1.5 text-xs rounded-lg border border-slate-200 bg-slate-50/70 focus:bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
           />
           {searchQuery && (
             <button
@@ -96,17 +96,17 @@ export default function IndonesiaInteractiveMap() {
         <button
           onClick={() => setActiveClusterFilter("Cluster 1")}
           className={`px-2.5 py-1 rounded-md font-medium transition-all flex items-center gap-1.5 ${activeClusterFilter === "Cluster 1"
-              ? "bg-[#1E293B] text-white shadow-xs ring-2 ring-[#C8EE44]"
+              ? "bg-text-primary text-white shadow-xs ring-2 ring-accent"
               : "bg-slate-100 text-slate-700 hover:bg-slate-200"
             }`}
         >
-          <span className="w-2 h-2 rounded-full bg-[#1E293B] border border-slate-400" />
+          <span className="w-2 h-2 rounded-full bg-text-primary border border-slate-400" />
           Cluster 1 (Tinggi)
         </button>
         <button
           onClick={() => setActiveClusterFilter("Cluster 2")}
           className={`px-2.5 py-1 rounded-md font-medium transition-all flex items-center gap-1.5 ${activeClusterFilter === "Cluster 2"
-              ? "bg-[#475569] text-white shadow-xs ring-2 ring-[#6E67FB]"
+              ? "bg-[#475569] text-white shadow-xs ring-2 ring-primary"
               : "bg-slate-100 text-slate-700 hover:bg-slate-200"
             }`}
         >
@@ -144,7 +144,7 @@ export default function IndonesiaInteractiveMap() {
           <span className="font-medium text-slate-700">Cluster 2</span>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-5 h-3 rounded-sm bg-[#1E293B]" />
+          <span className="w-5 h-3 rounded-sm bg-text-primary" />
           <span className="font-medium text-slate-700">Cluster 1</span>
         </div>
         <span className="text-[11px] text-slate-400 ml-auto hidden sm:inline">
@@ -154,19 +154,19 @@ export default function IndonesiaInteractiveMap() {
 
       {/* Detail Popover / Modal (Opsi A) when province clicked */}
       {selectedProvince && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs animate-in fade-in duration-150">
-          <div className="relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl border border-slate-200/80 animate-in zoom-in-95 duration-150">
+        <div className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
+          <div className="modal-panel relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl border border-slate-200/80">
             {/* Modal Header */}
             <div className="flex items-start justify-between border-b border-slate-100 pb-4">
               <div>
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-5 h-5 text-[#6E67FB]" />
+                  <MapPin className="w-5 h-5 text-primary" />
                   <h3 className="text-xl font-bold text-slate-900">
                     {selectedProvince.name}
                   </h3>
                   <span
                     className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${selectedProvince.cluster === "Cluster 1"
-                        ? "bg-[#1E293B] text-[#C8EE44]"
+                        ? "bg-text-primary text-accent"
                         : selectedProvince.cluster === "Cluster 2"
                           ? "bg-slate-200 text-slate-800"
                           : "bg-slate-100 text-slate-600"
@@ -204,7 +204,7 @@ export default function IndonesiaInteractiveMap() {
                     width: `${selectedProvince.score}%`,
                     backgroundColor:
                       selectedProvince.cluster === "Cluster 1"
-                        ? "#1E293B"
+                        ? "var(--token-color-text-primary)"
                         : selectedProvince.cluster === "Cluster 2"
                           ? "#475569"
                           : "#94A3B8",
@@ -226,7 +226,7 @@ export default function IndonesiaInteractiveMap() {
                 </p>
               </div>
               <div className="rounded-xl border border-slate-200 p-3 bg-white text-center">
-                <GraduationCap className="w-4 h-4 text-[#6E67FB] mx-auto mb-1" />
+                <GraduationCap className="w-4 h-4 text-primary mx-auto mb-1" />
                 <p className="text-[10px] text-slate-500">Kekurangan Guru</p>
                 <p className="text-base font-bold text-slate-900 mt-0.5">
                   {selectedProvince.guruKurangPercent}%
@@ -270,7 +270,7 @@ export default function IndonesiaInteractiveMap() {
               </button>
               <Link
                 href={`/eksplorasi-daerah?provinsi=${selectedProvince.id}`}
-                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold rounded-lg bg-[#202D41] text-[#C8EE44] hover:bg-slate-800 transition shadow-sm group"
+                className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold rounded-lg bg-secondary text-accent hover:bg-slate-800 transition shadow-sm group"
               >
                 <span>Jelajahi di Eksplorasi Daerah</span>
                 <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />

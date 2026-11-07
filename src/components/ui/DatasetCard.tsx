@@ -35,11 +35,11 @@ function UrgencyBars({ level }: { level: "Tinggi" | "Sedang" | "Rendah" }) {
 
 export default function DatasetCard({ dataset }: DatasetCardProps) {
   return (
-    <div className="group flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
+    <div className="ui-card group flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
       <div>
         {/* Top bar: Format Pill + Urgency indicator */}
         <div className="mb-4 flex items-center justify-between">
-          <span className="rounded-md bg-[#C8EE44] px-2.5 py-1 text-[11px] font-bold tracking-wide text-[#202D41]">
+          <span className="rounded-md bg-accent px-2.5 py-1 text-[11px] font-bold tracking-wide text-secondary">
             {dataset.format}
           </span>
           <UrgencyBars level={dataset.urgency} />
@@ -47,7 +47,7 @@ export default function DatasetCard({ dataset }: DatasetCardProps) {
 
         {/* Dataset Title */}
         <Link href={`/dataset/${dataset.id}`}>
-          <h3 className="mb-2 text-[17px] font-bold leading-snug text-slate-900 transition-colors group-hover:text-[#6E67FB]">
+          <h3 className="mb-2 text-[17px] font-bold leading-snug text-slate-900 transition-colors group-hover:text-primary">
             {dataset.title}
           </h3>
         </Link>
@@ -59,7 +59,7 @@ export default function DatasetCard({ dataset }: DatasetCardProps) {
 
         {/* Category Badge */}
         <div className="mb-6">
-          <span className="inline-block rounded-full bg-[#EEF0FF] px-3.5 py-1 text-xs font-medium text-[#6E67FB]">
+          <span className="inline-block rounded-full bg-[#EEF0FF] px-3.5 py-1 text-xs font-medium text-primary">
             {dataset.category}
           </span>
         </div>

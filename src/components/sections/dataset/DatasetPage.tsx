@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { datasets } from "@/data/dummy";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function DatasetPage() {
   const [query, setQuery] = useState("");
@@ -52,12 +53,13 @@ export default function DatasetPage() {
   };
 
   return (
-    <section className="bg-[#f5fdfd] px-4 py-9 sm:px-6 lg:px-8 lg:py-14">
+    <section className="page-shell bg-background px-4 py-9 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto max-w-7xl">
-        <header className="rounded-2xl bg-[#202d41] px-6 py-8 text-white shadow-sm sm:px-8 lg:px-9">
+        <ScrollReveal>
+        <header className="page-hero rounded-2xl bg-secondary px-6 py-8 text-white shadow-sm sm:px-8 lg:px-9">
           <h1 className="max-w-xl text-2xl font-bold leading-tight sm:text-3xl">
             Dataset kesenjangan{" "}
-            <span className="text-[#c8ee44]">pendidikan antardaerah</span>
+            <span className="text-accent">pendidikan antardaerah</span>
           </h1>
           <p className="mt-3 text-sm text-slate-200">
             Temukan data, lihat daerah yang tertinggal, dan dapatkan saran tindakan.
@@ -76,7 +78,7 @@ export default function DatasetPage() {
                 className="min-w-0 flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
               />
             </label>
-            <label className="flex h-12 items-center gap-2 rounded-full bg-[#c8ee44] px-4 text-sm font-bold text-[#202d41] sm:min-w-48">
+            <label className="flex h-12 items-center gap-2 rounded-full bg-accent px-4 text-sm font-bold text-secondary sm:min-w-48">
               <Filter size={16} aria-hidden="true" />
               <span className="sr-only">Filter kategori</span>
               <select
@@ -97,6 +99,7 @@ export default function DatasetPage() {
             </label>
           </div>
         </header>
+        </ScrollReveal>
 
         <div className="mt-8 flex items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
@@ -125,7 +128,7 @@ export default function DatasetPage() {
           <div
             className={
               viewMode === "card"
-                ? "mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+              ? "stagger mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
                 : "mt-5 space-y-4"
             }
           >
@@ -157,7 +160,7 @@ export default function DatasetPage() {
                   aria-current={item === currentPage ? "page" : undefined}
                   className={`h-8 min-w-8 rounded-md px-2 text-xs font-semibold transition ${
                     item === currentPage
-                      ? "bg-[#dff6e9] text-[#202d41]"
+                      ? "bg-[#dff6e9] text-secondary"
                       : "text-slate-500 hover:bg-slate-100"
                   }`}
                 >
@@ -189,14 +192,14 @@ function DatasetItem({
   return (
     <Link
       href={`/dataset/${dataset.id}`}
-      className={`group block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-[#c8ee44] hover:shadow-md ${
+      className={`ui-card group block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md ${
         viewMode === "list"
           ? "flex items-center gap-5 px-5 lg:gap-8 lg:px-7"
           : ""
       }`}
     >
       <div className="flex items-start justify-between gap-4">
-        <span className="rounded-md bg-[#e6e3ff] px-2 py-1 text-[10px] font-bold text-[#6e67fb]">
+        <span className="rounded-md bg-[#e6e3ff] px-2 py-1 text-[10px] font-bold text-primary">
           {dataset.format}
         </span>
         <span className="flex shrink-0 items-center gap-1 text-[10px] text-slate-400">
@@ -205,8 +208,8 @@ function DatasetItem({
         </span>
       </div>
       <div className={viewMode === "list" ? "mt-0 min-w-0 flex-1" : "mt-4"}>
-        <p className="text-xs font-semibold text-[#6e67fb]">{dataset.category}</p>
-        <h2 className="mt-1 line-clamp-2 text-sm font-bold leading-5 text-[#202d41] group-hover:text-[#6e67fb]">
+        <p className="text-xs font-semibold text-primary">{dataset.category}</p>
+        <h2 className="mt-1 line-clamp-2 text-sm font-bold leading-5 text-secondary group-hover:text-primary">
           {dataset.title}
         </h2>
         <p className="mt-2 line-clamp-2 text-xs leading-5 text-slate-500">
@@ -250,7 +253,7 @@ function ViewButton({
       aria-label={label}
       aria-pressed={active}
       onClick={onClick}
-      className={`rounded p-1.5 ${active ? "bg-[#202d41] text-white" : "text-slate-400 hover:text-slate-700"}`}
+      className={`rounded p-1.5 ${active ? "bg-secondary text-white" : "text-slate-400 hover:text-slate-700"}`}
     >
       {children}
     </button>

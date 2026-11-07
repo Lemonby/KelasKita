@@ -6,6 +6,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, ChevronsRight } from "lucide-react";
 import { datasets } from "@/data/dummy";
 import DatasetCard from "@/components/ui/DatasetCard";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function Home() {
   const [carouselIndex, setCarouselIndex] = useState(0);
@@ -30,11 +31,12 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#202D41] text-white">
+      <ScrollReveal>
+        <section className="relative overflow-hidden bg-secondary text-white">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-12 px-6 py-16 lg:flex-row lg:py-24 lg:px-8">
           {/* Left Text & Call-To-Action */}
           <div className="flex-1 space-y-6">
-            <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-[#C8EE44]">
+            <span className="inline-block text-xs font-bold uppercase tracking-[0.25em] text-accent">
               Sistem Pendukung Keputusan Pendidikan
             </span>
 
@@ -60,7 +62,7 @@ export default function Home() {
                 className="group inline-flex items-center justify-between gap-4 rounded-xl bg-white py-2 pl-6 pr-2.5 text-sm font-semibold text-slate-800 shadow-sm transition hover:bg-slate-50"
               >
                 <span>Mulai Eksplorasi Data</span>
-                <span className="flex h-9 w-10 items-center justify-center rounded-lg bg-[#202D41] text-white transition group-hover:bg-[#2c3d58]">
+                <span className="flex h-9 w-10 items-center justify-center rounded-lg bg-secondary text-white transition group-hover:bg-[#2c3d58]">
                   <ChevronsRight size={18} />
                 </span>
               </Link>
@@ -68,7 +70,7 @@ export default function Home() {
               {/* Lihat Peta Kesenjangan Button */}
               <Link
                 href="/prioritas-daerah"
-                className="inline-flex items-center justify-center rounded-xl bg-[#6E67FB] px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#5b54eb] hover:shadow-md"
+                className="inline-flex items-center justify-center rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-hover hover:shadow-md"
               >
                 Lihat Peta Kesenjangan
               </Link>
@@ -89,10 +91,12 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
       {/* Section: Kumpulan Data Populer */}
-      <section className="bg-[#F8FAFC] py-16 lg:py-24">
+      <ScrollReveal>
+        <section className="bg-background py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mb-10 flex items-center justify-between">
             <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
@@ -105,7 +109,7 @@ export default function Home() {
                 <span
                   key={i}
                   className={`h-2 rounded-full transition-all ${i === carouselIndex
-                    ? "w-6 bg-[#6E67FB]"
+                    ? "w-6 bg-primary"
                     : "w-2 bg-slate-300"
                     }`}
                 />
@@ -136,14 +140,15 @@ export default function Home() {
             </button>
 
             {/* Cards Grid */}
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="stagger grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
               {visibleDatasets.map((dataset) => (
                 <DatasetCard key={dataset.id} dataset={dataset} />
               ))}
             </div>
           </div>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </div>
   );
 }

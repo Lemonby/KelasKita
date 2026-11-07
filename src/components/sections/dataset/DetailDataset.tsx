@@ -64,20 +64,20 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
   }, [fileUrl]);
 
   return (
-    <section className="bg-[#f5fdfd] px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+    <section className="bg-background px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto max-w-5xl">
         <Link
           href="/dataset"
-          className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition hover:text-[#6e67fb]"
+          className="mb-8 inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition hover:text-primary"
         >
           <ArrowLeft size={16} aria-hidden="true" />
           Kembali ke dataset
         </Link>
         <header>
-          <h1 className="text-2xl font-bold leading-tight text-[#202d41] sm:text-3xl">
+          <h1 className="text-2xl font-bold leading-tight text-secondary sm:text-3xl">
             {dataset.title}
           </h1>
-          <span className="mt-3 inline-flex rounded-full bg-[#e6e3ff] px-3 py-1 text-xs font-semibold text-[#6e67fb]">
+          <span className="mt-3 inline-flex rounded-full bg-[#e6e3ff] px-3 py-1 text-xs font-semibold text-primary">
             {dataset.category}
           </span>
           <p className="mt-5 max-w-4xl text-sm leading-6 text-slate-600">
@@ -113,7 +113,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
             <a
               href={fileUrl}
               download
-              className="inline-flex items-center gap-2 rounded-lg bg-[#202d41] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[#2d3d56]"
+              className="inline-flex items-center gap-2 rounded-lg bg-secondary px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-secondary-hover"
             >
               <Download size={15} aria-hidden="true" />
               Unduh Dataset
@@ -127,9 +127,9 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
         </div>
 
         <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-          <div className="bg-[#202d41] px-5 py-4 text-white">
+          <div className="bg-secondary px-5 py-4 text-white">
             <h2 className="text-sm font-bold">
-              Pratinjau <span className="text-[#c8ee44]">{dataset.title}</span>
+              Pratinjau <span className="text-accent">{dataset.title}</span>
             </h2>
             <p className="mt-1 text-xs text-slate-300">
               {sheetName ? `Sheet: ${sheetName} · ` : ""}Menampilkan seluruh
@@ -160,7 +160,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
                       onClick={() => setSheetName(name)}
                       className={`border-b-2 px-4 py-3 text-xs font-semibold transition ${
                         name === sheetName
-                          ? "border-[#6e67fb] text-[#6e67fb]"
+                          ? "border-primary text-primary"
                           : "border-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-700"
                       }`}
                     >
@@ -177,7 +177,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
                         key={rowIndex}
                         className={
                           rowIndex === 0
-                            ? "bg-[#e6e3ff] font-bold text-[#202d41]"
+                            ? "bg-[#e6e3ff] font-bold text-secondary"
                             : "border-t border-slate-100 text-slate-600"
                         }
                       >

@@ -28,9 +28,9 @@ type EksplorasiBarChartProps = {
 
 const indikatorColors: Record<IndikatorKey, string> = {
   "Kelas Rusak Total": "#F97316",
-  "Rasio Murid Guru": "#6E67FB",
+  "Rasio Murid Guru": "var(--token-color-primary)",
   "Rasio Murid Rombel": "#14B8A6",
-  "Angka Putus Sekolah": "#C8EE44",
+  "Angka Putus Sekolah": "var(--token-color-accent)",
 };
 
 export default function EksplorasiBarChart({

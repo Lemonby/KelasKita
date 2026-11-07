@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { rekomendasi } from "@/data/dummy";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const categoryStyles: Record<
   string,
@@ -22,7 +23,7 @@ const categoryStyles: Record<
   Fasilitas: {
     background: "bg-[#deddff]",
     iconBackground: "bg-[#c6c3ff]",
-    text: "text-[#6e67fb]",
+    text: "text-primary",
   },
   SDM: {
     background: "bg-[#e6ffad]",
@@ -64,17 +65,19 @@ export default function RekomendasiPage() {
   };
 
   return (
-    <section className="bg-[#f5fdfd] px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+    <section className="page-shell bg-background px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
       <div className="mx-auto max-w-7xl">
-        <div className="rounded-2xl bg-[#202d41] px-6 py-7 text-white shadow-sm sm:px-8 sm:py-8 lg:px-9">
+        <ScrollReveal>
+        <div className="page-hero rounded-2xl bg-secondary px-6 py-7 text-white shadow-sm sm:px-8 sm:py-8 lg:px-9">
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            Rekomendasi <span className="text-[#c8ee44]">Tindakan</span>
+            Rekomendasi <span className="text-accent">Tindakan</span>
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-5 text-slate-200 sm:text-base">
             Usulan yang dapat dipertimbangkan berdasarkan temuan dan data yang
             tersedia
           </p>
         </div>
+        </ScrollReveal>
 
         <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-end">
           <FilterSelect
@@ -92,13 +95,14 @@ export default function RekomendasiPage() {
           <button
             type="button"
             onClick={resetFilters}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-[#202d41] px-5 text-sm font-semibold text-white transition hover:bg-[#2d3d56] focus:outline-none focus:ring-2 focus:ring-[#6e67fb] focus:ring-offset-2"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-secondary px-5 text-sm font-semibold text-white transition hover:bg-secondary-hover focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
           >
             <RotateCcw size={15} aria-hidden="true" />
             Atur ulang
           </button>
         </div>
 
+        <ScrollReveal className="stagger">
         <div className="mt-8 space-y-3 sm:mt-10 sm:space-y-4">
           {filteredRecommendations.length > 0 ? (
             filteredRecommendations.map((item) => {
@@ -108,7 +112,7 @@ export default function RekomendasiPage() {
               return (
                 <article
                   key={`${item.wilayah}-${item.title}`}
-                  className="flex flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:flex-row sm:items-start sm:p-6 lg:gap-6 lg:p-7"
+                  className="ui-card flex flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:flex-row sm:items-start sm:p-6 lg:gap-6 lg:p-7"
                 >
                   <div
                     className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full ${style.iconBackground} ${style.text} sm:h-20 sm:w-20`}
@@ -116,7 +120,7 @@ export default function RekomendasiPage() {
                     <Icon size={34} strokeWidth={2.2} aria-hidden="true" />
                   </div>
                   <div className="min-w-0 flex-1">
-                    <h2 className="text-base font-bold leading-6 text-[#202d41] sm:text-lg">
+                    <h2 className="text-base font-bold leading-6 text-secondary sm:text-lg">
                       {item.title}
                     </h2>
                     <div className="mt-2 max-w-2xl text-sm leading-5 text-slate-500">
@@ -148,6 +152,7 @@ export default function RekomendasiPage() {
             </div>
           )}
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );
@@ -170,7 +175,7 @@ function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
         value={value}
         onChange={(event) => onChange(event.target.value)}
         onInput={(event) => onChange((event.target as HTMLSelectElement).value)}
-        className="h-12 w-full appearance-none rounded-lg border border-slate-200 bg-white px-3 pr-9 text-sm font-medium text-slate-700 shadow-sm outline-none transition focus:border-[#6e67fb] focus:ring-2 focus:ring-[#6e67fb]/20"
+        className="h-12 w-full appearance-none rounded-lg border border-slate-200 bg-white px-3 pr-9 text-sm font-medium text-slate-700 shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
       >
         {options.map((option) => (
           <option key={option} value={option}>

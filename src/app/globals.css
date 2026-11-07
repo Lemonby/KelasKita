@@ -1,65 +1,391 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
 
-/* Leaflet container custom styling */
-.leaflet-container {
-  width: 100%;
-  height: 100%;
-  border-radius: 0.75rem;
-  z-index: 10;
-  background-color: #f8fafc;
-  font-family: inherit;
-}
-
-/* Custom Leaflet tooltip styling matching KelasKita */
-.leaflet-tooltip.custom-map-tooltip {
-  background: rgba(32, 45, 65, 0.95);
-  backdrop-filter: blur(4px);
-  border: 1px solid rgba(51, 65, 85, 0.8);
-  border-radius: 0.75rem;
-  color: #ffffff;
-  padding: 0.5rem 0.75rem;
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
-}
-.leaflet-tooltip-top:before,
-.leaflet-tooltip-bottom:before,
-.leaflet-tooltip-left:before,
-.leaflet-tooltip-right:before {
-  border-top-color: rgba(32, 45, 65, 0.95) !important;
-}
-
 :root {
   --background: #ffffff;
-  --foreground: #1e293b;
+  --foreground: #0f172a;
+
+  --token-color-primary: #5147d9;
+  --token-color-primary-hover: #4338ca;
+  --token-color-secondary: #202d41;
+  --token-color-secondary-hover: #2d3d56;
+  --token-color-accent: #c8ee44;
+  --token-color-accent-hover: #d6fb4f;
+
+  --token-color-background: #f8fafc;
+  --token-color-surface: #ffffff;
+  --token-color-surface-muted: #f1f5f9;
+  --token-color-border: #e2e8f0;
+  --token-color-border-strong: #cbd5e1;
+  --token-color-text-primary: #0f172a;
+  --token-color-text-secondary: #475569;
+  --token-color-text-muted: #64748b;
+  --token-color-text-inverse: #ffffff;
+
+  --token-color-success: #15803d;
+  --token-color-warning: #b45309;
+  --token-color-error: #b91c1c;
+  --token-color-info: #0369a1;
+
+  --font-size-display: 3rem;
+  --font-size-display-line-height: 3.5rem;
+  --font-size-h1: 2.25rem;
+  --font-size-h1-line-height: 2.75rem;
+  --font-size-h2: 1.875rem;
+  --font-size-h2-line-height: 2.375rem;
+  --font-size-h3: 1.5rem;
+  --font-size-h3-line-height: 2rem;
+  --font-size-h4: 1.25rem;
+  --font-size-h4-line-height: 1.75rem;
+  --font-size-body-lg: 1.125rem;
+  --font-size-body-lg-line-height: 1.75rem;
+  --font-size-body: 1rem;
+  --font-size-body-line-height: 1.5rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-body-sm-line-height: 1.25rem;
+  --font-size-caption: 0.75rem;
+  --font-size-caption-line-height: 1rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  --token-radius-sm: 0.375rem;
+  --token-radius-md: 0.5rem;
+  --token-radius-lg: 0.75rem;
+  --token-radius-xl: 1rem;
+  --token-radius-full: 9999px;
+
+  --token-shadow-sm: 0 1px 2px rgb(15 23 42 / 0.06);
+  --token-shadow-md: 0 4px 12px rgb(15 23 42 / 0.08);
+  --token-shadow-lg: 0 12px 28px rgb(15 23 42 / 0.12);
+
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-primary: var(--token-color-primary);
+  --color-primary-hover: var(--token-color-primary-hover);
+  --color-secondary: var(--token-color-secondary);
+  --color-secondary-hover: var(--token-color-secondary-hover);
+  --color-accent: var(--token-color-accent);
+  --color-accent-hover: var(--token-color-accent-hover);
+  --color-surface: var(--token-color-surface);
+  --color-surface-muted: var(--token-color-surface-muted);
+  --color-border: var(--token-color-border);
+  --color-border-strong: var(--token-color-border-strong);
+  --color-text-primary: var(--token-color-text-primary);
+  --color-text-secondary: var(--token-color-text-secondary);
+  --color-text-muted: var(--token-color-text-muted);
+  --color-text-inverse: var(--token-color-text-inverse);
+  --color-success: var(--token-color-success);
+  --color-warning: var(--token-color-warning);
+  --color-error: var(--token-color-error);
+  --color-info: var(--token-color-info);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --text-display: var(--font-size-display);
+  --text-display--line-height: var(--font-size-display-line-height);
+  --text-h1: var(--font-size-h1);
+  --text-h1--line-height: var(--font-size-h1-line-height);
+  --text-h2: var(--font-size-h2);
+  --text-h2--line-height: var(--font-size-h2-line-height);
+  --text-h3: var(--font-size-h3);
+  --text-h3--line-height: var(--font-size-h3-line-height);
+  --text-h4: var(--font-size-h4);
+  --text-h4--line-height: var(--font-size-h4-line-height);
+  --text-body-lg: var(--font-size-body-lg);
+  --text-body-lg--line-height: var(--font-size-body-lg-line-height);
+  --text-body: var(--font-size-body);
+  --text-body--line-height: var(--font-size-body-line-height);
+  --text-body-sm: var(--font-size-body-sm);
+  --text-body-sm--line-height: var(--font-size-body-sm-line-height);
+  --text-caption: var(--font-size-caption);
+  --text-caption--line-height: var(--font-size-caption-line-height);
+  --radius-sm: var(--token-radius-sm);
+  --radius-md: var(--token-radius-md);
+  --radius-lg: var(--token-radius-lg);
+  --radius-xl: var(--token-radius-xl);
+  --radius-full: var(--token-radius-full);
+  --shadow-token-sm: var(--token-shadow-sm);
+  --shadow-token-md: var(--token-shadow-md);
+  --shadow-token-lg: var(--token-shadow-lg);
+  --breakpoint-tablet: 40rem;
+  --breakpoint-desktop: 64rem;
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --font-size-display: 3.5rem;
+    --font-size-display-line-height: 4rem;
+    --font-size-h1: 2.75rem;
+    --font-size-h1-line-height: 3.25rem;
+  }
+}
+
+@layer components {
+  .page-shell {
+    background-color: var(--token-color-background);
+  }
+
+  .page-container {
+    width: 100%;
+    max-width: 80rem;
+    margin-inline: auto;
+    padding-inline: var(--space-4);
+  }
+
+  .page-hero {
+    border-radius: var(--token-radius-xl);
+    background-color: var(--token-color-secondary);
+    box-shadow: var(--token-shadow-sm);
+  }
+
+  .ui-card {
+    border: 1px solid var(--token-color-border);
+    border-radius: var(--token-radius-xl);
+    background-color: var(--token-color-surface);
+    box-shadow: var(--token-shadow-sm);
+    transition:
+      border-color var(--duration-normal) var(--ease-standard),
+      box-shadow var(--duration-normal) var(--ease-standard),
+      transform var(--duration-normal) var(--ease-standard);
+  }
+
+  .ui-card:hover {
+    border-color: var(--token-color-border-strong);
+    box-shadow: var(--token-shadow-md);
+  }
+
+  .ui-control {
+    border: 1px solid var(--token-color-border);
+    border-radius: var(--token-radius-md);
+    background-color: var(--token-color-surface);
+    color: var(--token-color-text-primary);
+    transition:
+      border-color var(--duration-fast) var(--ease-standard),
+      box-shadow var(--duration-fast) var(--ease-standard);
+  }
+
+  .ui-control:focus {
+    border-color: var(--token-color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgb(81 71 217 / 0.16);
+  }
+
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(0.75rem);
+    transition:
+      opacity 350ms var(--ease-standard),
+      transform 350ms var(--ease-standard);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .scroll-reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .stagger > * {
+    animation: stagger-enter 350ms var(--ease-standard) both;
+  }
+
+  .stagger > *:nth-child(2) {
+    animation-delay: 40ms;
+  }
+
+  .stagger > *:nth-child(3) {
+    animation-delay: 80ms;
+  }
+
+  .stagger > *:nth-child(4) {
+    animation-delay: 120ms;
+  }
+
+  .stagger > *:nth-child(n + 5) {
+    animation-delay: 160ms;
+  }
+
+  .page-transition {
+    animation: page-enter 250ms var(--ease-standard) both;
+  }
+
+  .modal-backdrop {
+    animation: fade-in 180ms ease-out both;
+  }
+
+  .modal-panel {
+    animation: modal-enter 220ms var(--ease-standard) both;
+  }
+
+  .mobile-menu {
+    animation: menu-enter 180ms ease-out both;
+    transform-origin: top;
+  }
+
+  .accordion-answer {
+    animation: accordion-enter 180ms ease-out both;
+  }
+}
+
+/* Leaflet container custom styling */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--token-radius-lg);
+  z-index: 10;
+  background-color: var(--token-color-background);
+  font-family: inherit;
+}
+
+/* Custom Leaflet tooltip styling matching KelasKita */
+.leaflet-tooltip.custom-map-tooltip {
+  background: rgb(32 45 65 / 0.95);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgb(51 65 85 / 0.8);
+  border-radius: var(--token-radius-lg);
+  color: var(--token-color-text-inverse);
+  padding: var(--space-2) var(--space-3);
+  box-shadow: var(--token-shadow-lg);
+}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+  border-top-color: rgb(32 45 65 / 0.95) !important;
 }
 
 body {
-  background-color: #ffffff;
-  color: #1e293b;
+  background-color: var(--token-color-surface);
+  color: var(--token-color-text-primary);
   font-family: var(--font-sans), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   overflow-x: hidden;
 }
 
+button,
+a,
+input,
+select,
+textarea {
+  transition-duration: var(--duration-normal);
+  transition-timing-function: var(--ease-standard);
+}
+
+button:not(:disabled):active,
+a:active {
+  transform: scale(0.98);
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes menu-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes accordion-enter {
+  from {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stagger-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .stagger > * {
+    animation: none;
+  }
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: var(--space-2);
+  height: var(--space-2);
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--token-color-surface-muted);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
+  background: var(--token-color-border-strong);
+  border-radius: var(--token-radius-md);
 }
 
 ::-webkit-scrollbar-thumb:hover {

@@ -18,7 +18,7 @@ export const CLUSTER_THEME = {
     fillColor: "#1E293B", // Dark navy/slate
     color: "#0F172A",
     label: "Cluster 1 (Prioritas Tinggi)",
-    badgeBg: "bg-[#1E293B] text-[#C8EE44]",
+    badgeBg: "bg-secondary text-accent",
     description: "Tingkat kesenjangan tinggi, memerlukan intervensi fasilitas & tenaga pendidik segera.",
   },
   "Cluster 2": {
@@ -1093,4 +1093,3 @@ export const provincesGeoData: ProvinceGeoItem[] = [
     ],
   },
 ];
-

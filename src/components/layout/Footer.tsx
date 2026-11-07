@@ -4,7 +4,7 @@ import { footerLinks } from "@/data/dummy";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#202D41] text-white">
+    <footer className="bg-secondary text-white">
       <div className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-12">
           {/* Brand Column */}
@@ -24,7 +24,7 @@ export default function Footer() {
             <div>
               <Link
                 href="/prioritas-daerah"
-                className="inline-flex items-center justify-center rounded-full bg-[#C8EE44] px-6 py-2.5 text-sm font-bold text-[#202D41] shadow-sm transition hover:bg-[#d6fb4f] hover:scale-[1.02]"
+                className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-2.5 text-sm font-bold text-secondary shadow-sm transition hover:bg-accent-hover hover:scale-[1.02]"
               >
                 Lihat peta kesenjangan
               </Link>
@@ -33,7 +33,7 @@ export default function Footer() {
 
           {/* Jelajahi */}
           <div className="lg:col-span-2">
-            <h4 className="mb-4 text-sm font-semibold tracking-wide text-[#C8EE44]">
+            <h4 className="mb-4 text-sm font-semibold tracking-wide text-accent">
               Jelajahi
             </h4>
             <ul className="space-y-3">
@@ -52,7 +52,7 @@ export default function Footer() {
 
           {/* Kategori data */}
           <div className="lg:col-span-2">
-            <h4 className="mb-4 text-sm font-semibold tracking-wide text-[#C8EE44]">
+            <h4 className="mb-4 text-sm font-semibold tracking-wide text-accent">
               Kategori data
             </h4>
             <ul className="space-y-3">
@@ -71,7 +71,7 @@ export default function Footer() {
 
           {/* Sumber data */}
           <div className="lg:col-span-3">
-            <h4 className="mb-4 text-sm font-semibold tracking-wide text-[#C8EE44]">
+            <h4 className="mb-4 text-sm font-semibold tracking-wide text-accent">
               Sumber data
             </h4>
             <ul className="space-y-3">

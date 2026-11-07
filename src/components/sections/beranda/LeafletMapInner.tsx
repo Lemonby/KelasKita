@@ -86,9 +86,9 @@ export default function LeafletMapInner({
           const baseColor = CLUSTER_THEME[province.cluster].fillColor;
 
           const fillColor = isSelected
-            ? "#C8EE44"
+            ? "var(--token-color-accent)"
             : isHovered
-            ? "#6E67FB"
+            ? "var(--token-color-primary)"
             : isHighlighted
             ? baseColor
             : "#CBD5E1";
@@ -102,10 +102,10 @@ export default function LeafletMapInner({
             : 0.2;
 
           const borderColor = isSelected
-            ? "#1E293B"
+            ? "var(--token-color-text-primary)"
             : isHovered
-            ? "#ffffff"
-            : "#ffffff";
+            ? "var(--token-color-surface)"
+            : "var(--token-color-surface)";
 
           const weight = isSelected ? 3 : isHovered ? 2.5 : 1.2;
 
@@ -168,7 +168,7 @@ export default function LeafletMapInner({
                           </span>
                         </div>
                       </div>
-                      <p className="text-[10px] text-[#C8EE44] font-medium pt-1 border-t border-slate-700/60">
+                      <p className="text-[10px] text-accent font-medium pt-1 border-t border-slate-700/60">
                         Klik untuk melihat analisis lengkap &rarr;
                       </p>
                     </div>
@@ -183,12 +183,12 @@ export default function LeafletMapInner({
                   radius={isHovered || isSelected ? 5 : 3}
                   pathOptions={{
                     fillColor: isSelected
-                      ? "#1E293B"
+                      ? "var(--token-color-text-primary)"
                       : isHovered
-                      ? "#C8EE44"
-                      : "#ffffff",
+                      ? "var(--token-color-accent)"
+                      : "var(--token-color-surface)",
                     fillOpacity: 0.9,
-                    color: isSelected ? "#C8EE44" : "#1E293B",
+                    color: isSelected ? "var(--token-color-accent)" : "var(--token-color-text-primary)",
                     weight: 1.5,
                   }}
                   eventHandlers={{

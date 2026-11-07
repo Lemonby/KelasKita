@@ -3,6 +3,7 @@
 import { ArrowRight, Search } from "lucide-react";
 import { useMemo, useState } from "react";
 import { clusterData } from "@/data/dummy";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const clusterPriority: Record<string, number> = {
   "Cluster A": 1,
@@ -65,17 +66,19 @@ export default function PrioritasDaerahPage() {
     : filteredRegions.slice(0, initialVisibleRows);
 
   return (
-    <section className="min-h-screen bg-[#f5fdfd] px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
+    <section className="page-shell min-h-screen bg-background px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
       <div className="mx-auto max-w-7xl">
-        <div className="rounded-2xl bg-[#202d41] px-6 py-8 text-white shadow-sm sm:px-8 sm:py-9 lg:px-9">
+        <ScrollReveal>
+        <div className="page-hero rounded-2xl bg-secondary px-6 py-8 text-white shadow-sm sm:px-8 sm:py-9 lg:px-9">
           <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-            Prioritas <span className="text-[#c8ee44]">Daerah</span>
+            Prioritas <span className="text-accent">Daerah</span>
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-5 text-slate-200 sm:text-base">
             Daftar wilayah berdasarkan tingkat permasalahan pendidikan dari
             hasil klasifikasi indikator.
           </p>
         </div>
+        </ScrollReveal>
 
         <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
           <label className="relative block w-full max-w-sm">
@@ -92,7 +95,7 @@ export default function PrioritasDaerahPage() {
                 setShowAll(false);
               }}
               placeholder="Ketik untuk mencari daerah"
-              className="h-11 w-full rounded-lg border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-700 shadow-sm outline-none transition focus:border-[#6e67fb] focus:ring-2 focus:ring-[#6e67fb]/20"
+              className="h-11 w-full rounded-lg border border-slate-200 bg-white pl-10 pr-3 text-sm text-slate-700 shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
             />
           </label>
           <p className="text-sm text-slate-500">
@@ -100,6 +103,7 @@ export default function PrioritasDaerahPage() {
           </p>
         </div>
 
+        <ScrollReveal>
         <div className="mt-5 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <div className="hidden grid-cols-[76px_minmax(180px,1.3fr)_minmax(190px,1fr)_minmax(150px,0.8fr)] gap-5 border-b border-slate-200 px-6 py-4 text-xs font-bold text-slate-600 sm:grid">
             <span>Peringkat</span>
@@ -122,12 +126,12 @@ export default function PrioritasDaerahPage() {
                     <span className="text-xs font-bold text-slate-500 sm:hidden">
                       Peringkat
                     </span>
-                    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-lg bg-[#c8ee44] px-2 text-sm font-bold text-[#202d41]">
+                    <span className="inline-flex h-8 min-w-8 items-center justify-center rounded-lg bg-accent px-2 text-sm font-bold text-secondary">
                       {rank}
                     </span>
                   </div>
                   <div className="flex items-center justify-between gap-4">
-                    <span className="text-sm font-semibold text-[#202d41]">
+                    <span className="text-sm font-semibold text-secondary">
                       {region.Provinsi}
                     </span>
                     <span
@@ -170,12 +174,13 @@ export default function PrioritasDaerahPage() {
             </p>
           )}
         </div>
+        </ScrollReveal>
 
         {filteredRegions.length > initialVisibleRows && (
           <button
             type="button"
             onClick={() => setShowAll((current) => !current)}
-            className="ml-auto mt-4 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-[#6e67fb] shadow-sm transition hover:border-[#6e67fb] hover:bg-slate-50"
+            className="ml-auto mt-4 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-primary shadow-sm transition hover:border-primary hover:bg-slate-50"
           >
             {showAll ? "Tampilkan lebih sedikit" : "Lihat lebih banyak"}
             <ArrowRight

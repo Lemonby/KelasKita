@@ -45,8 +45,8 @@ const insightIcons = {
 
 const insightCategoryStyles: Record<string, { icon: string; label: string }> = {
   Partisipasi: {
-    icon: "bg-[#C9C4FF] text-[#6E67FB]",
-    label: "bg-[#C9C4FF] text-[#6E67FB]",
+    icon: "bg-[#C9C4FF] text-primary",
+    label: "bg-[#C9C4FF] text-primary",
   },
   Kualitas: {
     icon: "bg-[#E4FF9E] text-[#84CC16]",
@@ -177,10 +177,10 @@ export default function EkspolarasiWilayah() {
   // ==========================================
 
   return (
-    <main className="min-h-screen bg-[#F4FFFE] px-5 py-8">
+    <main className="min-h-screen bg-background px-5 py-8">
       <div className="mx-auto max-w-6xl">
         {/* HEADER */}
-        <header className="rounded-[22px] bg-[#202D42] px-10 py-8 text-white">
+        <header className="rounded-[22px] bg-secondary px-10 py-8 text-white">
           <h1 className="text-3xl font-bold">
             Eksplorasi <span className="text-lime-400">Daerah</span>
           </h1>
@@ -193,7 +193,7 @@ export default function EkspolarasiWilayah() {
 
         {/* FILTER SECTION */}
         <section className="mx-auto mt-9 max-w-3xl">
-          <h2 className="text-center text-3xl font-bold text-[#202D42]">
+          <h2 className="text-center text-3xl font-bold text-secondary">
             Masukan Nama Daerahmu
           </h2>
 
@@ -211,7 +211,7 @@ export default function EkspolarasiWilayah() {
                     : `${selectedProvinsi.length} Provinsi Dipilih`}
                 </span>
 
-                <span className="rounded-full bg-lime-300 px-5 py-2 font-semibold text-[#202D42]">
+                <span className="rounded-full bg-lime-300 px-5 py-2 font-semibold text-secondary">
                   {showFilter ? "Tutup" : "Filter"}
                 </span>
               </button>
@@ -220,7 +220,7 @@ export default function EkspolarasiWilayah() {
               {showFilter && (
                 <div className="absolute left-0 top-full z-30 mt-2 w-full rounded-xl border border-slate-200 bg-white p-4 shadow-xl">
                   <div className="mb-3 flex items-center justify-between">
-                    <h3 className="font-semibold text-[#202D42]">
+                    <h3 className="font-semibold text-secondary">
                       Pilih Provinsi
                     </h3>
 
@@ -255,7 +255,7 @@ export default function EkspolarasiWilayah() {
                     <button
                       type="button"
                       onClick={() => setShowFilter(false)}
-                      className="rounded-lg bg-[#202D42] px-5 py-2 text-xs font-semibold text-white hover:bg-slate-700"
+                      className="rounded-lg bg-secondary px-5 py-2 text-xs font-semibold text-white hover:bg-slate-700"
                     >
                       Terapkan
                     </button>
@@ -268,7 +268,7 @@ export default function EkspolarasiWilayah() {
             <button
               type="button"
               onClick={handleReset}
-              className="rounded-xl bg-[#202D42] px-6 py-3 text-sm font-semibold text-white hover:bg-slate-700"
+              className="rounded-xl bg-secondary px-6 py-3 text-sm font-semibold text-white hover:bg-slate-700"
             >
               Atur Ulang
             </button>
@@ -279,7 +279,7 @@ export default function EkspolarasiWilayah() {
         <section className="mt-12 rounded-3xl border border-slate-200 bg-white p-6 shadow-md md:p-8">
           <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <div>
-              <h2 className="text-xl font-bold text-[#202D42]">
+              <h2 className="text-xl font-bold text-secondary">
                 Perbandingan Indikator
               </h2>
 
@@ -299,7 +299,7 @@ export default function EkspolarasiWilayah() {
               onInput={(e) =>
                 setSelectedIndikator(e.currentTarget.value as IndikatorKey)
               }
-              className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-[#202D42] outline-none focus:border-lime-400"
+              className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-secondary outline-none focus:border-lime-400"
             >
               {indikatorOptions.map((indikator) => (
                 <option key={indikator} value={indikator}>
@@ -315,7 +315,7 @@ export default function EkspolarasiWilayah() {
 
         {/* TABLE SECTION */}
         <section className="mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
-          <div className="bg-[#202D42] px-6 py-5 text-white md:px-8">
+          <div className="bg-secondary px-6 py-5 text-white md:px-8">
             <h2 className="text-xl font-bold">Data Indikator Pendidikan</h2>
             <p className="mt-1 text-sm text-slate-200">
               {selectedProvinsi.length === 0
@@ -326,7 +326,7 @@ export default function EkspolarasiWilayah() {
 
           <div className="overflow-x-auto">
             <table className="min-w-[760px] w-full text-left text-sm">
-              <thead className="bg-[#F4FFFE] text-[#202D42]">
+              <thead className="bg-background text-secondary">
                 <tr>
                   <th className="px-6 py-4 font-semibold">Provinsi</th>
                   {tableIndicators.map((indikator) => (
@@ -339,7 +339,7 @@ export default function EkspolarasiWilayah() {
               <tbody className="divide-y divide-slate-100">
                 {tableData.map((item) => (
                   <tr key={item.Provinsi} className="hover:bg-slate-50">
-                    <td className="whitespace-nowrap px-6 py-4 font-medium text-[#202D42]">
+                    <td className="whitespace-nowrap px-6 py-4 font-medium text-secondary">
                       {item.Provinsi}
                     </td>
                     {tableIndicators.map((indikator) => (
@@ -372,7 +372,7 @@ export default function EkspolarasiWilayah() {
                 type="button"
                 onClick={() => setTablePage((page) => Math.max(1, page - 1))}
                 disabled={tablePage === 1}
-                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-[#202D42] hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 <ChevronLeft size={16} />
                 Sebelumnya
@@ -389,8 +389,8 @@ export default function EkspolarasiWilayah() {
                     onClick={() => setTablePage(page)}
                     className={`h-8 min-w-8 rounded-lg px-2 text-sm font-semibold ${
                       page === tablePage
-                        ? "bg-[#6E67FB] text-white"
-                        : "text-[#202D42] hover:bg-slate-100"
+                        ? "bg-primary text-white"
+                        : "text-secondary hover:bg-slate-100"
                     }`}
                   >
                     {page}
@@ -404,7 +404,7 @@ export default function EkspolarasiWilayah() {
                   setTablePage((page) => Math.min(totalTablePages, page + 1))
                 }
                 disabled={tablePage === totalTablePages}
-                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-[#202D42] hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
               >
                 Berikutnya
                 <ChevronRight size={16} />
@@ -416,7 +416,7 @@ export default function EkspolarasiWilayah() {
         {/* INSIGHT SECTION */}
         <section className="mt-16">
           <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <h2 className="text-3xl font-bold text-[#202D42]">Insight</h2>
+            <h2 className="text-3xl font-bold text-secondary">Insight</h2>
 
             <label className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-400 sm:w-72">
               <Search size={16} />
@@ -428,7 +428,7 @@ export default function EkspolarasiWilayah() {
                   setInsightSearch((event.target as HTMLInputElement).value)
                 }
                 placeholder="Ketik untuk mencari insight"
-                className="min-w-0 flex-1 bg-transparent text-[#202D42] outline-none placeholder:text-slate-400"
+                className="min-w-0 flex-1 bg-transparent text-secondary outline-none placeholder:text-slate-400"
               />
             </label>
           </div>
@@ -452,7 +452,7 @@ export default function EkspolarasiWilayah() {
                   </div>
 
                   <div>
-                    <h3 className="font-bold text-[#202D42]">
+                    <h3 className="font-bold text-secondary">
                       {insight.title}
                     </h3>
                     <p className="mt-2 text-sm leading-6 text-slate-500">

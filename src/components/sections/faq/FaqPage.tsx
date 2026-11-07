@@ -28,14 +28,14 @@ export default function FaqPage() {
   }, [searchQuery]);
 
   return (
-    <div className="relative z-10 min-h-screen bg-[#F8FAFC]/60 pb-24 pt-6 sm:pt-8">
+    <div className="relative z-10 min-h-screen bg-background/60 pb-24 pt-6 sm:pt-8">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* ==================== 1. HERO HEADER BANNER ==================== */}
-        <section className="relative overflow-hidden rounded-3xl bg-[#202D41] text-white p-7 sm:p-10 lg:p-12 shadow-sm">
+        <section className="relative overflow-hidden rounded-3xl bg-secondary text-white p-7 sm:p-10 lg:p-12 shadow-sm">
           <div className="max-w-3xl space-y-3.5">
             <h1 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold tracking-tight text-white leading-tight">
               Pertanyaan yang{" "}
-              <span className="text-[#C8EE44]">Biasa Ditanyakan</span>
+              <span className="text-accent">Biasa Ditanyakan</span>
             </h1>
             <p className="text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-300 font-normal max-w-2xl">
               Pada halaman ini anda dapat menemukan Jawaban atas Pertanyaan pada
@@ -71,7 +71,7 @@ export default function FaqPage() {
               onInput={(e) =>
                 setSearchQuery((e.target as HTMLInputElement).value)
               }
-              className="w-full cursor-text rounded-full border border-slate-200 bg-white py-3.5 pl-14 pr-12 text-sm text-slate-800 placeholder:text-slate-400 transition-all focus:border-[#6E67FB] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#6E67FB]/10"
+              className="w-full cursor-text rounded-full border border-slate-200 bg-white py-3.5 pl-14 pr-12 text-sm text-slate-800 placeholder:text-slate-400 transition-all focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/10"
             />
 
             {/* Clear Button */}
@@ -103,7 +103,7 @@ export default function FaqPage() {
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="cursor-pointer text-xs font-semibold text-[#6E67FB] hover:underline"
+                className="cursor-pointer text-xs font-semibold text-primary hover:underline"
               >
                 Reset pencarian
               </button>
@@ -132,7 +132,7 @@ export default function FaqPage() {
                     >
                       <div className="flex items-center gap-3.5 sm:gap-4 flex-1">
                         {/* Nomor Badge Hijau Lime */}
-                        <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-[#C8EE44] text-[#202D41] font-extrabold text-sm sm:text-base shadow-2xs pointer-events-none">
+                        <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-accent text-secondary font-extrabold text-sm sm:text-base shadow-2xs pointer-events-none">
                           {item.id}
                         </span>
                         <span className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
@@ -151,7 +151,7 @@ export default function FaqPage() {
                     </summary>
 
                     {/* Konten Jawaban */}
-                    <div className="border-t border-slate-100 bg-slate-50/50 px-5 pb-5 pt-4 sm:px-6 transition-all duration-200">
+                    <div className="accordion-answer border-t border-slate-100 bg-slate-50/50 px-5 pb-5 pt-4 sm:px-6">
                       <div className="pl-12 sm:pl-14">
                         <p className="text-sm sm:text-[15px] leading-relaxed text-slate-600 font-normal">
                           {item.answer}
@@ -176,7 +176,7 @@ export default function FaqPage() {
               <button
                 type="button"
                 onClick={() => setSearchQuery("")}
-                className="mt-4 inline-flex items-center gap-1.5 cursor-pointer text-xs font-bold text-[#6E67FB] hover:underline"
+                className="mt-4 inline-flex items-center gap-1.5 cursor-pointer text-xs font-bold text-primary hover:underline"
               >
                 <span>Tampilkan semua pertanyaan</span>
                 <ArrowRight className="h-3.5 w-3.5" />
