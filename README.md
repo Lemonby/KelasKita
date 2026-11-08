@@ -12,6 +12,6 @@
 4.  Jalankan server pengembangan menggunakan perintah `npm run dev`.
 5.  Akses aplikasi melalui peramban pada alamat `http://localhost:3000`.
 
-**Progres saat ini:** Tim kami sudah mengumpulkan, menganalisis, dan menemukan insight dari data tersebut. Tim kami membuat beberapa halaman menggunakan HTML,CSS,Js untuk first submission yang nantinya akan diubah sesuai tech stack. Tim kami juga sudah membuat landing page menggunakan laravel+livewire. untuk progress selanjutnya kami akan melanjutkan pembuatan sisa halamannya (beranda, prioritas daerah, eksplorasi daerah, rekomendasi, dadtaset).
+**Progres saat ini:** Tim kami sudah memperbaruhi techstack yang sebelumnya html, css, Js, sekarang menjadi NextJs dengan typscript. Kami sudah meneyelesaikan 90% website ini dan sedang pada tahap evaluasi tampilan, revisi proposal, dan pembuata requirement submission final nanti.
 
 **Note:** Tim akan mengupdate proyek secara berkala.
