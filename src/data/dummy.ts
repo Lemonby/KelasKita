@@ -21,44 +21,44 @@ export const top5Prioritas = [
 ];
 
 export const clusterData = [
-  { no: 1, Provinsi: "Aceh", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 2, Provinsi: "Sumatera Utara", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 3, Provinsi: "Sumatera Barat", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 4, Provinsi: "Riau", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 5, Provinsi: "Jambi", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 6, Provinsi: "Sumatera Selatan", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 7, Provinsi: "Bengkulu", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 8, Provinsi: "Lampung", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 9, Provinsi: "Kep. Bangka Belitung", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 10, Provinsi: "Kepulauan Riau", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 11, Provinsi: "D.K.I. Jakarta", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
-  { no: 12, Provinsi: "Jawa Barat", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
-  { no: 13, Provinsi: "Jawa Tengah", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 14, Provinsi: "D.I. Yogyakarta", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 15, Provinsi: "Jawa Timur", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 16, Provinsi: "Banten", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
-  { no: 17, Provinsi: "Bali", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 18, Provinsi: "Nusa Tenggara Barat", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 19, Provinsi: "Nusa Tenggara Timur", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 20, Provinsi: "Kalimantan Barat", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 21, Provinsi: "Kalimantan Tengah", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 22, Provinsi: "Kalimantan Selatan", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 23, Provinsi: "Kalimantan Timur", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 24, Provinsi: "Kalimantan Utara", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 25, Provinsi: "Sulawesi Utara", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 26, Provinsi: "Sulawesi Tengah", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 27, Provinsi: "Sulawesi Selatan", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 28, Provinsi: "Sulawesi Tenggara", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 29, Provinsi: "Gorontalo", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 30, Provinsi: "Sulawesi Barat", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
-  { no: 31, Provinsi: "Maluku", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 32, Provinsi: "Maluku Utara", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 33, Provinsi: "Papua Barat", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 34, Provinsi: "Papua Barat Daya", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 35, Provinsi: "Papua", jenis: "Cluster C", keterangan: "Relatif Baik" },
-  { no: 36, Provinsi: "Papua Tengah", jenis: "Cluster A", keterangan: "Kritis" },
-  { no: 37, Provinsi: "Papua Selatan", jenis: "Cluster B", keterangan: "Perlu Perhatian" },
-  { no: 38, Provinsi: "Papua Pegunungan", jenis: "Cluster A", keterangan: "Kritis" },
+  { no: 1, Provinsi: "Aceh", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 2, Provinsi: "Sumatera Utara", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 3, Provinsi: "Sumatera Barat", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 4, Provinsi: "Riau", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 5, Provinsi: "Jambi", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 6, Provinsi: "Sumatera Selatan", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 7, Provinsi: "Bengkulu", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 8, Provinsi: "Lampung", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 9, Provinsi: "Kep. Bangka Belitung", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 10, Provinsi: "Kepulauan Riau", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 11, Provinsi: "D.K.I. Jakarta", jenis: "Cluster 2", keterangan: "Perlu Perhatian" },
+  { no: 12, Provinsi: "Jawa Barat", jenis: "Cluster 2", keterangan: "Perlu Perhatian" },
+  { no: 13, Provinsi: "Jawa Tengah", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 14, Provinsi: "D.I. Yogyakarta", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 15, Provinsi: "Jawa Timur", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 16, Provinsi: "Banten", jenis: "Cluster 2", keterangan: "Perlu Perhatian" },
+  { no: 17, Provinsi: "Bali", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 18, Provinsi: "Nusa Tenggara Barat", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 19, Provinsi: "Nusa Tenggara Timur", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 20, Provinsi: "Kalimantan Barat", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 21, Provinsi: "Kalimantan Tengah", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 22, Provinsi: "Kalimantan Selatan", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 23, Provinsi: "Kalimantan Timur", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 24, Provinsi: "Kalimantan Utara", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 25, Provinsi: "Sulawesi Utara", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 26, Provinsi: "Sulawesi Tengah", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 27, Provinsi: "Sulawesi Selatan", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 28, Provinsi: "Sulawesi Tenggara", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 29, Provinsi: "Gorontalo", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 30, Provinsi: "Sulawesi Barat", jenis: "Cluster 2", keterangan: "Perlu Perhatian" },
+  { no: 31, Provinsi: "Maluku", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 32, Provinsi: "Maluku Utara", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 33, Provinsi: "Papua Barat", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 34, Provinsi: "Papua Barat Daya", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 35, Provinsi: "Papua", jenis: "Cluster 3", keterangan: "Relatif Baik" },
+  { no: 36, Provinsi: "Papua Tengah", jenis: "Cluster 1", keterangan: "Kritis" },
+  { no: 37, Provinsi: "Papua Selatan", jenis: "Cluster 2", keterangan: "Perlu Perhatian" },
+  { no: 38, Provinsi: "Papua Pegunungan", jenis: "Cluster 1", keterangan: "Kritis" },
 ];
 
 export type Dataset = {
@@ -352,6 +352,7 @@ export const datasets: Dataset[] = [
   },
 ];
 
+// Ga dipakai lagi
 export const datasetPreviewData = [
   {
     no: 1,
@@ -508,9 +509,9 @@ export const rekomendasi = [
   },
   {
     icon: "users" as const,
-    title: "Cluster A — Kritis",
+    title: "Cluster 1 — Kritis",
     description:
-      "Provinsi yang memiliki setidaknya dua dari tiga indikator pendidikan yang melewati ambang batas. Provinsi dalam Cluster A menghadapi beberapa jenis permasalahan pendidikan secara bersamaan. Artinya, penanganannya mungkin membutuhkan lebih dari satu jenis intervensi.",
+      "Provinsi yang memiliki setidaknya dua dari tiga indikator pendidikan yang melewati ambang batas. Provinsi dalam Cluster 1 menghadapi beberapa jenis permasalahan pendidikan secara bersamaan. Artinya, penanganannya mungkin membutuhkan lebih dari satu jenis intervensi.",
     descriptionItems: [
      "Evaluasi distribusi guru: Identifikasi sekolah yang memiliki rasio murid-guru tinggi dan periksa kebutuhan guru berdasarkan jumlah siswa serta kondisi pembelajaran.",
      "Redistribusi tenaga pendidik: Pertimbangkan penempatan atau redistribusi guru berdasarkan kebutuhan aktual sekolah.",
@@ -523,7 +524,7 @@ export const rekomendasi = [
   },
   {
     icon: "users" as const,
-    title: "Cluster B — Perlu Perhatian",
+    title: "Cluster 2 — Perlu Perhatian",
     description:
       "Provinsi yang hanya memiliki satu indikator pendidikan melewati ambang batas.",
     descriptionItems: [
@@ -538,7 +539,7 @@ export const rekomendasi = [
   },
   {
     icon: "users" as const,
-    title: "Cluster C — Relatif Baik",
+    title: "Cluster 3 — Relatif Baik",
     description:
       "Evaluasi kebutuhan guru dan pertimbangkan insentif untuk daerah dengan rasio guru/murid tinggi.",
     descriptionItems: [

@@ -35,7 +35,10 @@ function UrgencyBars({ level }: { level: "Tinggi" | "Sedang" | "Rendah" }) {
 
 export default function DatasetCard({ dataset }: DatasetCardProps) {
   return (
-    <div className="ui-card group flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-6 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg">
+    <Link
+      href={`/dataset/${dataset.id}`}
+      className="ui-card group flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/25"
+    >
       <div>
         {/* Top bar: Format Pill + Urgency indicator */}
         <div className="mb-4 flex items-center justify-between">
@@ -46,11 +49,9 @@ export default function DatasetCard({ dataset }: DatasetCardProps) {
         </div>
 
         {/* Dataset Title */}
-        <Link href={`/dataset/${dataset.id}`}>
-          <h3 className="mb-2 text-[17px] font-bold leading-snug text-slate-900 transition-colors group-hover:text-primary">
-            {dataset.title}
-          </h3>
-        </Link>
+        <h3 className="mb-2 text-[17px] font-bold leading-snug text-slate-900 transition-colors group-hover:text-primary">
+          {dataset.title}
+        </h3>
 
         {/* Dataset Description */}
         <p className="mb-5 text-[13px] leading-relaxed text-slate-500 line-clamp-3">
@@ -76,6 +77,6 @@ export default function DatasetCard({ dataset }: DatasetCardProps) {
           <span>{dataset.date}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

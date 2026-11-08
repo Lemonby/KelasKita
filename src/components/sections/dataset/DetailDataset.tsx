@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import * as XLSX from "xlsx";
 import type { Dataset } from "@/data/dummy";
 import { getDatasetFileUrl } from "@/data/datasetFiles";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 type SheetRows = Record<string, unknown[][]>;
 
@@ -73,6 +74,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
           <ArrowLeft size={16} aria-hidden="true" />
           Kembali ke dataset
         </Link>
+        <ScrollReveal>
         <header>
           <h1 className="text-2xl font-bold leading-tight text-secondary sm:text-3xl">
             {dataset.title}
@@ -84,6 +86,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
             {dataset.description}
           </p>
         </header>
+        </ScrollReveal>
 
         <div className="mt-6 grid max-w-2xl gap-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-2">
           <InfoRow
@@ -126,6 +129,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
           )}
         </div>
 
+        <ScrollReveal>
         <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
           <div className="bg-secondary px-5 py-4 text-white">
             <h2 className="text-sm font-bold">
@@ -201,6 +205,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
             </p>
           )}
         </section>
+        </ScrollReveal>
       </div>
     </section>
   );

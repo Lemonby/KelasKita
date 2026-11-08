@@ -3,6 +3,7 @@
 import React, { useState, useMemo, useRef } from "react";
 import { ChevronDown, Search, X, HelpCircle, ArrowRight } from "lucide-react";
 import { faqData } from "@/data/dummy";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 export default function FaqPage() {
   const [openIds, setOpenIds] = useState<number[]>([]);
@@ -31,18 +32,20 @@ export default function FaqPage() {
     <div className="relative z-10 min-h-screen bg-background/60 pb-24 pt-6 sm:pt-8">
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 space-y-8 sm:space-y-10">
         {/* ==================== 1. HERO HEADER BANNER ==================== */}
-        <section className="relative overflow-hidden rounded-3xl bg-secondary text-white p-7 sm:p-10 lg:p-12 shadow-sm">
-          <div className="max-w-3xl space-y-3.5">
-            <h1 className="text-2xl sm:text-3xl lg:text-[38px] font-extrabold tracking-tight text-white leading-tight">
-              Pertanyaan yang{" "}
-              <span className="text-accent">Biasa Ditanyakan</span>
-            </h1>
-            <p className="text-xs sm:text-sm lg:text-[15px] leading-relaxed text-slate-300 font-normal max-w-2xl">
-              Pada halaman ini anda dapat menemukan Jawaban atas Pertanyaan pada
-              Portal Satu Data Kementerian Komunikasi dan Digital
-            </p>
-          </div>
-        </section>
+        <ScrollReveal>
+          <section className="page-hero section-hero relative overflow-hidden rounded-2xl bg-secondary text-white">
+            <div className="section-hero-content space-y-3.5">
+              <h1 className="section-hero-title text-white">
+                Pertanyaan yang{" "}
+                <span className="text-accent">Biasa Ditanyakan</span>
+              </h1>
+              <p className="section-hero-description !mt-0 max-w-2xl">
+                Pada halaman ini anda dapat menemukan Jawaban atas Pertanyaan
+                pada Portal Satu Data Kementerian Komunikasi dan Digital
+              </p>
+            </div>
+          </section>
+        </ScrollReveal>
 
         {/* ==================== 2. SEARCH BAR ==================== */}
         <section className="relative mx-auto max-w-3xl">
@@ -112,56 +115,58 @@ export default function FaqPage() {
 
           {/* Accordion List using native <details> with React fallback */}
           {filteredFaq.length > 0 ? (
-            <div className="space-y-3.5">
-              {filteredFaq.map((item) => {
-                const isOpen = openIds.includes(item.id);
+            <ScrollReveal className="stagger">
+              <div className="space-y-3.5">
+                {filteredFaq.map((item) => {
+                  const isOpen = openIds.includes(item.id);
 
-                return (
-                  <details
-                    key={item.id}
-                    open={isOpen}
-                    className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-2xs transition-all duration-200 hover:border-slate-300"
-                  >
-                    {/* Header Tombol Pertanyaan */}
-                    <summary
-                      onClick={(e) => {
-                        e.preventDefault();
-                        toggleItem(item.id);
-                      }}
-                      className="flex w-full cursor-pointer list-none items-center justify-between gap-4 p-4 sm:p-5 text-left transition hover:bg-slate-50/60 select-none [&::-webkit-details-marker]:hidden"
+                  return (
+                    <details
+                      key={item.id}
+                      open={isOpen}
+                      className="overflow-hidden rounded-2xl border border-slate-200/90 bg-white shadow-2xs transition-all duration-200 hover:border-slate-300"
                     >
-                      <div className="flex items-center gap-3.5 sm:gap-4 flex-1">
-                        {/* Nomor Badge Hijau Lime */}
-                        <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-accent text-secondary font-extrabold text-sm sm:text-base shadow-2xs pointer-events-none">
-                          {item.id}
-                        </span>
-                        <span className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
-                          {item.question}
-                        </span>
-                      </div>
+                      {/* Header Tombol Pertanyaan */}
+                      <summary
+                        onClick={(e) => {
+                          e.preventDefault();
+                          toggleItem(item.id);
+                        }}
+                        className="flex w-full cursor-pointer list-none items-center justify-between gap-4 p-4 sm:p-5 text-left transition hover:bg-slate-50/60 select-none [&::-webkit-details-marker]:hidden"
+                      >
+                        <div className="flex items-center gap-3.5 sm:gap-4 flex-1">
+                          {/* Nomor Badge Hijau Lime */}
+                          <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-xl bg-accent text-secondary font-extrabold text-sm sm:text-base shadow-2xs pointer-events-none">
+                            {item.id}
+                          </span>
+                          <span className="text-sm sm:text-base font-bold text-slate-900 leading-snug">
+                            {item.question}
+                          </span>
+                        </div>
 
-                      {/* Panah Indikator (Chevron) */}
-                      <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-500 pointer-events-none">
-                        <ChevronDown
-                          className={`h-5 w-5 transition-transform duration-300 ease-out ${
-                            isOpen ? "rotate-180 text-slate-900" : ""
-                          }`}
-                        />
-                      </span>
-                    </summary>
+                        {/* Panah Indikator (Chevron) */}
+                        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-500 pointer-events-none">
+                          <ChevronDown
+                            className={`h-5 w-5 transition-transform duration-300 ease-out ${
+                              isOpen ? "rotate-180 text-slate-900" : ""
+                            }`}
+                          />
+                        </span>
+                      </summary>
 
-                    {/* Konten Jawaban */}
-                    <div className="accordion-answer border-t border-slate-100 bg-slate-50/50 px-5 pb-5 pt-4 sm:px-6">
-                      <div className="pl-12 sm:pl-14">
-                        <p className="text-sm sm:text-[15px] leading-relaxed text-slate-600 font-normal">
-                          {item.answer}
-                        </p>
+                      {/* Konten Jawaban */}
+                      <div className="accordion-answer border-t border-slate-100 bg-slate-50/50 px-5 pb-5 pt-4 sm:px-6">
+                        <div className="pl-12 sm:pl-14">
+                          <p className="text-sm sm:text-[15px] leading-relaxed text-slate-600 font-normal">
+                            {item.answer}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </details>
-                );
-              })}
-            </div>
+                    </details>
+                  );
+                })}
+              </div>
+            </ScrollReveal>
           ) : (
             /* State jika pencarian tidak menemukan hasil */
             <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center shadow-xs">

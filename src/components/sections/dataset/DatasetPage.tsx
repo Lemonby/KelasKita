@@ -15,6 +15,7 @@ import {
 import { useMemo, useState } from "react";
 import { datasets } from "@/data/dummy";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import FilterDropdown from "@/components/ui/FilterDropdown";
 
 export default function DatasetPage() {
   const [query, setQuery] = useState("");
@@ -31,7 +32,8 @@ export default function DatasetPage() {
     return datasets.filter((dataset) => {
       const matchesCategory =
         category === "Semua kategori" || dataset.category === category;
-      const searchableText = `${dataset.title} ${dataset.description} ${dataset.category}`.toLowerCase();
+      const searchableText =
+        `${dataset.title} ${dataset.description} ${dataset.category}`.toLowerCase();
       return matchesCategory && searchableText.includes(normalizedQuery);
     });
   }, [category, query]);
@@ -56,52 +58,45 @@ export default function DatasetPage() {
     <section className="page-shell bg-background px-4 py-9 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto max-w-7xl">
         <ScrollReveal>
-        <header className="page-hero rounded-2xl bg-secondary px-6 py-8 text-white shadow-sm sm:px-8 lg:px-9">
-          <h1 className="max-w-xl text-2xl font-bold leading-tight sm:text-3xl">
-            Dataset kesenjangan{" "}
-            <span className="text-accent">pendidikan antardaerah</span>
-          </h1>
-          <p className="mt-3 text-sm text-slate-200">
-            Temukan data, lihat daerah yang tertinggal, dan dapatkan saran tindakan.
-          </p>
-          <div className="mt-6 flex max-w-xl flex-col gap-2 sm:flex-row">
-            <label className="flex h-12 flex-1 items-center gap-2 rounded-full bg-white px-4 text-slate-500">
-              <Search size={16} aria-hidden="true" />
-              <span className="sr-only">Cari dataset</span>
-              <input
-                value={query}
-                onChange={(event) => updateQuery(event.target.value)}
-                onInput={(event) =>
-                  updateQuery((event.target as HTMLInputElement).value)
-                }
-                placeholder="Masukan kata kunci"
-                className="min-w-0 flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
-              />
-            </label>
-            <label className="flex h-12 items-center gap-2 rounded-full bg-accent px-4 text-sm font-bold text-secondary sm:min-w-48">
-              <Filter size={16} aria-hidden="true" />
-              <span className="sr-only">Filter kategori</span>
-              <select
-                value={category}
-                onChange={(event) => updateCategory(event.target.value)}
-                onInput={(event) =>
-                  updateCategory((event.target as HTMLSelectElement).value)
-                }
-                className="min-w-0 flex-1 cursor-pointer appearance-none bg-transparent outline-none"
-              >
-                <option value="Semua kategori">Semua kategori</option>
-                {categories.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-        </header>
+          <header className="page-hero section-hero rounded-2xl bg-secondary text-white">
+            <div className="section-hero-content">
+              <h1 className="section-hero-title max-w-xl">
+                Dataset kesenjangan{" "}
+                <span className="text-accent">pendidikan antardaerah</span>
+              </h1>
+              <p className="section-hero-description">
+                Temukan data, lihat daerah yang tertinggal, dan dapatkan saran
+                tindakan.
+              </p>
+              <div className="mt-6 flex max-w-xl flex-col gap-2 sm:flex-row">
+                <label className="flex h-12 flex-1 items-center gap-2 rounded-full bg-white px-4 text-slate-500">
+                  <Search size={16} aria-hidden="true" />
+                  <span className="sr-only">Cari dataset</span>
+                  <input
+                    value={query}
+                    onChange={(event) => updateQuery(event.target.value)}
+                    onInput={(event) =>
+                      updateQuery((event.target as HTMLInputElement).value)
+                    }
+                    placeholder="Masukan kata kunci"
+                    className="min-w-0 flex-1 bg-transparent text-sm text-slate-700 outline-none placeholder:text-slate-400"
+                  />
+                </label>
+                <FilterDropdown
+                  label="Filter kategori"
+                  value={category}
+                  options={["Semua kategori", ...categories]}
+                  onChange={updateCategory}
+                  leadingIcon={<Filter size={16} />}
+                  variant="accent"
+                  className="sm:min-w-48 sm:w-auto sm:flex-1"
+                />
+              </div>
+            </div>
+          </header>
         </ScrollReveal>
 
-        <div className="mt-8 flex items-center justify-between gap-4">
+        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
             Menampilkan <strong>{filteredDatasets.length}</strong> dari{" "}
             <strong>{datasets.length}</strong> dataset
@@ -125,17 +120,23 @@ export default function DatasetPage() {
         </div>
 
         {visibleDatasets.length > 0 ? (
-          <div
-            className={
-              viewMode === "card"
-              ? "stagger mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-                : "mt-5 space-y-4"
-            }
-          >
-            {visibleDatasets.map((dataset) => (
-              <DatasetItem key={dataset.id} dataset={dataset} viewMode={viewMode} />
-            ))}
-          </div>
+          <ScrollReveal className={viewMode === "card" ? "stagger" : ""}>
+            <div
+              className={
+                viewMode === "card"
+                  ? "mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+                  : "mt-5 space-y-4"
+              }
+            >
+              {visibleDatasets.map((dataset) => (
+                <DatasetItem
+                  key={dataset.id}
+                  dataset={dataset}
+                  viewMode={viewMode}
+                />
+              ))}
+            </div>
+          </ScrollReveal>
         ) : (
           <div className="mt-5 rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center text-sm text-slate-500">
             Dataset tidak ditemukan. Coba kata kunci atau kategori lain.
@@ -143,7 +144,10 @@ export default function DatasetPage() {
         )}
 
         {totalPages > 1 && (
-          <nav className="mt-10 flex items-center justify-center gap-1" aria-label="Pagination">
+          <nav
+            className="mt-10 flex items-center justify-center gap-1"
+            aria-label="Pagination"
+          >
             <PageButton
               label="Halaman sebelumnya"
               disabled={currentPage === 1}
@@ -171,7 +175,9 @@ export default function DatasetPage() {
             <PageButton
               label="Halaman berikutnya"
               disabled={currentPage === totalPages}
-              onClick={() => setPage((value) => Math.min(totalPages, value + 1))}
+              onClick={() =>
+                setPage((value) => Math.min(totalPages, value + 1))
+              }
             >
               <ChevronRight size={15} />
             </PageButton>
@@ -194,7 +200,7 @@ function DatasetItem({
       href={`/dataset/${dataset.id}`}
       className={`ui-card group block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md ${
         viewMode === "list"
-          ? "flex items-center gap-5 px-5 lg:gap-8 lg:px-7"
+          ? "flex flex-col gap-4 px-5 sm:flex-row sm:items-center sm:gap-5 lg:gap-8 lg:px-7"
           : ""
       }`}
     >
@@ -219,7 +225,7 @@ function DatasetItem({
       <div
         className={`mt-5 border-t border-slate-100 pt-4 text-[10px] text-slate-500 ${
           viewMode === "list"
-            ? "mt-0 flex min-w-64 items-center gap-5 border-t-0 border-l pl-6"
+            ? "mt-0 flex flex-wrap items-center gap-x-5 gap-y-2 border-t-0 sm:min-w-0 sm:border-l sm:pl-6"
             : ""
         }`}
       >

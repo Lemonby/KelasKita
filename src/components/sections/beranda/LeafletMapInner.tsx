@@ -1,28 +1,40 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { GeoJSON, MapContainer, TileLayer, useMap } from "react-leaflet";
+import type { FeatureCollection, Geometry } from "geojson";
+import type { Map as LeafletMap, Path } from "leaflet";
 import {
-  MapContainer,
-  TileLayer,
-  Polygon,
-  Tooltip,
-  CircleMarker,
-  useMap,
-} from "react-leaflet";
-import {
-  provincesGeoData,
-  ProvinceGeoItem,
   CLUSTER_THEME,
 } from "@/data/indonesiaGeoData";
+import { berandaMapData, ProvinceMapItem } from "@/data/berandaMapData";
 
 interface LeafletMapInnerProps {
-  onSelectProvince: (province: ProvinceGeoItem) => void;
-  selectedProvince: ProvinceGeoItem | null;
+  onSelectProvince: (province: ProvinceMapItem) => void;
+  selectedProvince: ProvinceMapItem | null;
   activeClusterFilter: string;
   searchQuery: string;
 }
 
-// Sub-component to smoothly animate map camera
+type ProvinceFeatureCollection = FeatureCollection<
+  Geometry,
+  Record<string, unknown>
+>;
+
+function normalizeProvinceName(name: string) {
+  return name
+    .toLocaleLowerCase("id")
+    .replace(/[^a-z0-9]/g, "")
+    .replace(/daerahistimewa/g, "di")
+    .replace(/kepulauan/g, "kep");
+}
+
 function MapController({ target }: { target: [number, number] | null }) {
   const map = useMap();
 
@@ -41,27 +53,102 @@ export default function LeafletMapInner({
   activeClusterFilter,
   searchQuery,
 }: LeafletMapInnerProps) {
-  const [hoveredProvinceId, setHoveredProvinceId] = useState<string | null>(null);
+  const [boundaries, setBoundaries] =
+    useState<ProvinceFeatureCollection | null>(null);
+  const [boundaryError, setBoundaryError] = useState(false);
+  const [hoveredProvinceId, setHoveredProvinceId] = useState<string | null>(
+    null,
+  );
+  const mapRef = useRef<LeafletMap | null>(null);
 
-  // Initial bounds & center of Indonesia
-  const indonesiaCenter: [number, number] = [-2.5, 118.0];
-  const defaultZoom = 5;
+  useLayoutEffect(() => {
+    return () => {
+      mapRef.current?.remove();
+      mapRef.current = null;
+    };
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+
+    fetch("/indonesia-provinces.geojson")
+      .then((response) => {
+        if (!response.ok)
+          throw new Error("GeoJSON provinsi tidak dapat dimuat.");
+        return response.json() as Promise<ProvinceFeatureCollection>;
+      })
+      .then((data) => {
+        if (active) setBoundaries(data);
+      })
+      .catch(() => {
+        if (active) setBoundaryError(true);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const provincesByName = useMemo(
+    () =>
+      new Map(
+        berandaMapData.map((province) => [
+          normalizeProvinceName(province.name),
+          province,
+        ]),
+      ),
+    [],
+  );
+
+  const getProvince = (featureName: string) =>
+    provincesByName.get(normalizeProvinceName(featureName));
+
+  const getProvinceStyle = (province: ProvinceMapItem) => {
+    const isSelected = selectedProvince?.id === province.id;
+    const isHovered = hoveredProvinceId === province.id;
+    const matchesCluster =
+      activeClusterFilter === "all" || province.cluster === activeClusterFilter;
+    const query = searchQuery.trim().toLocaleLowerCase("id");
+    const matchesSearch =
+      !query ||
+      province.name.toLocaleLowerCase("id").includes(query) ||
+      province.island.toLocaleLowerCase("id").includes(query);
+
+    return {
+      color: isSelected ? "#5147d9" : "#ffffff",
+      weight: isSelected ? 2.5 : isHovered ? 2 : 1.25,
+      opacity: isSelected || isHovered ? 1 : 0.95,
+      fillColor: isSelected
+        ? "#c8ee44"
+        : CLUSTER_THEME[province.cluster].fillColor,
+      fillOpacity: isSelected
+        ? 0.78
+        : isHovered
+          ? 0.52
+          : matchesCluster && matchesSearch
+            ? 0.26
+            : 0.06,
+    };
+  };
+  const provinceStyleRef = React.useRef(getProvinceStyle);
+  useEffect(() => {
+    provinceStyleRef.current = getProvinceStyle;
+  });
 
   return (
-    <div className="relative w-full h-[420px] sm:h-[480px] rounded-xl overflow-hidden shadow-inner border border-slate-200">
+    <div className="relative h-[320px] w-full overflow-hidden rounded-xl border border-slate-200 bg-sky-100 shadow-inner sm:h-[480px]">
       <MapContainer
-        center={indonesiaCenter}
-        zoom={defaultZoom}
-        minZoom={4}
+        ref={mapRef}
+        center={[-2.5, 118]}
+        zoom={4}
+        minZoom={3}
         maxZoom={10}
         scrollWheelZoom={false}
-        className="w-full h-full"
+        className="h-full w-full"
       >
-        {/* CARTO Positron Clean Basemap - Matches Minimalist KelasKita Theme */}
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-          url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-          subdomains="abcd"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · batas provinsi &copy; BIG via <a href="https://github.com/mashadinoor/Indonesia-Geojson-2026">GeoJSON Indonesia</a>'
+          url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
           maxZoom={19}
         />
 
@@ -69,138 +156,58 @@ export default function LeafletMapInner({
           target={selectedProvince ? selectedProvince.center : null}
         />
 
-        {/* 38 Provinsi Polygons */}
-        {provincesGeoData.map((province) => {
-          const isSelected = selectedProvince?.id === province.id;
-          const isHovered = hoveredProvinceId === province.id;
+        {boundaries && (
+          <GeoJSON
+            data={boundaries}
+            style={(feature) => {
+              const province = getProvince(
+                String(feature?.properties?.PROVINSI ?? ""),
+              );
+              return province
+                ? getProvinceStyle(province)
+                : {
+                    color: "#ffffff",
+                    weight: 1,
+                    fillColor: "#94a3b8",
+                    fillOpacity: 0.2,
+                  };
+            }}
+            onEachFeature={(feature, layer) => {
+              const province = getProvince(
+                String(feature.properties?.PROVINSI ?? ""),
+              );
+              if (!province) return;
 
-          const matchCluster =
-            activeClusterFilter === "all" ||
-            province.cluster === activeClusterFilter;
-          const matchSearch =
-            searchQuery === "" ||
-            province.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            province.island.toLowerCase().includes(searchQuery.toLowerCase());
-          const isHighlighted = matchCluster && matchSearch;
-
-          const baseColor = CLUSTER_THEME[province.cluster].fillColor;
-
-          const fillColor = isSelected
-            ? "var(--token-color-accent)"
-            : isHovered
-            ? "var(--token-color-primary)"
-            : isHighlighted
-            ? baseColor
-            : "#CBD5E1";
-
-          const fillOpacity = isSelected
-            ? 0.95
-            : isHovered
-            ? 0.9
-            : isHighlighted
-            ? 0.8
-            : 0.2;
-
-          const borderColor = isSelected
-            ? "var(--token-color-text-primary)"
-            : isHovered
-            ? "var(--token-color-surface)"
-            : "var(--token-color-surface)";
-
-          const weight = isSelected ? 3 : isHovered ? 2.5 : 1.2;
-
-          return (
-            <React.Fragment key={province.id}>
-              {province.polygons.map((ring, idx) => (
-                <Polygon
-                  key={`${province.id}-poly-${idx}`}
-                  positions={ring}
-                  pathOptions={{
-                    fillColor,
-                    fillOpacity,
-                    color: borderColor,
-                    weight,
-                  }}
-                  eventHandlers={{
-                    mouseover: () => setHoveredProvinceId(province.id),
-                    mouseout: () => setHoveredProvinceId(null),
-                    click: () => onSelectProvince(province),
-                  }}
-                >
-                  {/* Tooltip on hover */}
-                  <Tooltip
-                    sticky
-                    direction="top"
-                    className="custom-map-tooltip"
-                  >
-                    <div className="text-left text-xs space-y-1">
-                      <div className="flex items-center justify-between gap-3 border-b border-slate-700 pb-1">
-                        <span className="font-bold text-white text-sm">
-                          {province.name}
-                        </span>
-                        <span
-                          className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                            province.cluster === "Cluster 1"
-                              ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
-                              : province.cluster === "Cluster 2"
-                              ? "bg-amber-500/20 text-amber-300 border border-amber-500/30"
-                              : "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
-                          }`}
-                        >
-                          {province.cluster}
-                        </span>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2 text-[11px] text-slate-300 pt-0.5">
-                        <div>
-                          <span className="text-slate-400 block text-[10px]">
-                            Skor Prioritas:
-                          </span>
-                          <span className="font-extrabold text-white">
-                            {province.score}%
-                          </span>
-                        </div>
-                        <div>
-                          <span className="text-slate-400 block text-[10px]">
-                            Kelas Rusak:
-                          </span>
-                          <span className="font-semibold text-slate-200">
-                            {province.rusakBeratPercent}%
-                          </span>
-                        </div>
-                      </div>
-                      <p className="text-[10px] text-accent font-medium pt-1 border-t border-slate-700/60">
-                        Klik untuk melihat analisis lengkap &rarr;
-                      </p>
-                    </div>
-                  </Tooltip>
-                </Polygon>
-              ))}
-
-              {/* Centroid Marker Dot */}
-              {isHighlighted && (
-                <CircleMarker
-                  center={province.center}
-                  radius={isHovered || isSelected ? 5 : 3}
-                  pathOptions={{
-                    fillColor: isSelected
-                      ? "var(--token-color-text-primary)"
-                      : isHovered
-                      ? "var(--token-color-accent)"
-                      : "var(--token-color-surface)",
-                    fillOpacity: 0.9,
-                    color: isSelected ? "var(--token-color-accent)" : "var(--token-color-text-primary)",
-                    weight: 1.5,
-                  }}
-                  eventHandlers={{
-                    click: () => onSelectProvince(province),
-                  }}
-                />
-              )}
-            </React.Fragment>
-          );
-        })}
+              const provinceLayer = layer as Path;
+              provinceLayer.bindTooltip(province.name, {
+                sticky: true,
+                direction: "top",
+                className: "custom-map-tooltip",
+              });
+              provinceLayer.on({
+                mouseover: () => {
+                  setHoveredProvinceId(province.id);
+                  provinceLayer.setStyle({ weight: 2.5, fillOpacity: 0.55 });
+                  provinceLayer.bringToFront();
+                },
+                mouseout: () => {
+                  setHoveredProvinceId(null);
+                  provinceLayer.setStyle(provinceStyleRef.current(province));
+                },
+                click: () => onSelectProvince(province),
+              });
+            }}
+          />
+        )}
       </MapContainer>
+
+      {!boundaries && (
+        <div className="pointer-events-none absolute inset-0 z-[400] flex items-center justify-center bg-white/55 px-5 text-center text-sm font-medium text-slate-600 backdrop-blur-[1px]">
+          {boundaryError
+            ? "Batas provinsi belum dapat dimuat. Coba muat ulang halaman."
+            : "Memuat batas wilayah 38 provinsi..."}
+        </div>
+      )}
     </div>
   );
 }
-

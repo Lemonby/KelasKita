@@ -3,20 +3,18 @@
 import React, { useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import {
-  provincesGeoData,
-  ProvinceGeoItem,
-  CLUSTER_THEME,
-} from "@/data/indonesiaGeoData";
+import { CLUSTER_THEME } from "@/data/indonesiaGeoData";
+import type { ProvinceMapItem } from "@/data/berandaMapData";
 import {
   AlertTriangle,
   ArrowRight,
-  GraduationCap,
+  Construction,
   Layers,
   MapPin,
   Search,
-  Wifi,
-  Wrench,
+  School,
+  UserRoundX,
+  UsersRound,
   X,
   Loader2,
 } from "lucide-react";
@@ -25,17 +23,18 @@ import {
 const LeafletMapInner = dynamic(() => import("./LeafletMapInner"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[420px] sm:h-[480px] rounded-xl bg-slate-100 flex flex-col items-center justify-center text-slate-500 gap-3 border border-slate-200">
+    <div className="w-full h-[320px] sm:h-[480px] rounded-xl bg-slate-100 flex flex-col items-center justify-center text-slate-500 gap-3 border border-slate-200">
       <Loader2 className="w-8 h-8 animate-spin text-primary" />
       <p className="text-xs font-medium text-slate-600">
-        Memuat Peta Interaktif Indonesia (Leaflet)...
+        Menyiapkan peta batas provinsi Indonesia...
       </p>
     </div>
   ),
 });
 
 export default function IndonesiaInteractiveMap() {
-  const [selectedProvince, setSelectedProvince] = useState<ProvinceGeoItem | null>(null);
+  const [selectedProvince, setSelectedProvince] =
+    useState<ProvinceMapItem | null>(null);
   const [activeClusterFilter, setActiveClusterFilter] = useState<string>("all");
   const [searchQuery, setSearchQuery] = useState<string>("");
 
@@ -45,7 +44,7 @@ export default function IndonesiaInteractiveMap() {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
         <div>
           <div className="flex items-center gap-2">
-            <h2 className="text-lg font-bold text-slate-900 tracking-tight">
+            <h2 className="section-heading text-slate-900">
               Peta Prioritas Pendidikan
             </h2>
             <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200">
@@ -53,8 +52,9 @@ export default function IndonesiaInteractiveMap() {
               Interaktif Leaflet
             </span>
           </div>
-          <p className="text-xs text-slate-500 mt-0.5">
-            Sebaran 38 provinsi di Indonesia berdasarkan hasil klasterisasi kesenjangan fasilitas dan guru
+          <p className="section-copy mt-0.5 text-sm text-slate-500">
+            Sebaran 38 provinsi di Indonesia berdasarkan hasil klasterisasi
+            kesenjangan fasilitas dan guru
           </p>
         </div>
 
@@ -86,39 +86,43 @@ export default function IndonesiaInteractiveMap() {
         </span>
         <button
           onClick={() => setActiveClusterFilter("all")}
-          className={`px-2.5 py-1 rounded-md font-medium transition-all ${activeClusterFilter === "all"
+          className={`px-2.5 py-1 rounded-md font-medium transition-all ${
+            activeClusterFilter === "all"
               ? "bg-slate-900 text-white shadow-xs"
               : "bg-slate-100 text-slate-600 hover:bg-slate-200"
-            }`}
+          }`}
         >
           Semua (38)
         </button>
         <button
           onClick={() => setActiveClusterFilter("Cluster 1")}
-          className={`px-2.5 py-1 rounded-md font-medium transition-all flex items-center gap-1.5 ${activeClusterFilter === "Cluster 1"
+          className={`px-2.5 py-1 rounded-md font-medium transition-all flex items-center gap-1.5 ${
+            activeClusterFilter === "Cluster 1"
               ? "bg-text-primary text-white shadow-xs ring-2 ring-accent"
               : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-            }`}
+          }`}
         >
           <span className="w-2 h-2 rounded-full bg-text-primary border border-slate-400" />
           Cluster 1 (Tinggi)
         </button>
         <button
           onClick={() => setActiveClusterFilter("Cluster 2")}
-          className={`px-2.5 py-1 rounded-md font-medium transition-all flex items-center gap-1.5 ${activeClusterFilter === "Cluster 2"
+          className={`px-2.5 py-1 rounded-md font-medium transition-all flex items-center gap-1.5 ${
+            activeClusterFilter === "Cluster 2"
               ? "bg-[#475569] text-white shadow-xs ring-2 ring-primary"
               : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-            }`}
+          }`}
         >
           <span className="w-2 h-2 rounded-full bg-[#475569]" />
           Cluster 2 (Sedang)
         </button>
         <button
           onClick={() => setActiveClusterFilter("Cluster 3")}
-          className={`px-2.5 py-1 rounded-md font-medium transition-all flex items-center gap-1.5 ${activeClusterFilter === "Cluster 3"
+          className={`px-2.5 py-1 rounded-md font-medium transition-all flex items-center gap-1.5 ${
+            activeClusterFilter === "Cluster 3"
               ? "bg-[#94A3B8] text-slate-900 font-bold shadow-xs ring-2 ring-slate-400"
               : "bg-slate-100 text-slate-700 hover:bg-slate-200"
-            }`}
+          }`}
         >
           <span className="w-2 h-2 rounded-full bg-[#94A3B8]" />
           Cluster 3 (Rendah)
@@ -154,8 +158,8 @@ export default function IndonesiaInteractiveMap() {
 
       {/* Detail Popover / Modal (Opsi A) when province clicked */}
       {selectedProvince && (
-        <div className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-xs">
-          <div className="modal-panel relative w-full max-w-lg rounded-2xl bg-white p-6 shadow-2xl border border-slate-200/80">
+        <div className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center p-3 bg-slate-900/40 backdrop-blur-xs sm:p-4">
+          <div className="modal-panel relative max-h-[calc(100dvh-1.5rem)] w-full max-w-lg overflow-y-auto rounded-2xl bg-white p-4 shadow-2xl border border-slate-200/80 sm:max-h-[calc(100dvh-2rem)] sm:p-6">
             {/* Modal Header */}
             <div className="flex items-start justify-between border-b border-slate-100 pb-4">
               <div>
@@ -165,18 +169,21 @@ export default function IndonesiaInteractiveMap() {
                     {selectedProvince.name}
                   </h3>
                   <span
-                    className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${selectedProvince.cluster === "Cluster 1"
+                    className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${
+                      selectedProvince.cluster === "Cluster 1"
                         ? "bg-text-primary text-accent"
                         : selectedProvince.cluster === "Cluster 2"
                           ? "bg-slate-200 text-slate-800"
                           : "bg-slate-100 text-slate-600"
-                      }`}
+                    }`}
                   >
                     {selectedProvince.cluster}
                   </span>
                 </div>
                 <p className="text-xs text-slate-500 mt-1 pl-7">
-                  Wilayah: {selectedProvince.island} • Titik Koordinat: [{selectedProvince.center[0].toFixed(2)}, {selectedProvince.center[1].toFixed(2)}]
+                  Wilayah: {selectedProvince.island} • Titik Koordinat: [
+                  {selectedProvince.center[0].toFixed(2)},{" "}
+                  {selectedProvince.center[1].toFixed(2)}]
                 </p>
               </div>
               <button
@@ -191,17 +198,20 @@ export default function IndonesiaInteractiveMap() {
             <div className="my-5 rounded-xl bg-slate-50 p-4 border border-slate-200/80">
               <div className="flex items-center justify-between mb-1.5">
                 <span className="text-xs font-semibold text-slate-600">
-                  Indeks Skor Kesenjangan Daerah
+                  Perankingan (Nilai Akhir V)
                 </span>
                 <span className="text-sm font-extrabold text-slate-900">
-                  {selectedProvince.score}%
+                  {(
+                    selectedProvince.data["Perankingan (Nilai Akhir V)"] * 100
+                  ).toFixed(1)}
+                  %
                 </span>
               </div>
               <div className="w-full h-2.5 rounded-full bg-slate-200 overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{
-                    width: `${selectedProvince.score}%`,
+                    width: `${selectedProvince.data["Perankingan (Nilai Akhir V)"] * 100}%`,
                     backgroundColor:
                       selectedProvince.cluster === "Cluster 1"
                         ? "var(--token-color-text-primary)"
@@ -217,26 +227,37 @@ export default function IndonesiaInteractiveMap() {
             </div>
 
             {/* Key Indicators Grid */}
-            <div className="grid grid-cols-3 gap-3 mb-5">
+            <div className="grid grid-cols-2 gap-3 mb-5 sm:grid-cols-4">
               <div className="rounded-xl border border-slate-200 p-3 bg-white text-center">
-                <Wrench className="w-4 h-4 text-amber-500 mx-auto mb-1" />
-                <p className="text-[10px] text-slate-500">Ruang Rusak Berat</p>
+                <Construction className="w-4 h-4 text-amber-500 mx-auto mb-1" />
+                <p className="text-[10px] text-slate-500">Kelas Rusak Total</p>
                 <p className="text-base font-bold text-slate-900 mt-0.5">
-                  {selectedProvince.rusakBeratPercent}%
+                  {selectedProvince.data["Kelas Rusak Total"].toFixed(2)}%
                 </p>
               </div>
               <div className="rounded-xl border border-slate-200 p-3 bg-white text-center">
-                <GraduationCap className="w-4 h-4 text-primary mx-auto mb-1" />
-                <p className="text-[10px] text-slate-500">Kekurangan Guru</p>
+                <UsersRound className="w-4 h-4 text-primary mx-auto mb-1" />
+                <p className="text-[10px] text-slate-500">Rasio Murid Guru</p>
                 <p className="text-base font-bold text-slate-900 mt-0.5">
-                  {selectedProvince.guruKurangPercent}%
+                  {selectedProvince.data["Rasio Murid Guru"]}
                 </p>
               </div>
               <div className="rounded-xl border border-slate-200 p-3 bg-white text-center">
-                <Wifi className="w-4 h-4 text-emerald-500 mx-auto mb-1" />
-                <p className="text-[10px] text-slate-500">Akses Internet</p>
+                <School className="w-4 h-4 text-emerald-500 mx-auto mb-1" />
+                <p className="text-[10px] text-slate-500">Rasio Murid Rombel</p>
                 <p className="text-base font-bold text-slate-900 mt-0.5">
-                  {selectedProvince.aksesInternetPercent}%
+                  {selectedProvince.data["Rasio Murid Rombel"]}
+                </p>
+              </div>
+              <div className="rounded-xl border border-slate-200 p-3 bg-white text-center">
+                <UserRoundX className="w-4 h-4 text-primary mx-auto mb-1" />
+                <p className="text-[10px] text-slate-500">
+                  Angka Putus Sekolah
+                </p>
+                <p className="text-base font-bold text-slate-900 mt-0.5">
+                  {selectedProvince.data["Angka Putus Sekolah"].toLocaleString(
+                    "id-ID",
+                  )}
                 </p>
               </div>
             </div>

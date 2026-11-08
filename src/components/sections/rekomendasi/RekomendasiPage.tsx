@@ -3,7 +3,6 @@
 import {
   ArrowRight,
   Building2,
-  ChevronDown,
   RotateCcw,
   UserCheck,
   Users,
@@ -11,6 +10,7 @@ import {
 import { useMemo, useState } from "react";
 import { rekomendasi } from "@/data/dummy";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import FilterDropdown from "@/components/ui/FilterDropdown";
 
 const categoryStyles: Record<
   string,
@@ -68,14 +68,16 @@ export default function RekomendasiPage() {
     <section className="page-shell bg-background px-4 py-9 sm:px-6 sm:py-12 lg:px-8 lg:py-14">
       <div className="mx-auto max-w-7xl">
         <ScrollReveal>
-        <div className="page-hero rounded-2xl bg-secondary px-6 py-7 text-white shadow-sm sm:px-8 sm:py-8 lg:px-9">
-          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+        <div className="page-hero section-hero rounded-2xl bg-secondary text-white">
+          <div className="section-hero-content">
+          <h1 className="section-hero-title">
             Rekomendasi <span className="text-accent">Tindakan</span>
           </h1>
-          <p className="mt-3 max-w-xl text-sm leading-5 text-slate-200 sm:text-base">
+          <p className="section-hero-description">
             Usulan yang dapat dipertimbangkan berdasarkan temuan dan data yang
             tersedia
           </p>
+          </div>
         </div>
         </ScrollReveal>
 
@@ -167,27 +169,16 @@ type FilterSelectProps = {
 
 function FilterSelect({ label, value, options, onChange }: FilterSelectProps) {
   return (
-    <label className="relative block w-full sm:max-w-56">
+    <div className="relative block w-full sm:max-w-56">
       <span className="mb-1.5 block text-[11px] font-medium text-slate-500">
         {label}
       </span>
-      <select
+      <FilterDropdown
+        label={label}
         value={value}
-        onChange={(event) => onChange(event.target.value)}
-        onInput={(event) => onChange((event.target as HTMLSelectElement).value)}
-        className="h-12 w-full appearance-none rounded-lg border border-slate-200 bg-white px-3 pr-9 text-sm font-medium text-slate-700 shadow-sm outline-none transition focus:border-primary focus:ring-2 focus:ring-primary/20"
-      >
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
-      <ChevronDown
-        size={16}
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-3.5 right-3 text-slate-500"
+        options={options}
+        onChange={onChange}
       />
-    </label>
+    </div>
   );
 }

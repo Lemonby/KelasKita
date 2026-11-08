@@ -40,13 +40,14 @@ export default function EksplorasiBarChart({
   const barColor = indikatorColors[indikator];
 
   return (
-    <div style={{ width: "100%", height: 300 }}>
+    <div className="w-full overflow-x-auto" role="region" aria-label={`Grafik ${indikator}`} tabIndex={0}>
+      <div style={{ width: `${Math.max(data.length * 38, 640)}px`, height: 320 }}>
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
-          margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
+          margin={{ top: 16, right: 20, left: 0, bottom: 58 }}
         >
-          <XAxis dataKey="Provinsi" />
+          <XAxis dataKey="Provinsi" interval={0} angle={-35} textAnchor="end" height={72} tick={{ fontSize: 11 }} />
           <YAxis />
           <Tooltip />
           <Bar dataKey="value" name={indikator} radius={[4, 4, 0, 0]}>
@@ -56,6 +57,7 @@ export default function EksplorasiBarChart({
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      </div>
     </div>
   );
 }

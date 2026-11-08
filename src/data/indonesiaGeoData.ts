@@ -628,7 +628,7 @@ export const provincesGeoData: ProvinceGeoItem[] = [
     name: "Kalimantan Tengah",
     island: "Kalimantan",
     cluster: "Cluster 2",
-    score: 63,
+    score: 90,
     rusakBeratPercent: 21.4,
     guruKurangPercent: 18.2,
     aksesInternetPercent: 67.5,

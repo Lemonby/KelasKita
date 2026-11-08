@@ -11,6 +11,8 @@ import {
 } from "lucide-react";
 
 import ExplorasiChart from "@/components/sections/eksplorasi-wilayah/EksplorasiBarChart";
+import ScrollReveal from "@/components/ui/ScrollReveal";
+import FilterDropdown from "@/components/ui/FilterDropdown";
 
 // IMPORT DATA MILIKMU
 import { eksplorasiData, insights } from "@/data/dummy";
@@ -177,23 +179,27 @@ export default function EkspolarasiWilayah() {
   // ==========================================
 
   return (
-    <main className="min-h-screen bg-background px-5 py-8">
+    <main className="page-shell min-h-screen bg-background px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
       <div className="mx-auto max-w-6xl">
         {/* HEADER */}
-        <header className="rounded-[22px] bg-secondary px-10 py-8 text-white">
-          <h1 className="text-3xl font-bold">
-            Eksplorasi <span className="text-lime-400">Daerah</span>
-          </h1>
+        <ScrollReveal>
+          <header className="page-hero section-hero rounded-2xl bg-secondary text-white">
+            <div className="section-hero-content">
+              <h1 className="section-hero-title">
+                Eksplorasi <span className="text-lime-400">Daerah</span>
+              </h1>
 
-          <p className="mt-4 text-sm text-slate-200">
-            Bandingkan kondisi pendidikan antar wilayah berdasarkan indikator
-            yang tersedia.
-          </p>
-        </header>
+              <p className="section-hero-description">
+                Bandingkan kondisi pendidikan antar wilayah berdasarkan
+                indikator yang tersedia.
+              </p>
+            </div>
+          </header>
+        </ScrollReveal>
 
         {/* FILTER SECTION */}
         <section className="mx-auto mt-9 max-w-3xl">
-          <h2 className="text-center text-3xl font-bold text-secondary">
+          <h2 className="section-heading text-center sm:!text-3xl">
             Masukan Nama Daerahmu
           </h2>
 
@@ -218,7 +224,7 @@ export default function EkspolarasiWilayah() {
 
               {/* DROPDOWN CHECKBOX */}
               {showFilter && (
-                <div className="absolute left-0 top-full z-30 mt-2 w-full rounded-xl border border-slate-200 bg-white p-4 shadow-xl">
+                <div className="absolute left-0 top-full z-30 mt-2 w-full max-w-[calc(100vw-2rem)] rounded-xl border border-slate-200 bg-white p-4 shadow-xl sm:max-w-none">
                   <div className="mb-3 flex items-center justify-between">
                     <h3 className="font-semibold text-secondary">
                       Pilih Provinsi
@@ -276,205 +282,206 @@ export default function EkspolarasiWilayah() {
         </section>
 
         {/* CHART SECTION */}
-        <section className="mt-12 rounded-3xl border border-slate-200 bg-white p-6 shadow-md md:p-8">
-          <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <div>
-              <h2 className="text-xl font-bold text-secondary">
-                Perbandingan Indikator
-              </h2>
+        <ScrollReveal>
+          <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-md sm:mt-12 sm:p-6 md:p-8">
+            <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+              <div>
+                <h2 className="section-heading">Perbandingan Indikator</h2>
 
-              <p className="mt-1 text-sm text-slate-400">
-                {selectedProvinsi.length === 0
-                  ? "Menampilkan seluruh provinsi"
-                  : `Menampilkan ${selectedProvinsi.length} provinsi`}
-              </p>
-            </div>
-
-            {/* FILTER INDIKATOR */}
-            <select
-              value={selectedIndikator}
-              onChange={(e) =>
-                setSelectedIndikator(e.target.value as IndikatorKey)
-              }
-              onInput={(e) =>
-                setSelectedIndikator(e.currentTarget.value as IndikatorKey)
-              }
-              className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-secondary outline-none focus:border-lime-400"
-            >
-              {indikatorOptions.map((indikator) => (
-                <option key={indikator} value={indikator}>
-                  {indikator}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* MEMANGGIL COMPONENT CHART */}
-          <ExplorasiChart data={chartData} indikator={selectedIndikator} />
-        </section>
-
-        {/* TABLE SECTION */}
-        <section className="mt-10 overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-md">
-          <div className="bg-secondary px-6 py-5 text-white md:px-8">
-            <h2 className="text-xl font-bold">Data Indikator Pendidikan</h2>
-            <p className="mt-1 text-sm text-slate-200">
-              {selectedProvinsi.length === 0
-                ? "Menampilkan data seluruh provinsi"
-                : `Menampilkan data ${selectedProvinsi.length} provinsi terpilih`}
-            </p>
-          </div>
-
-          <div className="overflow-x-auto">
-            <table className="min-w-[760px] w-full text-left text-sm">
-              <thead className="bg-background text-secondary">
-                <tr>
-                  <th className="px-6 py-4 font-semibold">Provinsi</th>
-                  {tableIndicators.map((indikator) => (
-                    <th key={indikator} className="px-6 py-4 font-semibold">
-                      {indikator}
-                    </th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {tableData.map((item) => (
-                  <tr key={item.Provinsi} className="hover:bg-slate-50">
-                    <td className="whitespace-nowrap px-6 py-4 font-medium text-secondary">
-                      {item.Provinsi}
-                    </td>
-                    {tableIndicators.map((indikator) => (
-                      <td
-                        key={indikator}
-                        className="whitespace-nowrap px-6 py-4 text-slate-600"
-                      >
-                        {item[indikator].toLocaleString("id-ID")}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-                {tableData.length === 0 && (
-                  <tr>
-                    <td
-                      colSpan={tableIndicators.length + 1}
-                      className="px-6 py-8 text-center text-slate-500"
-                    >
-                      Tidak ada data untuk provinsi yang dipilih.
-                    </td>
-                  </tr>
-                )}
-              </tbody>
-            </table>
-          </div>
-
-          {selectedProvinsi.length === 0 && totalTablePages > 1 && (
-            <div className="flex items-center justify-between border-t border-slate-100 px-6 py-4 md:px-8">
-              <button
-                type="button"
-                onClick={() => setTablePage((page) => Math.max(1, page - 1))}
-                disabled={tablePage === 1}
-                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                <ChevronLeft size={16} />
-                Sebelumnya
-              </button>
-
-              <div className="flex items-center gap-1">
-                {Array.from(
-                  { length: totalTablePages },
-                  (_, index) => index + 1,
-                ).map((page) => (
-                  <button
-                    key={page}
-                    type="button"
-                    onClick={() => setTablePage(page)}
-                    className={`h-8 min-w-8 rounded-lg px-2 text-sm font-semibold ${
-                      page === tablePage
-                        ? "bg-primary text-white"
-                        : "text-secondary hover:bg-slate-100"
-                    }`}
-                  >
-                    {page}
-                  </button>
-                ))}
+                <p className="mt-1 text-sm text-slate-400">
+                  {selectedProvinsi.length === 0
+                    ? "Menampilkan seluruh provinsi"
+                    : `Menampilkan ${selectedProvinsi.length} provinsi`}
+                </p>
               </div>
 
-              <button
-                type="button"
-                onClick={() =>
-                  setTablePage((page) => Math.min(totalTablePages, page + 1))
+              {/* FILTER INDIKATOR */}
+              <FilterDropdown
+                label="Pilih indikator"
+                value={selectedIndikator}
+                options={indikatorOptions}
+                onChange={(value) =>
+                  setSelectedIndikator(value as IndikatorKey)
                 }
-                disabled={tablePage === totalTablePages}
-                className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Berikutnya
-                <ChevronRight size={16} />
-              </button>
+                className="sm:w-auto sm:min-w-64"
+              />
             </div>
-          )}
-        </section>
+
+            {/* MEMANGGIL COMPONENT CHART */}
+            <ExplorasiChart data={chartData} indikator={selectedIndikator} />
+          </section>
+        </ScrollReveal>
+
+        {/* TABLE SECTION */}
+        <ScrollReveal>
+          <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md sm:mt-10">
+            <div className="bg-secondary px-6 py-5 text-white md:px-8">
+              <h2 className="section-heading text-white">
+                Data Indikator Pendidikan
+              </h2>
+              <p className="mt-1 text-sm text-slate-200">
+                {selectedProvinsi.length === 0
+                  ? "Menampilkan data seluruh provinsi"
+                  : `Menampilkan data ${selectedProvinsi.length} provinsi terpilih`}
+              </p>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="min-w-[760px] w-full text-left text-sm">
+                <thead className="bg-background text-secondary">
+                  <tr>
+                    <th className="px-6 py-4 font-semibold">Provinsi</th>
+                    {tableIndicators.map((indikator) => (
+                      <th key={indikator} className="px-6 py-4 font-semibold">
+                        {indikator}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {tableData.map((item) => (
+                    <tr key={item.Provinsi} className="hover:bg-slate-50">
+                      <td className="whitespace-nowrap px-6 py-4 font-medium text-secondary">
+                        {item.Provinsi}
+                      </td>
+                      {tableIndicators.map((indikator) => (
+                        <td
+                          key={indikator}
+                          className="whitespace-nowrap px-6 py-4 text-slate-600"
+                        >
+                          {item[indikator].toLocaleString("id-ID")}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                  {tableData.length === 0 && (
+                    <tr>
+                      <td
+                        colSpan={tableIndicators.length + 1}
+                        className="px-6 py-8 text-center text-slate-500"
+                      >
+                        Tidak ada data untuk provinsi yang dipilih.
+                      </td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {selectedProvinsi.length === 0 && totalTablePages > 1 && (
+              <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 px-3 py-4 sm:px-6 md:px-8">
+                <button
+                  type="button"
+                  onClick={() => setTablePage((page) => Math.max(1, page - 1))}
+                  disabled={tablePage === 1}
+                  className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  <ChevronLeft size={16} />
+                  Sebelumnya
+                </button>
+
+                <div className="flex items-center gap-1">
+                  {Array.from(
+                    { length: totalTablePages },
+                    (_, index) => index + 1,
+                  ).map((page) => (
+                    <button
+                      key={page}
+                      type="button"
+                      onClick={() => setTablePage(page)}
+                      className={`h-8 min-w-8 rounded-lg px-2 text-sx font-semibold ${
+                        page === tablePage
+                          ? "bg-[#dff6e9] text-secondary"
+                          : "text-slate-500 hover:bg-slate-100"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() =>
+                    setTablePage((page) => Math.min(totalTablePages, page + 1))
+                  }
+                  disabled={tablePage === totalTablePages}
+                  className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+                >
+                  Berikutnya
+                  <ChevronRight size={16} />
+                </button>
+              </div>
+            )}
+          </section>
+        </ScrollReveal>
 
         {/* INSIGHT SECTION */}
-        <section className="mt-16">
-          <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <h2 className="text-3xl font-bold text-secondary">Insight</h2>
+        <ScrollReveal className="mt-12 sm:mt-16">
+          <section>
+            <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+              <h2 className="section-heading !text-2xl sm:!text-3xl">
+                Insight
+              </h2>
 
-            <label className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-400 sm:w-72">
-              <Search size={16} />
-              <input
-                type="search"
-                value={insightSearch}
-                onChange={(event) => setInsightSearch(event.target.value)}
-                onInput={(event) =>
-                  setInsightSearch((event.target as HTMLInputElement).value)
-                }
-                placeholder="Ketik untuk mencari insight"
-                className="min-w-0 flex-1 bg-transparent text-secondary outline-none placeholder:text-slate-400"
-              />
-            </label>
-          </div>
+              <label className="flex w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-400 sm:w-72">
+                <Search size={16} />
+                <input
+                  type="search"
+                  value={insightSearch}
+                  onChange={(event) => setInsightSearch(event.target.value)}
+                  onInput={(event) =>
+                    setInsightSearch((event.target as HTMLInputElement).value)
+                  }
+                  placeholder="Ketik untuk mencari insight"
+                  className="min-w-0 flex-1 bg-transparent text-secondary outline-none placeholder:text-slate-400"
+                />
+              </label>
+            </div>
 
-          <div className="space-y-5">
-            {filteredInsights.map((insight) => {
-              const Icon = insightIcons[insight.icon];
-              const categoryStyle =
-                insightCategoryStyles[insight.category] ??
-                defaultInsightCategoryStyle;
+            <div className="stagger space-y-5">
+              {filteredInsights.map((insight) => {
+                const Icon = insightIcons[insight.icon];
+                const categoryStyle =
+                  insightCategoryStyles[insight.category] ??
+                  defaultInsightCategoryStyle;
 
-              return (
-                <article
-                  key={insight.title}
-                  className="flex gap-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-                >
-                  <div
-                    className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full ${categoryStyle.icon}`}
+                return (
+                  <article
+                    key={insight.title}
+                    className="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm sm:flex-row sm:gap-5 sm:p-6"
                   >
-                    <Icon size={28} />
-                  </div>
-
-                  <div>
-                    <h3 className="font-bold text-secondary">
-                      {insight.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-slate-500">
-                      {insight.description}
-                    </p>
-                    <span
-                      className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${categoryStyle.label}`}
+                    <div
+                      className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full ${categoryStyle.icon}`}
                     >
-                      {insight.category}
-                    </span>
-                  </div>
-                </article>
-              );
-            })}
+                      <Icon size={28} />
+                    </div>
 
-            {filteredInsights.length === 0 && (
-              <p className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-500">
-                Insight tidak ditemukan.
-              </p>
-            )}
-          </div>
-        </section>
+                    <div>
+                      <h3 className="font-bold text-secondary">
+                        {insight.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-slate-500">
+                        {insight.description}
+                      </p>
+                      <span
+                        className={`mt-3 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${categoryStyle.label}`}
+                      >
+                        {insight.category}
+                      </span>
+                    </div>
+                  </article>
+                );
+              })}
+
+              {filteredInsights.length === 0 && (
+                <p className="rounded-2xl border border-slate-200 bg-white p-8 text-center text-slate-500">
+                  Insight tidak ditemukan.
+                </p>
+              )}
+            </div>
+          </section>
+        </ScrollReveal>
       </div>
     </main>
   );
