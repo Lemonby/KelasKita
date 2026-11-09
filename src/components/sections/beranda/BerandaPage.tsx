@@ -23,7 +23,7 @@ export default function BerandaPage() {
   function getExceededIndicators(region: (typeof berandaMapData)[number]) {
     const indicators = [];
 
-    if (region.data["Kelas Rusak Total"] >= 20) {
+    if (region.data["Kelas Rusak Total(%)"] >= 20) {
       indicators.push("Kelas rusak");
     }
     if (region.data["Rasio Murid Guru"] >= 25) {

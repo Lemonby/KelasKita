@@ -48,6 +48,7 @@ export default function FaqPage() {
         </ScrollReveal>
 
         {/* ==================== 2. SEARCH BAR ==================== */}
+        <ScrollReveal>
         <section className="relative mx-auto max-w-3xl">
           <div
             onClick={() => {
@@ -94,6 +95,7 @@ export default function FaqPage() {
             )}
           </div>
         </section>
+        </ScrollReveal>
 
         {/* ==================== 3. FAQ ACCORDION LIST ==================== */}
         <section className="space-y-4">
@@ -113,7 +115,7 @@ export default function FaqPage() {
             )}
           </div>
 
-          {/* Accordion List using native <details> with React fallback */}
+          {/* Accordion list */}
           {filteredFaq.length > 0 ? (
             <ScrollReveal className="stagger">
               <div className="space-y-3.5">

@@ -20,6 +20,7 @@ import FilterDropdown from "@/components/ui/FilterDropdown";
 export default function DatasetPage() {
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("Semua kategori");
+  const [level, setLevel] = useState("Semua jenjang");
   const [viewMode, setViewMode] = useState<"card" | "list">("card");
   const [page, setPage] = useState(1);
   const perPage = 9;
@@ -27,16 +28,26 @@ export default function DatasetPage() {
     () => Array.from(new Set(datasets.map((dataset) => dataset.category))),
     [],
   );
+  const levels = useMemo(
+    () => Array.from(new Set(datasets.map((dataset) => dataset.levels))),
+    [],
+  );
   const filteredDatasets = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
     return datasets.filter((dataset) => {
       const matchesCategory =
         category === "Semua kategori" || dataset.category === category;
+      const matchesLevel =
+        level === "Semua jenjang" || dataset.levels === level;
       const searchableText =
         `${dataset.title} ${dataset.description} ${dataset.category}`.toLowerCase();
-      return matchesCategory && searchableText.includes(normalizedQuery);
+      return (
+        matchesCategory &&
+        matchesLevel &&
+        searchableText.includes(normalizedQuery)
+      );
     });
-  }, [category, query]);
+  }, [category, level, query]);
   const totalPages = Math.max(1, Math.ceil(filteredDatasets.length / perPage));
   const currentPage = Math.min(page, totalPages);
   const visibleDatasets = filteredDatasets.slice(
@@ -54,6 +65,11 @@ export default function DatasetPage() {
     setPage(1);
   };
 
+  const updateLevel = (value: string) => {
+    setLevel(value);
+    setPage(1);
+  };
+
   return (
     <section className="page-shell bg-background px-4 py-9 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto max-w-7xl">
@@ -68,7 +84,7 @@ export default function DatasetPage() {
                 Temukan data, lihat daerah yang tertinggal, dan dapatkan saran
                 tindakan.
               </p>
-              <div className="mt-6 flex max-w-xl flex-col gap-2 sm:flex-row">
+              <div className="mt-6 grid max-w-4xl gap-2 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.2fr)_minmax(10rem,0.9fr)_minmax(9rem,0.75fr)]">
                 <label className="flex h-12 flex-1 items-center gap-2 rounded-full bg-white px-4 text-slate-500">
                   <Search size={16} aria-hidden="true" />
                   <span className="sr-only">Cari dataset</span>
@@ -83,19 +99,27 @@ export default function DatasetPage() {
                   />
                 </label>
                 <FilterDropdown
+                  label="Filter jenjang"
+                  value={level}
+                  options={["Semua jenjang", ...levels]}
+                  onChange={updateLevel}
+                  className="w-full"
+                />
+                <FilterDropdown
                   label="Filter kategori"
                   value={category}
                   options={["Semua kategori", ...categories]}
                   onChange={updateCategory}
                   leadingIcon={<Filter size={16} />}
                   variant="accent"
-                  className="sm:min-w-48 sm:w-auto sm:flex-1"
+                  className="w-full"
                 />
               </div>
             </div>
           </header>
         </ScrollReveal>
 
+        <ScrollReveal>
         <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
           <p className="text-xs text-slate-500">
             Menampilkan <strong>{filteredDatasets.length}</strong> dari{" "}
@@ -118,6 +142,7 @@ export default function DatasetPage() {
             </ViewButton>
           </div>
         </div>
+        </ScrollReveal>
 
         {visibleDatasets.length > 0 ? (
           <ScrollReveal className={viewMode === "card" ? "stagger" : ""}>
@@ -139,7 +164,8 @@ export default function DatasetPage() {
           </ScrollReveal>
         ) : (
           <div className="mt-5 rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-14 text-center text-sm text-slate-500">
-            Dataset tidak ditemukan. Coba kata kunci atau kategori lain.
+            Dataset tidak ditemukan. Coba kata kunci, kategori, atau jenjang
+            lain.
           </div>
         )}
 

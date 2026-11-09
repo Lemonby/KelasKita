@@ -82,6 +82,7 @@ export default function PrioritasDaerahPage() {
           </div>
         </ScrollReveal>
 
+        <ScrollReveal>
         <div className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-end sm:justify-between">
           <label className="relative block w-full max-w-sm">
             <span className="sr-only">Cari wilayah</span>
@@ -104,6 +105,7 @@ export default function PrioritasDaerahPage() {
             {filteredRegions.length} dari {clusterData.length} wilayah
           </p>
         </div>
+        </ScrollReveal>
 
         <ScrollReveal>
           <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">

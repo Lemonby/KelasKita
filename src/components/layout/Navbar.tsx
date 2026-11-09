@@ -27,7 +27,10 @@ export default function Navbar() {
     >
       <nav className="mx-auto flex h-24 max-w-7xl items-center justify-between px-6 lg:px-8">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-2 group transition-transform hover:scale-[1.02]">
+        <Link
+          href="/"
+          className="group flex items-center gap-2 transition-transform hover:scale-[1.02]"
+        >
           <Image
             src="/logo-navbar-clean.png"
             alt="Logo KelasKita"
@@ -49,9 +52,9 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative py-2 text-[15px] font-medium transition-colors ${
+                className={`nav-link relative py-2 text-[15px] font-medium transition-colors ${
                   isActive
-                    ? "font-semibold text-slate-900 after:absolute after:bottom-0 after:left-0 after:right-0 after:h-[3px] after:rounded-full after:bg-primary"
+                    ? "nav-link-active font-semibold text-slate-900"
                     : "text-slate-600 hover:text-slate-900"
                 }`}
               >
@@ -86,7 +89,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileOpen(false)}
-                  className={`flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition ${
+                  className={`mobile-menu-item flex items-center justify-between rounded-lg px-4 py-3 text-base font-medium transition ${
                     isActive
                       ? "bg-primary/10 font-semibold text-primary"
                       : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"

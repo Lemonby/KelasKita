@@ -2,11 +2,16 @@
 
 import { useMemo, useState } from "react";
 import {
+  AlertTriangle,
   Building2,
+  ChartNoAxesCombined,
   ChevronLeft,
   ChevronRight,
+  CircleHelp,
   GraduationCap,
   Search,
+  ArrowRight,
+  UserCheck,
   Users,
 } from "lucide-react";
 
@@ -19,30 +24,34 @@ import { eksplorasiData, insights } from "@/data/dummy";
 
 // Tipe indikator yang tersedia
 type IndikatorKey =
-  | "Kelas Rusak Total"
+  | "Kelas Rusak Total(%)"
   | "Rasio Murid Guru"
   | "Rasio Murid Rombel"
   | "Angka Putus Sekolah";
 
 // Daftar indikator
 const indikatorOptions: IndikatorKey[] = [
-  "Kelas Rusak Total",
+  "Kelas Rusak Total(%)",
   "Rasio Murid Guru",
   "Rasio Murid Rombel",
   "Angka Putus Sekolah",
 ];
 
 const tableIndicators: IndikatorKey[] = [
-  "Kelas Rusak Total",
+  "Kelas Rusak Total(%)",
   "Rasio Murid Guru",
   "Rasio Murid Rombel",
   "Angka Putus Sekolah",
 ];
 
 const insightIcons = {
+  "alert-triangle": AlertTriangle,
+  "chart-no-axes-combined": ChartNoAxesCombined,
   graduation: GraduationCap,
   users: Users,
   building: Building2,
+  arrowRight: ArrowRight,
+  userCheck: UserCheck,
 } as const;
 
 const insightCategoryStyles: Record<string, { icon: string; label: string }> = {
@@ -57,6 +66,10 @@ const insightCategoryStyles: Record<string, { icon: string; label: string }> = {
   Fasilitas: {
     icon: "bg-[#B9F3EC] text-[#0F9F91]",
     label: "bg-[#B9F3EC] text-[#0F766E]",
+  },
+  Prioritas: {
+    icon: "bg-[#FFE0B2] text-[#EA580C]",
+    label: "bg-[#FFE0B2] text-[#C2410C]",
   },
 };
 
@@ -198,88 +211,90 @@ export default function EkspolarasiWilayah() {
         </ScrollReveal>
 
         {/* FILTER SECTION */}
-        <section className="mx-auto mt-9 max-w-3xl">
-          <h2 className="section-heading text-center sm:!text-3xl">
-            Masukan Nama Daerahmu
-          </h2>
+        <ScrollReveal>
+          <section className="mx-auto mt-9 max-w-3xl">
+            <h2 className="section-heading text-center sm:!text-3xl">
+              Masukan Nama Daerahmu
+            </h2>
 
-          <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row sm:items-start">
-            {/* FILTER PROVINSI */}
-            <div className="relative w-full sm:w-[420px]">
+            <div className="mt-7 flex flex-col justify-center gap-3 sm:flex-row sm:items-start">
+              {/* FILTER PROVINSI */}
+              <div className="relative w-full sm:w-[420px]">
+                <button
+                  type="button"
+                  onClick={() => setShowFilter((prev) => !prev)}
+                  className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm shadow-sm hover:border-lime-400"
+                >
+                  <span className="text-slate-600">
+                    {selectedProvinsi.length === 0
+                      ? "Semua Provinsi"
+                      : `${selectedProvinsi.length} Provinsi Dipilih`}
+                  </span>
+
+                  <span className="rounded-full bg-lime-300 px-5 py-2 font-semibold text-secondary">
+                    {showFilter ? "Tutup" : "Filter"}
+                  </span>
+                </button>
+
+                {/* DROPDOWN CHECKBOX */}
+                {showFilter && (
+                  <div className="absolute left-0 top-full z-30 mt-2 w-full max-w-[calc(100vw-2rem)] rounded-xl border border-slate-200 bg-white p-4 shadow-xl sm:max-w-none">
+                    <div className="mb-3 flex items-center justify-between">
+                      <h3 className="font-semibold text-secondary">
+                        Pilih Provinsi
+                      </h3>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedProvinsi([])}
+                        className="text-xs font-semibold text-indigo-600 hover:underline"
+                      >
+                        Hapus pilihan
+                      </button>
+                    </div>
+
+                    <div className="max-h-64 space-y-2 overflow-y-auto">
+                      {daftarProvinsi.map((provinsi) => (
+                        <label
+                          key={provinsi}
+                          className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-slate-50"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={selectedProvinsi.includes(provinsi)}
+                            onChange={() => handleProvinceChange(provinsi)}
+                            className="h-4 w-4 accent-lime-500"
+                          />
+
+                          <span>{provinsi}</span>
+                        </label>
+                      ))}
+                    </div>
+
+                    <div className="mt-3 border-t pt-3 text-right">
+                      <button
+                        type="button"
+                        onClick={() => setShowFilter(false)}
+                        className="rounded-lg bg-secondary px-5 py-2 text-xs font-semibold text-white hover:bg-slate-700"
+                      >
+                        Terapkan
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {/* RESET BUTTON */}
               <button
                 type="button"
-                onClick={() => setShowFilter((prev) => !prev)}
-                className="flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm shadow-sm hover:border-lime-400"
+                onClick={handleReset}
+                className="rounded-xl bg-secondary px-6 py-3 text-sm font-semibold text-white hover:bg-slate-700"
               >
-                <span className="text-slate-600">
-                  {selectedProvinsi.length === 0
-                    ? "Semua Provinsi"
-                    : `${selectedProvinsi.length} Provinsi Dipilih`}
-                </span>
-
-                <span className="rounded-full bg-lime-300 px-5 py-2 font-semibold text-secondary">
-                  {showFilter ? "Tutup" : "Filter"}
-                </span>
+                Atur Ulang
               </button>
-
-              {/* DROPDOWN CHECKBOX */}
-              {showFilter && (
-                <div className="absolute left-0 top-full z-30 mt-2 w-full max-w-[calc(100vw-2rem)] rounded-xl border border-slate-200 bg-white p-4 shadow-xl sm:max-w-none">
-                  <div className="mb-3 flex items-center justify-between">
-                    <h3 className="font-semibold text-secondary">
-                      Pilih Provinsi
-                    </h3>
-
-                    <button
-                      type="button"
-                      onClick={() => setSelectedProvinsi([])}
-                      className="text-xs font-semibold text-indigo-600 hover:underline"
-                    >
-                      Hapus pilihan
-                    </button>
-                  </div>
-
-                  <div className="max-h-64 space-y-2 overflow-y-auto">
-                    {daftarProvinsi.map((provinsi) => (
-                      <label
-                        key={provinsi}
-                        className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-2 text-sm hover:bg-slate-50"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={selectedProvinsi.includes(provinsi)}
-                          onChange={() => handleProvinceChange(provinsi)}
-                          className="h-4 w-4 accent-lime-500"
-                        />
-
-                        <span>{provinsi}</span>
-                      </label>
-                    ))}
-                  </div>
-
-                  <div className="mt-3 border-t pt-3 text-right">
-                    <button
-                      type="button"
-                      onClick={() => setShowFilter(false)}
-                      className="rounded-lg bg-secondary px-5 py-2 text-xs font-semibold text-white hover:bg-slate-700"
-                    >
-                      Terapkan
-                    </button>
-                  </div>
-                </div>
-              )}
             </div>
-
-            {/* RESET BUTTON */}
-            <button
-              type="button"
-              onClick={handleReset}
-              className="rounded-xl bg-secondary px-6 py-3 text-sm font-semibold text-white hover:bg-slate-700"
-            >
-              Atur Ulang
-            </button>
-          </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
         {/* CHART SECTION */}
         <ScrollReveal>
@@ -441,7 +456,7 @@ export default function EkspolarasiWilayah() {
 
             <div className="stagger space-y-5">
               {filteredInsights.map((insight) => {
-                const Icon = insightIcons[insight.icon];
+                const Icon = insightIcons[insight.icon] ?? CircleHelp;
                 const categoryStyle =
                   insightCategoryStyles[insight.category] ??
                   defaultInsightCategoryStyle;

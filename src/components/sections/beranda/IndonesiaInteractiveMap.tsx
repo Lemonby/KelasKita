@@ -230,9 +230,9 @@ export default function IndonesiaInteractiveMap() {
             <div className="grid grid-cols-2 gap-3 mb-5 sm:grid-cols-4">
               <div className="rounded-xl border border-slate-200 p-3 bg-white text-center">
                 <Construction className="w-4 h-4 text-amber-500 mx-auto mb-1" />
-                <p className="text-[10px] text-slate-500">Kelas Rusak Total</p>
+                <p className="text-[10px] text-slate-500">Kelas Rusak Total(%)</p>
                 <p className="text-base font-bold text-slate-900 mt-0.5">
-                  {selectedProvince.data["Kelas Rusak Total"].toFixed(2)}%
+                  {selectedProvince.data["Kelas Rusak Total(%)"].toFixed(2)}%
                 </p>
               </div>
               <div className="rounded-xl border border-slate-200 p-3 bg-white text-center">

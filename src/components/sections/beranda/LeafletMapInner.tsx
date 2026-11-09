@@ -2,14 +2,14 @@
 
 import React, {
   useEffect,
-  useLayoutEffect,
   useMemo,
   useRef,
   useState,
 } from "react";
 import { GeoJSON, MapContainer, TileLayer, useMap } from "react-leaflet";
+import { usePathname } from "next/navigation";
 import type { FeatureCollection, Geometry } from "geojson";
-import type { Map as LeafletMap, Path } from "leaflet";
+import type { Path } from "leaflet";
 import {
   CLUSTER_THEME,
 } from "@/data/indonesiaGeoData";
@@ -53,21 +53,13 @@ export default function LeafletMapInner({
   activeClusterFilter,
   searchQuery,
 }: LeafletMapInnerProps) {
+  const pathname = usePathname();
   const [boundaries, setBoundaries] =
     useState<ProvinceFeatureCollection | null>(null);
   const [boundaryError, setBoundaryError] = useState(false);
   const [hoveredProvinceId, setHoveredProvinceId] = useState<string | null>(
     null,
   );
-  const mapRef = useRef<LeafletMap | null>(null);
-
-  useLayoutEffect(() => {
-    return () => {
-      mapRef.current?.remove();
-      mapRef.current = null;
-    };
-  }, []);
-
   useEffect(() => {
     let active = true;
 
@@ -138,7 +130,7 @@ export default function LeafletMapInner({
   return (
     <div className="relative h-[320px] w-full overflow-hidden rounded-xl border border-slate-200 bg-sky-100 shadow-inner sm:h-[480px]">
       <MapContainer
-        ref={mapRef}
+        key={pathname}
         center={[-2.5, 118]}
         zoom={4}
         minZoom={3}

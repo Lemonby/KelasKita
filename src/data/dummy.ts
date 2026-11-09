@@ -11,7 +11,6 @@ export const statsOverview = [
   },
   { label: "Kelengkapan data", value: "92.3%", unit: "Dari total data" },
 ];
-
 export const top5Prioritas = [
   { no: 1, wilayah: "Nusa Tenggara Timur", jenis: "Cluster 1", skor: 92 },
   { no: 2, wilayah: "Kalimantan Timur", jenis: "Cluster 1", skor: 89 },
@@ -65,7 +64,7 @@ export type Dataset = {
   id: number | string;
   title: string;
   description: string;
-  lavels: string;
+  levels: string;
   format: "CSV" | "XLSX" | "JSON";
   urgency: "Tinggi" | "Sedang" | "Rendah";
   category: string;
@@ -83,7 +82,7 @@ export const datasets: Dataset[] = [
     title: "rasio-murid-guru-sd",
     description:
       "Perbandingan jumlah peserta didik dengan rombongan belajar pada jenjang Sekolah Dasar (SD), menunjukkan rata-rata jumlah peserta didik SD dalam satu rombongan belajar",
-    lavels: "SD",
+    levels: "SD",
     format: "XLSX",
     urgency: "Tinggi",
     category: "Civitas Akademik",
@@ -99,7 +98,7 @@ export const datasets: Dataset[] = [
     title: "kondisi-ruang-kelas-rusak-berat-sd",
     description:
       "Jumlah Ruang Kelas Sekolah Dasar (SD) Berdasarkan Wilayah, Kondisi, dan Status Satuan Pendidikan, Tahun Ajaran 2022-2023",
-    lavels: "SD",
+    levels: "SD",
     format: "XLSX",
     urgency: "Tinggi",
     category: "Infrastruktur",
@@ -115,7 +114,7 @@ export const datasets: Dataset[] = [
     title: "rasio murid rombel sd",
     description:
       "Perbandingan jumlah peserta didik dengan rombongan belajar pada jenjang Sekolah Dasar (SD), menunjukkan rata-rata jumlah peserta didik SD dalam satu rombongan belajar",
-    lavels: "SD",
+    levels: "SD",
     format: "XLSX",
     urgency: "Tinggi",
     category: "Tenaga Pendidik",
@@ -131,7 +130,7 @@ export const datasets: Dataset[] = [
     title: "Jumlah siswa putus sekolah di Sekolah Dasar",
     description:
       "Banyaknya peserta didik pada jenjang SD/sederajat yang tidak mampu menyelesaikan pendidikan atau dikeluarkan dari satuan pendidikan sehingga tidak dapat melanjutkan pendidikan ke jenjang berikutnya.",
-    lavels: "SD",
+    levels: "SD",
     format: "JSON",
     urgency: "Sedang",
     category: "Kesejahteraan Siswa",
@@ -147,7 +146,7 @@ export const datasets: Dataset[] = [
     title: "Proporsi sekolah dengan akses ke listrik pada jenjang SD",
     description:
       "Perbandingan antara satuan pendidikan yang memiliki akses listrik, dengan seluruh satuan pendidikan, pada bentuk Sekolah Dasar (SD) di suatu wilayah pada waktu tertentu.",
-    lavels: "SD",
+    levels: "SD",
     format: "XLSX",
     urgency: "Sedang",
     category: "Aksesibilitas",
@@ -163,7 +162,7 @@ export const datasets: Dataset[] = [
     title: "Jumlah sekolah dasar (SD) yang memiliki fasilitas sanitas dasar",
     description:
       "Banyaknya satuan pendidikan dengan bentuk Sekolah Sasar (SD) yang memiliki fasilitas sanitasi dasar per jenis kelamin, yaitu paling sedikit satu toilet laki-laki dan satu toilet perempuan, di suatu wilayah pada suatu waktu tertentu.",
-    lavels: "SD",
+    levels: "SD",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -179,7 +178,7 @@ export const datasets: Dataset[] = [
     title: "Jumlah satuan pendidikan SD 2024 (SD/MI/Sederajat)",
     description:
       "Banyaknya satuan pendidikan dengan bentuk sekolah dasar (SD) dan satuan pendidikan kerja sama sekolah dasar (SPK SD) di suatu wilayah pada suatu waktu tertentu.",
-    lavels: "SD",
+    levels: "SD",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -195,7 +194,7 @@ export const datasets: Dataset[] = [
     title: "Ketersediaan fasilitas pendidikan SD",
     description:
       "Status kepemilikan dan kondisi fasilitas satuan pendidikan berupa perpustakaan sekolah yang ada di Sekolah Dasar (SD)",
-    lavels: "SD",
+    levels: "SD",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -211,7 +210,7 @@ export const datasets: Dataset[] = [
     title: "Jumlah Peseta Didik SD yang Memiliki Akses ke Fasilitas Pendidikan",
     description:
       "Banyaknya peserta didik pada jenjang Sekolah Dasar (SD) yang memiliki akses ke fasilitas pendidikan, di suatu wilayah pada suatu waktu tertentu.",
-    lavels: "SD",
+    levels: "SD",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -227,7 +226,7 @@ export const datasets: Dataset[] = [
     title: "Kondisi ruang kelas rusak berat SMP",
     description:
       "Banyaknya satuan pendidikan dengan bentuk Sekolah Menengah Pertama (SMP) yang memiliki ruang kelas yang rusak berat, di suatu wilayah pada suatu waktu tertentu.",
-    lavels: "SMP",
+    levels: "SMP",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -243,7 +242,7 @@ export const datasets: Dataset[] = [
     title: "Ketersediaan fasilitas pendidikan SMP",
     description:
       "Status kepemilikan dan kondisi fasilitas satuan pendidikan berupa perpustakaan sekolah yang ada di Sekolah Menengah Pertama (SMP)",
-    lavels: "SMP",
+    levels: "SMP",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -259,7 +258,7 @@ export const datasets: Dataset[] = [
     title: "Proporsi sekolah dengan akses ke listrik pada jenjang SMP",
     description:
       "Banyaknya satuan pendidikan Sekolah Menengah Pertama (SMP) yang memiliki akses listrik, di suatu wilayah pada suatu waktu tertentu.",
-    lavels: "SMP",
+    levels: "SMP",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -275,7 +274,7 @@ export const datasets: Dataset[] = [
     title: "Jumlah Sekolah Menengah Pertama (SMP) yang Memiliki Fasilitas Sanitasi Dasar",
     description:
       "Banyaknya satuan pendidikan dengan bentuk Sekolah Menengah Pertama (SMP) yang memiliki fasilitas sanitasi dasar per jenis kelamin, yaitu paling sedikit satu toilet laki-laki dan satu toilet perempuan, di suatu wilayah pada suatu waktu tertentu.",
-    lavels: "SMP",
+    levels: "SMP",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -291,7 +290,7 @@ export const datasets: Dataset[] = [
     title: "Jumlah sekolah menengah atas (SMA) yang memiliki kondisi ruang kelas rusak berat",
     description:
       "Banyaknya ruang kelas di satuan pendidikan pada bentuk pendidikan Sekolah Menengah Atas (SMA) dan Satuan Pendidikan Kerja Sama Sekolah Menengah Atas (SPK SMA), di suatu wilayah pada waktu tertentu.",
-    lavels: "SMA",
+    levels: "SMA",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -307,7 +306,7 @@ export const datasets: Dataset[] = [
     title: "Ketersediaan fasilitas pendidikan SMA",
     description:
       "Status kepemilikan dan kondisi fasilitas satuan pendidikan berupa perpustakaan sekolah yang ada di Sekolah Menengah Atas (SMA)",
-    lavels: "SMA",
+    levels: "SMA",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -323,7 +322,7 @@ export const datasets: Dataset[] = [
     title: "Proporsi sekolah menengah atas (SMA) yang memiliki akses ke listrik",
     description:
       "Perbandingan antara satuan pendidikan yang memiliki akses listrik, dengan seluruh satuan pendidikan, pada bentuk Sekolah Menengah Atas (SMA) di suatu wilayah pada waktu tertentu.",
-    lavels: "SMA",
+    levels: "SMA",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -339,7 +338,7 @@ export const datasets: Dataset[] = [
     title: "Jumlah Sekolah Menengah Atas (SMA) yang Memiliki Fasilitas Sanitasi Dasar",
     description:
       "Banyaknya satuan pendidikan dengan bentuk Sekolah Menengah Atas (SMA) yang memiliki fasilitas sanitasi dasar per jenis kelamin, yaitu paling sedikit satu toilet laki-laki dan satu toilet perempuan, di suatu wilayah pada suatu waktu tertentu.",
-    lavels: "SMA",
+    levels: "SMA",
     format: "XLSX",
     urgency: "Sedang",
     category: "Infrastruktur",
@@ -428,48 +427,109 @@ export const datasetPreviewData = [
   },
 ];
 
-export const insights = [
+
+export type InsightCategory =
+  | "Fasilitas"
+  | "Kualitas"
+  | "Partisipasi"
+  | "Prioritas";
+
+export type Insight = {
+  icon:
+    | "building"
+    | "users"
+    | "graduation"
+    | "chart-no-axes-combined"
+    | "alert-triangle";
+  title: string;
+  description: string;
+  category: InsightCategory;
+};
+
+export const insights: Insight[] = [
+  {
+    icon: "building" as const,
+    title: "Sulawesi Barat memiliki persentase ruang kelas rusak tertinggi",
+    description:
+      "Sulawesi Barat mencatat persentase ruang kelas rusak tertinggi sebesar 20,77%, jauh di atas rata-rata 38 provinsi sebesar 9,26%. Angka ini sekitar 6,55 kali lebih tinggi dibandingkan D.I. Yogyakarta yang memiliki persentase 3,17%. Temuan ini menunjukkan perlunya perhatian khusus terhadap kondisi infrastruktur ruang kelas di Sulawesi Barat.",
+    category: "Fasilitas",
+  },
+  {
+    icon: "building" as const,
+    title: "Lima provinsi dengan persentase kerusakan ruang kelas tertinggi",
+    description:
+      "Lima provinsi dengan persentase ruang kelas rusak tertinggi adalah Sulawesi Barat (20,77%), Maluku Utara (13,80%), Maluku (13,77%), Nusa Tenggara Timur (13,21%), dan Sulawesi Tenggara (13,20%). Menariknya, rasio murid-guru di kelima provinsi tersebut hanya berkisar 12–14 murid per guru. Hal ini menunjukkan bahwa tingginya kerusakan infrastruktur tidak selalu diikuti oleh tingginya rasio murid-guru.",
+    category: "Fasilitas",
+  },
   {
     icon: "users" as const,
-    title: "Ketimpangan guru/murid di Kalimantan Timur",
+    title: "Papua Tengah memiliki rasio murid-guru tertinggi",
     description:
-      "Sebanyak 80% sekolah di Nusa Tenggara Timur masih kekurangan fasilitas dasar tertinggi dibandingkan daerah lain.",
+      "Papua Tengah memiliki rasio murid-guru tertinggi, yaitu 39 murid per guru, disusul Papua Pegunungan dengan 38 murid per guru. Kedua provinsi tersebut juga memiliki rasio murid-rombel yang tinggi, masing-masing 31 dan 28 murid per rombongan belajar. Kondisi ini menunjukkan adanya tekanan kapasitas pendidikan pada aspek ketersediaan guru dan daya tampung kelas.",
+    category: "Kualitas",
+  },
+  {
+    icon: "users" as const,
+    title: "Kepadatan murid dalam rombongan belajar tidak hanya terjadi di Papua",
+    description:
+      "Rasio murid-rombel tertinggi ditemukan di Papua Tengah dengan 31 murid per rombongan belajar. Namun, D.K.I. Jakarta, Jawa Barat, dan Banten juga memiliki rasio sebesar 27 murid per rombel. Temuan ini menunjukkan bahwa tantangan kapasitas ruang belajar tidak hanya ditemukan di wilayah timur Indonesia, tetapi juga di provinsi dengan jumlah penduduk besar di Pulau Jawa.",
+    category: "Kualitas",
+  },
+  {
+    icon: "graduation" as const,
+    title: "Perbedaan rata-rata rasio murid-guru antara Pulau Jawa dan Pulau Papua",
+    description:
+      "Rata-rata rasio murid-guru di enam provinsi Pulau Papua mencapai 25,17 murid per guru, sedangkan enam provinsi di Pulau Jawa memiliki rata-rata 18,83 murid per guru. Terdapat selisih sekitar 6,33 poin atau 33,6% lebih tinggi di wilayah Papua. Perbandingan ini menunjukkan adanya perbedaan kapasitas guru secara deskriptif, tetapi belum membuktikan signifikansi statistik maupun penyebab perbedaannya.",
+    category: "Kualitas",
+  },
+  {
+    icon: "users" as const,
+    title: "Hubungan antara rasio murid-guru dan rasio murid-rombel",
+    description:
+      "Korelasi Pearson antara rasio murid-guru dan rasio murid-rombel mencapai sekitar 0,81. Nilai ini menunjukkan hubungan linear positif yang kuat. Artinya, provinsi dengan jumlah murid per guru yang lebih tinggi cenderung juga memiliki jumlah murid per rombongan belajar yang lebih tinggi. Temuan ini dapat menjadi dasar untuk menganalisis kebutuhan penambahan kapasitas guru dan ruang belajar secara bersamaan.",
     category: "Kualitas",
   },
   {
     icon: "building" as const,
-    title: "Kesenjangan fasilitas tertinggi di Nusa Tenggara Timur",
+    title: "Kerusakan ruang kelas tidak menunjukkan hubungan linear dengan angka putus sekolah",
     description:
-      "Sebanyak 80% sekolah di Nusa Tenggara Timur masih kekurangan fasilitas dasar tertinggi dibandingkan daerah lain.",
-    category: "Fasilitas",
-  },
-  {
-    icon: "building" as const,
-    title: "Provinsi yang memiliki persentase ruang kelas rusak paling tinggi, dan kondisi indikator kapasitas pendidikannya",
-    description:
-      "Sulawesi Barat memiliki persentase kerusakan ruang kelas sekitar 6,6 kali lebih tinggi dibandingkan D.I. Yogyakarta yang memiliki nilai terendah, yaitu 3,17%. Menariknya, kelima provinsi tersebut tidak memiliki rasio murid-guru yang sangat tinggi. Nilainya hanya berkisar 12–14 murid per guru. Artinya, permasalahan infrastruktur fisik tidak selalu berjalan beriringan dengan tingginya beban guru.",
-      category: "Fasilitas",
-  },
-  {
-    icon: "building" as const,
-    title: "Hubungan antara kerusakan ruang kelas dengan angka putus sekolah",
-    description:
-      "Hasil korelasi Pearson 0,012 Hubungan linear sangat lemah. Berdasarkan data ini, tidak ditemukan hubungan linear yang berarti antara persentase ruang kelas rusak dan jumlah siswa putus sekolah.",
+      "Hasil korelasi Pearson antara persentase ruang kelas rusak dan jumlah siswa putus sekolah adalah sekitar 0,012. Nilai yang mendekati nol menunjukkan hubungan linear yang sangat lemah dalam data ini. Dengan demikian, belum ditemukan bukti hubungan linear yang berarti antara kedua indikator tersebut. Namun, hasil ini tidak membuktikan bahwa kondisi ruang kelas tidak memiliki pengaruh terhadap keberlanjutan pendidikan.",
     category: "Fasilitas",
   },
   {
     icon: "graduation" as const,
-    title: "Provinsi yang memiliki rasio murid-guru paling tinggi",
+    title: "Jawa Barat memiliki jumlah siswa putus sekolah tertinggi",
     description:
-      "Papua Tengah dan Papua Pegunungan menunjukkan tekanan kapasitas yang menonjol pada dua indikator sekaligus. Artinya, tingginya rasio murid-guru di kedua provinsi tersebut juga diikuti rasio murid-rombel yang tinggi. Namun, Jawa Barat dan Banten menunjukkan pola berbeda: rasio murid-gurunya tinggi, tetapi jumlah murid per rombongan belajar juga mencapai 27. Ini menunjukkan bahwa tantangan kapasitas pendidikan tidak hanya ditemukan di wilayah timur Indonesia, tetapi juga di provinsi dengan jumlah penduduk besar di Pulau Jawa.",
+      "Jawa Barat mencatat jumlah siswa putus sekolah tertinggi sebanyak 5.272 siswa, diikuti Sumatera Utara sebanyak 3.767 siswa dan Nusa Tenggara Timur sebanyak 3.463 siswa. Sementara itu, D.I. Yogyakarta memiliki jumlah terendah, yaitu 99 siswa. Angka ini merupakan jumlah absolut, bukan persentase atau tingkat putus sekolah, sehingga perbandingannya perlu mempertimbangkan jumlah siswa di masing-masing provinsi.",
     category: "Partisipasi",
   },
   {
-    icon: "graduation" as const,
-    title: "perbandingan rata-rata beban guru berdasarkan rasio murid-guru antara provinsi di Pulau Jawa dan Pulau Papua",
+    icon: "chart-no-axes-combined" as const,
+    title: "Sebaran kondisi pendidikan menunjukkan tiga kelompok prioritas",
     description:
-      "Rata-rata rasio murid-guru di enam provinsi Pulau Papua sekitar 6,33 poin lebih tinggi daripada Pulau Jawa. Secara relatif, angka tersebut sekitar 33,6% lebih tinggi. Perbedaan ini menunjukkan adanya indikasi ketimpangan kapasitas guru antara kedua kelompok wilayah. Namun, hasil ini masih merupakan perbandingan deskriptif. Kita belum dapat menyatakan bahwa perbedaannya signifikan secara statistik atau menyimpulkan penyebabnya.",
-    category: "Partisipasi",
+      "Berdasarkan klasifikasi berbasis ambang batas pada tiga indikator, terdapat 2 provinsi dalam Cluster A (Kritis), 5 provinsi dalam Cluster B (Perlu Perhatian), dan 31 provinsi dalam Cluster C (Relatif Baik). Cluster A terdiri dari Papua Tengah dan Papua Pegunungan. Cluster B terdiri dari D.K.I. Jakarta, Jawa Barat, Banten, Sulawesi Barat, dan Papua Selatan. Klasifikasi ini membantu mengidentifikasi wilayah berdasarkan jumlah indikator yang melewati ambang batas.",
+    category: "Prioritas",
+  },
+  {
+    icon: "alert-triangle" as const,
+    title: "Papua Tengah dan Papua Pegunungan menghadapi dua masalah kapasitas sekaligus",
+    description:
+      "Papua Tengah dan Papua Pegunungan merupakan dua provinsi yang masuk Cluster A karena sama-sama melewati ambang batas rasio murid-guru dan rasio murid-rombel. Papua Tengah memiliki rasio 39 murid per guru dan 31 murid per rombel, sedangkan Papua Pegunungan memiliki rasio 38 murid per guru dan 28 murid per rombel. Keduanya memerlukan perhatian pada pemerataan tenaga pendidik dan kapasitas ruang belajar.",
+    category: "Prioritas",
+  },
+  {
+    icon: "chart-no-axes-combined" as const,
+    title: "Masalah pendidikan di Cluster B memiliki karakteristik yang berbeda",
+    description:
+      "Lima provinsi dalam Cluster B tidak memiliki jenis permasalahan yang sama. D.K.I. Jakarta, Jawa Barat, dan Banten melewati ambang batas rasio murid-rombel; Sulawesi Barat melewati ambang batas kerusakan ruang kelas; sedangkan Papua Selatan melewati ambang batas rasio murid-guru. Oleh karena itu, rekomendasi kebijakan perlu disesuaikan dengan indikator yang menjadi masalah utama di setiap provinsi.",
+    category: "Prioritas",
+  },
+  {
+    icon: "chart-no-axes-combined" as const,
+    title: "Jawa Barat memiliki nilai akhir prioritas tertinggi dalam hasil perankingan",
+    description:
+      "Berdasarkan kolom Perankingan (Nilai Akhir V), Jawa Barat memiliki nilai tertinggi sebesar 0,708, diikuti Papua Pegunungan sebesar 0,642 dan Papua Tengah sebesar 0,615. Hasil ini menunjukkan bahwa ketiga provinsi tersebut menempati posisi teratas dalam perhitungan nilai akhir yang digunakan. Nilai perankingan perlu dibaca sesuai arah dan bobot metode penilaian yang diterapkan dalam CIVIQ.",
+    category: "Prioritas",
   },
 ];
 
@@ -481,6 +541,8 @@ export const rekomendasi = [
     description:
       "Lakukan survei lapangan untuk memvalidasi data kekurangan fasilitas dan identifikasi jenis fasilitas yang paling dibutuhkan.",
     category: "Fasilitas",
+    categories: ["Fasilitas"],
+    cluster: null,
     wilayah: "Nusa Tenggara Timur",
   },
   {
@@ -489,6 +551,8 @@ export const rekomendasi = [
     description:
       "Pertimbangkan bantuan transportasi, beasiswa, atau penambahan sekolah menengah di wilayah dengan akses terbatas.",
     category: "Fasilitas",
+    categories: ["Fasilitas"],
+    cluster: null,
     wilayah: "Maluku",
   },
   {
@@ -497,6 +561,8 @@ export const rekomendasi = [
     description:
       "Pertimbangkan bantuan transportasi, beasiswa, atau penambahan sekolah menengah di wilayah dengan akses terbatas.",
     category: "SDM",
+    categories: ["SDM"],
+    cluster: null,
     wilayah: "Aceh",
   },
   {
@@ -505,6 +571,8 @@ export const rekomendasi = [
     description:
       "Evaluasi kebutuhan guru dan pertimbangkan insentif untuk daerah dengan rasio guru/murid tinggi.",
     category: "SDM",
+    categories: ["SDM"],
+    cluster: null,
     wilayah: "Kalimantan Timur",
   },
   {
@@ -520,7 +588,9 @@ export const rekomendasi = [
      "Monitoring kapasitas pendidikan: Pantau perubahan rasio murid-guru dan murid-rombel secara berkala."
     ],
     category: "SDM",
-    wilayah: "Kalimantan Timur",
+    categories: ["SDM", "Fasilitas"],
+    cluster: "Cluster 1",
+    wilayah: "",
   },
   {
     icon: "users" as const,
@@ -535,7 +605,9 @@ export const rekomendasi = [
       "Intervensi berbasis sekolah: Hindari memberikan program yang sama kepada seluruh provinsi dalam cluster ini karena jenis masalahnya berbeda."
     ],
     category: "SDM",
-    wilayah: "Kalimantan Timur",
+    categories: ["SDM", "Fasilitas"],
+    cluster: "Cluster 2",
+    wilayah: "",
   },
   {
     icon: "users" as const,
@@ -550,7 +622,9 @@ export const rekomendasi = [
       "Evaluasi berkala: Memperbarui data indikator untuk mengetahui apakah suatu provinsi mengalami perubahan kategori."
     ],
     category: "SDM",
-    wilayah: "Kalimantan Timur",
+    categories: ["SDM", "Fasilitas"],
+    cluster: "Cluster 3",
+    wilayah: "",
   },
 ];
 
@@ -566,7 +640,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 11,
       "Kode BPS": 11,
       "Provinsi": "Aceh",
-      "Kelas Rusak Total": 8.815679097079235,
+      "Kelas Rusak Total(%)": 8.815679097079235,
       "Rasio Murid Guru": 11,
       "Rasio Murid Rombel": 19,
       "Angka Putus Sekolah": 1060,
@@ -577,7 +651,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 12,
       "Kode BPS": 12,
       "Provinsi": "Sumatera Utara",
-      "Kelas Rusak Total": 9.038223439846158,
+      "Kelas Rusak Total(%)": 9.038223439846158,
       "Rasio Murid Guru": 15,
       "Rasio Murid Rombel": 21,
       "Angka Putus Sekolah": 3767,
@@ -588,7 +662,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 13,
       "Kode BPS": 13,
       "Provinsi": "Sumatera Barat",
-      "Kelas Rusak Total": 9.340988674721599,
+      "Kelas Rusak Total(%)": 9.340988674721599,
       "Rasio Murid Guru": 14,
       "Rasio Murid Rombel": 19,
       "Angka Putus Sekolah": 778,
@@ -599,7 +673,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 14,
       "Kode BPS": 14,
       "Provinsi": "Riau",
-      "Kelas Rusak Total": 8.831453355833851,
+      "Kelas Rusak Total(%)": 8.831453355833851,
       "Rasio Murid Guru": 16,
       "Rasio Murid Rombel": 22,
       "Angka Putus Sekolah": 1051,
@@ -610,7 +684,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 15,
       "Kode BPS": 15,
       "Provinsi": "Jambi",
-      "Kelas Rusak Total": 9.545406039910361,
+      "Kelas Rusak Total(%)": 9.545406039910361,
       "Rasio Murid Guru": 15,
       "Rasio Murid Rombel": 20,
       "Angka Putus Sekolah": 664,
@@ -621,7 +695,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 16,
       "Kode BPS": 16,
       "Provinsi": "Sumatera Selatan",
-      "Kelas Rusak Total": 8.394929953302203,
+      "Kelas Rusak Total(%)": 8.394929953302203,
       "Rasio Murid Guru": 16,
       "Rasio Murid Rombel": 22,
       "Angka Putus Sekolah": 1887,
@@ -632,7 +706,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 17,
       "Kode BPS": 17,
       "Provinsi": "Bengkulu",
-      "Kelas Rusak Total": 5.520702634880803,
+      "Kelas Rusak Total(%)": 5.520702634880803,
       "Rasio Murid Guru": 13,
       "Rasio Murid Rombel": 19,
       "Angka Putus Sekolah": 286,
@@ -643,7 +717,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 18,
       "Kode BPS": 18,
       "Provinsi": "Lampung",
-      "Kelas Rusak Total": 9.81578593518892,
+      "Kelas Rusak Total(%)": 9.81578593518892,
       "Rasio Murid Guru": 15,
       "Rasio Murid Rombel": 21,
       "Angka Putus Sekolah": 849,
@@ -654,7 +728,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 19,
       "Kode BPS": 19,
       "Provinsi": "Kep. Bangka Belitung",
-      "Kelas Rusak Total": 12.384243261921217,
+      "Kelas Rusak Total(%)": 12.384243261921217,
       "Rasio Murid Guru": 18,
       "Rasio Murid Rombel": 24,
       "Angka Putus Sekolah": 231,
@@ -665,7 +739,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 21,
       "Kode BPS": 21,
       "Provinsi": "Kepulauan Riau",
-      "Kelas Rusak Total": 4.645773559920547,
+      "Kelas Rusak Total(%)": 4.645773559920547,
       "Rasio Murid Guru": 17,
       "Rasio Murid Rombel": 23,
       "Angka Putus Sekolah": 271,
@@ -676,7 +750,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 31,
       "Kode BPS": 31,
       "Provinsi": "D.K.I. Jakarta",
-      "Kelas Rusak Total": 1.0539854943013327,
+      "Kelas Rusak Total(%)": 1.0539854943013327,
       "Rasio Murid Guru": 20,
       "Rasio Murid Rombel": 27,
       "Angka Putus Sekolah": 815,
@@ -687,7 +761,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 32,
       "Kode BPS": 32,
       "Provinsi": "Jawa Barat",
-      "Kelas Rusak Total": 7.724051135987282,
+      "Kelas Rusak Total(%)": 7.724051135987282,
       "Rasio Murid Guru": 23,
       "Rasio Murid Rombel": 27,
       "Angka Putus Sekolah": 5272,
@@ -698,7 +772,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 33,
       "Kode BPS": 33,
       "Provinsi": "Jawa Tengah",
-      "Kelas Rusak Total": 8.055963421406997,
+      "Kelas Rusak Total(%)": 8.055963421406997,
       "Rasio Murid Guru": 17,
       "Rasio Murid Rombel": 21,
       "Angka Putus Sekolah": 2212,
@@ -709,7 +783,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 34,
       "Kode BPS": 34,
       "Provinsi": "D.I. Yogyakarta",
-      "Kelas Rusak Total": 3.1698271639493387,
+      "Kelas Rusak Total(%)": 3.1698271639493387,
       "Rasio Murid Guru": 15,
       "Rasio Murid Rombel": 20,
       "Angka Putus Sekolah": 99,
@@ -720,7 +794,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 35,
       "Kode BPS": 35,
       "Provinsi": "Jawa Timur",
-      "Kelas Rusak Total": 8.161344732479604,
+      "Kelas Rusak Total(%)": 8.161344732479604,
       "Rasio Murid Guru": 15,
       "Rasio Murid Rombel": 19,
       "Angka Putus Sekolah": 2654,
@@ -731,7 +805,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 36,
       "Kode BPS": 36,
       "Provinsi": "Banten",
-      "Kelas Rusak Total": 6.924826879328016,
+      "Kelas Rusak Total(%)": 6.924826879328016,
       "Rasio Murid Guru": 23,
       "Rasio Murid Rombel": 27,
       "Angka Putus Sekolah": 1397,
@@ -742,7 +816,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 51,
       "Kode BPS": 51,
       "Provinsi": "Bali",
-      "Kelas Rusak Total": 5.5896348105257125,
+      "Kelas Rusak Total(%)": 5.5896348105257125,
       "Rasio Murid Guru": 16,
       "Rasio Murid Rombel": 22,
       "Angka Putus Sekolah": 168,
@@ -753,7 +827,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 52,
       "Kode BPS": 52,
       "Provinsi": "Nusa Tenggara Barat",
-      "Kelas Rusak Total": 7.929241299613316,
+      "Kelas Rusak Total(%)": 7.929241299613316,
       "Rasio Murid Guru": 13,
       "Rasio Murid Rombel": 22,
       "Angka Putus Sekolah": 1093,
@@ -764,7 +838,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 53,
       "Kode BPS": 53,
       "Provinsi": "Nusa Tenggara Timur",
-      "Kelas Rusak Total": 13.210502759958228,
+      "Kelas Rusak Total(%)": 13.210502759958228,
       "Rasio Murid Guru": 14,
       "Rasio Murid Rombel": 18,
       "Angka Putus Sekolah": 3463,
@@ -775,7 +849,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 61,
       "Kode BPS": 61,
       "Provinsi": "Kalimantan Barat",
-      "Kelas Rusak Total": 10.87557910875579,
+      "Kelas Rusak Total(%)": 10.87557910875579,
       "Rasio Murid Guru": 16,
       "Rasio Murid Rombel": 18,
       "Angka Putus Sekolah": 1092,
@@ -786,7 +860,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 62,
       "Kode BPS": 62,
       "Provinsi": "Kalimantan Tengah",
-      "Kelas Rusak Total": 10.293626960293627,
+      "Kelas Rusak Total(%)": 10.293626960293627,
       "Rasio Murid Guru": 12,
       "Rasio Murid Rombel": 16,
       "Angka Putus Sekolah": 549,
@@ -797,7 +871,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 63,
       "Kode BPS": 63,
       "Provinsi": "Kalimantan Selatan",
-      "Kelas Rusak Total": 5.893375808113932,
+      "Kelas Rusak Total(%)": 5.893375808113932,
       "Rasio Murid Guru": 13,
       "Rasio Murid Rombel": 17,
       "Angka Putus Sekolah": 534,
@@ -808,7 +882,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 64,
       "Kode BPS": 64,
       "Provinsi": "Kalimantan Timur",
-      "Kelas Rusak Total": 6.671327856435355,
+      "Kelas Rusak Total(%)": 6.671327856435355,
       "Rasio Murid Guru": 17,
       "Rasio Murid Rombel": 22,
       "Angka Putus Sekolah": 639,
@@ -819,7 +893,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 65,
       "Kode BPS": 65,
       "Provinsi": "Kalimantan Utara",
-      "Kelas Rusak Total": 10.256410256410255,
+      "Kelas Rusak Total(%)": 10.256410256410255,
       "Rasio Murid Guru": 14,
       "Rasio Murid Rombel": 19,
       "Angka Putus Sekolah": 162,
@@ -830,7 +904,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 71,
       "Kode BPS": 71,
       "Provinsi": "Sulawesi Utara",
-      "Kelas Rusak Total": 10.463226330759854,
+      "Kelas Rusak Total(%)": 10.463226330759854,
       "Rasio Murid Guru": 13,
       "Rasio Murid Rombel": 15,
       "Angka Putus Sekolah": 469,
@@ -841,7 +915,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 72,
       "Kode BPS": 72,
       "Provinsi": "Sulawesi Tengah",
-      "Kelas Rusak Total": 11.587397758255074,
+      "Kelas Rusak Total(%)": 11.587397758255074,
       "Rasio Murid Guru": 13,
       "Rasio Murid Rombel": 16,
       "Angka Putus Sekolah": 1013,
@@ -852,7 +926,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 73,
       "Kode BPS": 73,
       "Provinsi": "Sulawesi Selatan",
-      "Kelas Rusak Total": 11.182941795231418,
+      "Kelas Rusak Total(%)": 11.182941795231418,
       "Rasio Murid Guru": 14,
       "Rasio Murid Rombel": 19,
       "Angka Putus Sekolah": 1811,
@@ -863,7 +937,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 74,
       "Kode BPS": 74,
       "Provinsi": "Sulawesi Tenggara",
-      "Kelas Rusak Total": 13.199158906578552,
+      "Kelas Rusak Total(%)": 13.199158906578552,
       "Rasio Murid Guru": 13,
       "Rasio Murid Rombel": 18,
       "Angka Putus Sekolah": 730,
@@ -874,7 +948,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 75,
       "Kode BPS": 75,
       "Provinsi": "Gorontalo",
-      "Kelas Rusak Total": 7.240024183796856,
+      "Kelas Rusak Total(%)": 7.240024183796856,
       "Rasio Murid Guru": 14,
       "Rasio Murid Rombel": 18,
       "Angka Putus Sekolah": 518,
@@ -885,7 +959,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 76,
       "Kode BPS": 76,
       "Provinsi": "Sulawesi Barat",
-      "Kelas Rusak Total": 20.76949267960504,
+      "Kelas Rusak Total(%)": 20.76949267960504,
       "Rasio Murid Guru": 12,
       "Rasio Murid Rombel": 16,
       "Angka Putus Sekolah": 402,
@@ -896,7 +970,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 81,
       "Kode BPS": 81,
       "Provinsi": "Maluku",
-      "Kelas Rusak Total": 13.771722281145468,
+      "Kelas Rusak Total(%)": 13.771722281145468,
       "Rasio Murid Guru": 13,
       "Rasio Murid Rombel": 18,
       "Angka Putus Sekolah": 654,
@@ -907,7 +981,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 82,
       "Kode BPS": 82,
       "Provinsi": "Maluku Utara",
-      "Kelas Rusak Total": 13.80350307388934,
+      "Kelas Rusak Total(%)": 13.80350307388934,
       "Rasio Murid Guru": 13,
       "Rasio Murid Rombel": 17,
       "Angka Putus Sekolah": 534,
@@ -918,7 +992,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 92,
       "Kode BPS": 91,
       "Provinsi": "Papua Barat",
-      "Kelas Rusak Total": 7.341907824222938,
+      "Kelas Rusak Total(%)": 7.341907824222938,
       "Rasio Murid Guru": 17,
       "Rasio Murid Rombel": 18,
       "Angka Putus Sekolah": 272,
@@ -929,7 +1003,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 96,
       "Kode BPS": 92,
       "Provinsi": "Papua Barat Daya",
-      "Kelas Rusak Total": 9.311402286032896,
+      "Kelas Rusak Total(%)": 9.311402286032896,
       "Rasio Murid Guru": 13,
       "Rasio Murid Rombel": 15,
       "Angka Putus Sekolah": 312,
@@ -940,7 +1014,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 91,
       "Kode BPS": 94,
       "Provinsi": "Papua",
-      "Kelas Rusak Total": 12.439945092656144,
+      "Kelas Rusak Total(%)": 12.439945092656144,
       "Rasio Murid Guru": 18,
       "Rasio Murid Rombel": 18,
       "Angka Putus Sekolah": 503,
@@ -951,7 +1025,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 94,
       "Kode BPS": 96,
       "Provinsi": "Papua Tengah",
-      "Kelas Rusak Total": 6.176538372896981,
+      "Kelas Rusak Total(%)": 6.176538372896981,
       "Rasio Murid Guru": 39,
       "Rasio Murid Rombel": 31,
       "Angka Putus Sekolah": 856,
@@ -962,7 +1036,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 93,
       "Kode BPS": 95,
       "Provinsi": "Papua Selatan",
-      "Kelas Rusak Total": 10.865609565895502,
+      "Kelas Rusak Total(%)": 10.865609565895502,
       "Rasio Murid Guru": 26,
       "Rasio Murid Rombel": 22,
       "Angka Putus Sekolah": 774,
@@ -973,7 +1047,7 @@ export const eksplorasiData = {
       "Kode Kemdagri": 95,
       "Kode BPS": 97,
       "Provinsi": "Papua Pegunungan",
-      "Kelas Rusak Total": 11.517137096774194,
+      "Kelas Rusak Total(%)": 11.517137096774194,
       "Rasio Murid Guru": 38,
       "Rasio Murid Rombel": 28,
       "Angka Putus Sekolah": 709,
@@ -1045,13 +1119,13 @@ export const footerLinks = {
     { label: "Infrastruktur", href: "#" },
     { label: "Tenaga pendidik", href: "#" },
     { label: "Kualitas pembelajaran", href: "#" },
-    { label: "Anggaran", href: "#" },
+    { label: "Civitas Akademik", href: "#" },
   ],
   sumberData: [
-    { label: "Kemendikdasmen", href: "#" },
-    { label: "Komdigi", href: "#" },
-    { label: "Data.go.id", href: "#" },
-    { label: "Satu Data Indonesia", href: "#" },
+    { label: "Komdigi", href: "https://data.komdigi.go.id/opendata/dataset" },
+    { label: "Satu Data Indonesia", href: "https://data.go.id/" },
+    { label: "Portal Data Pendidikan", href: "https://data.kemendikdasmen.go.id/dataset" },
+    { label: "Badan Pusat Statistik", href: "https://www.bps.go.id/id/statistics-table/3/YTFsRmNubEhOWE5ZTUZsdWVHOHhMMFpPWm5VMFp6MDkjMw==/jumlah-sekolah--guru--dan-murid-sekolah-menengah-atas--sma--di-bawah-kementerian-pendidikan--kebudayaan--riset--dan-teknologi-menurut-provinsi.html?year=2023" },
   ],
 };
 
@@ -1060,7 +1134,7 @@ export const daerahList = [
 ];
 
 export const indikatorList = [
-  "Kelas Rusak Total",
+  "Kelas Rusak Total(%)",
   "Rasio Murid Guru",
   "Rasio Murid Rombel",
   "Angka Putus Sekolah",

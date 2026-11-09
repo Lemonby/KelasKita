@@ -88,6 +88,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
         </header>
         </ScrollReveal>
 
+        <ScrollReveal>
         <div className="mt-6 grid max-w-2xl gap-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-2">
           <InfoRow
             label="Dataset dibuat"
@@ -100,9 +101,11 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
           <InfoRow label="Pemilik" value={dataset.owner ?? dataset.source} />
           <InfoRow label="Format dataset" value={dataset.format} />
           <InfoRow label="Cakupan" value={dataset.coverage ?? "Indonesia"} />
-          <InfoRow label="Jenjang" value={dataset.lavels} />
+          <InfoRow label="Jenjang" value={dataset.levels} />
         </div>
+        </ScrollReveal>
 
+        <ScrollReveal>
         <div className="mt-6 flex flex-wrap gap-3">
           <button
             type="button"
@@ -128,6 +131,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
             </span>
           )}
         </div>
+        </ScrollReveal>
 
         <ScrollReveal>
         <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">

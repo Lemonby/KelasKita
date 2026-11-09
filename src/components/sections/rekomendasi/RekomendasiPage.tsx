@@ -3,12 +3,13 @@
 import {
   ArrowRight,
   Building2,
+  ChevronDown,
   RotateCcw,
   UserCheck,
   Users,
 } from "lucide-react";
 import { useMemo, useState } from "react";
-import { rekomendasi } from "@/data/dummy";
+import { clusterData, rekomendasi } from "@/data/dummy";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import FilterDropdown from "@/components/ui/FilterDropdown";
 
@@ -44,20 +45,43 @@ export default function RekomendasiPage() {
   const [selectedRegion, setSelectedRegion] = useState("Semua daerah");
 
   const regions = useMemo(
-    () => Array.from(new Set(rekomendasi.map((item) => item.wilayah))),
+    () =>
+      Array.from(
+        new Set([
+          ...clusterData.map((item) => item.Provinsi),
+          ...rekomendasi
+            .filter((item) => !item.cluster)
+            .map((item) => item.wilayah),
+        ]),
+      ),
     [],
   );
   const categories = useMemo(
-    () => Array.from(new Set(rekomendasi.map((item) => item.category))),
+    () =>
+      Array.from(
+        new Set(
+          rekomendasi.flatMap((item) => item.categories ?? [item.category]),
+        ),
+      ),
     [],
   );
 
-  const filteredRecommendations = rekomendasi.filter(
-    (item) =>
-      (selectedCategory === "Semua kategori" ||
-        item.category === selectedCategory) &&
-      (selectedRegion === "Semua daerah" || item.wilayah === selectedRegion),
-  );
+  const filteredRecommendations = rekomendasi.filter((item) => {
+    const matchesCategory =
+      selectedCategory === "Semua kategori" ||
+      (item.categories ?? [item.category]).includes(selectedCategory);
+    const matchesRegion =
+      selectedRegion === "Semua daerah" ||
+      (item.cluster
+        ? clusterData.some(
+            (region) =>
+              region.Provinsi === selectedRegion &&
+              region.jenis === item.cluster,
+          )
+        : item.wilayah === selectedRegion);
+
+    return matchesCategory && matchesRegion;
+  });
 
   const resetFilters = () => {
     setSelectedCategory("Semua kategori");
@@ -81,6 +105,7 @@ export default function RekomendasiPage() {
         </div>
         </ScrollReveal>
 
+        <ScrollReveal>
         <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-end">
           <FilterSelect
             label="Provinsi"
@@ -103,6 +128,7 @@ export default function RekomendasiPage() {
             Atur ulang
           </button>
         </div>
+        </ScrollReveal>
 
         <ScrollReveal className="stagger">
         <div className="mt-8 space-y-3 sm:mt-10 sm:space-y-4">
@@ -110,42 +136,84 @@ export default function RekomendasiPage() {
             filteredRecommendations.map((item) => {
               const style = categoryStyles[item.category];
               const Icon = iconMap[item.icon];
+              const itemCategories = item.categories ?? [item.category];
+              const clusterRegions = item.cluster
+                ? clusterData.filter((region) => region.jenis === item.cluster)
+                : [];
 
               return (
-                <article
+                <details
                   key={`${item.wilayah}-${item.title}`}
-                  className="ui-card flex flex-col gap-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md sm:flex-row sm:items-start sm:p-6 lg:gap-6 lg:p-7"
+                  className="ui-card group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:border-slate-300 hover:shadow-md"
                 >
-                  <div
-                    className={`flex h-16 w-16 shrink-0 items-center justify-center rounded-full ${style.iconBackground} ${style.text} sm:h-20 sm:w-20`}
-                  >
-                    <Icon size={34} strokeWidth={2.2} aria-hidden="true" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h2 className="text-base font-bold leading-6 text-secondary sm:text-lg">
-                      {item.title}
-                    </h2>
-                    <div className="mt-2 max-w-2xl text-sm leading-5 text-slate-500">
-                      {item.descriptionItems ? (
-                        <ul className="list-disc space-y-1 pl-5">
-                          {item.descriptionItems.map((descriptionItem) => (
-                            <li key={descriptionItem}>{descriptionItem}</li>
-                          ))}
-                        </ul>
-                      ) : (
-                        item.description
-                      )}
-                    </div>
+                  <summary className="flex min-h-28 cursor-pointer list-none items-center gap-4 p-4 text-left transition hover:bg-slate-50/60 select-none [&::-webkit-details-marker]:hidden sm:gap-6 sm:px-6 sm:py-5 lg:px-8">
                     <span
-                      className={`mt-4 inline-flex rounded-full px-4 py-1 text-xs font-semibold ${style.background} ${style.text}`}
+                      className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full ${style.iconBackground} ${style.text} sm:h-16 sm:w-16`}
                     >
-                      {item.category}
+                      <Icon size={30} strokeWidth={2.2} aria-hidden="true" />
                     </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-bold leading-5 text-secondary sm:text-base sm:leading-6">
+                        {item.title}
+                      </span>
+                      <span className="mt-2 flex flex-wrap gap-2">
+                        {itemCategories.map((category) => {
+                          const categoryStyle = categoryStyles[category];
+
+                          return (
+                            <span
+                              key={category}
+                              className={`inline-flex rounded-full px-3 py-1 text-[11px] font-semibold ${categoryStyle.background} ${categoryStyle.text}`}
+                            >
+                              {category}
+                            </span>
+                          );
+                        })}
+                      </span>
+                    </span>
+                    <span className="hidden shrink-0 rounded-lg border border-slate-200 px-4 py-2 text-center text-xs font-medium text-slate-500 sm:block">
+                      {item.cluster
+                        ? `${clusterRegions.length} provinsi`
+                        : item.wilayah}
+                    </span>
+                    <ChevronDown
+                      size={20}
+                      aria-hidden="true"
+                      className="shrink-0 text-slate-400 transition-transform duration-200 group-open:rotate-180"
+                    />
+                  </summary>
+                  <div className="accordion-answer border-t border-slate-100 bg-slate-50/50 px-5 py-5 sm:px-8 sm:py-6">
+                    <div className="sm:pl-20">
+                      {item.cluster ? (
+                        <div className="mb-4 rounded-xl border border-slate-200 bg-white p-4">
+                          <p className="text-xs font-semibold text-secondary">
+                            Cakupan {item.cluster} ({clusterRegions.length} provinsi)
+                          </p>
+                          <p className="mt-1.5 text-xs leading-5 text-slate-500">
+                            {clusterRegions
+                              .map((region) => region.Provinsi)
+                              .join(", ")}
+                          </p>
+                        </div>
+                      ) : (
+                        <span className="mb-3 inline-flex rounded-lg border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-500 sm:hidden">
+                          {item.wilayah}
+                        </span>
+                      )}
+                      <div className="max-w-3xl text-sm leading-6 text-slate-600">
+                        {item.descriptionItems ? (
+                          <ul className="list-disc space-y-1 pl-5">
+                            {item.descriptionItems.map((descriptionItem) => (
+                              <li key={descriptionItem}>{descriptionItem}</li>
+                            ))}
+                          </ul>
+                        ) : (
+                          item.description
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  <span className="self-start rounded-lg border border-slate-200 px-4 py-2 text-center text-xs font-medium text-slate-500 sm:ml-auto sm:min-w-28 sm:self-end">
-                    {item.wilayah}
-                  </span>
-                </article>
+                </details>
               );
             })
           ) : (

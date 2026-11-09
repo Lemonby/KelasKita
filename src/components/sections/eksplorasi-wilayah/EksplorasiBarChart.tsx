@@ -11,7 +11,7 @@ import {
 } from "recharts";
 
 type IndikatorKey =
-  | "Kelas Rusak Total"
+  | "Kelas Rusak Total(%)"
   | "Rasio Murid Guru"
   | "Rasio Murid Rombel"
   | "Angka Putus Sekolah";
@@ -27,7 +27,7 @@ type EksplorasiBarChartProps = {
 };
 
 const indikatorColors: Record<IndikatorKey, string> = {
-  "Kelas Rusak Total": "#F97316",
+  "Kelas Rusak Total(%)": "#F97316",
   "Rasio Murid Guru": "var(--token-color-primary)",
   "Rasio Murid Rombel": "#14B8A6",
   "Angka Putus Sekolah": "var(--token-color-accent)",
@@ -40,23 +40,44 @@ export default function EksplorasiBarChart({
   const barColor = indikatorColors[indikator];
 
   return (
-    <div className="w-full overflow-x-auto" role="region" aria-label={`Grafik ${indikator}`} tabIndex={0}>
-      <div style={{ width: `${Math.max(data.length * 38, 640)}px`, height: 320 }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          margin={{ top: 16, right: 20, left: 0, bottom: 58 }}
-        >
-          <XAxis dataKey="Provinsi" interval={0} angle={-35} textAnchor="end" height={72} tick={{ fontSize: 11 }} />
-          <YAxis />
-          <Tooltip />
-          <Bar dataKey="value" name={indikator} radius={[4, 4, 0, 0]}>
-            {data.map((entry) => (
-              <Cell key={entry.Provinsi} fill={barColor} />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+    <div
+      className="w-full overflow-x-auto"
+      role="region"
+      aria-label={`Grafik ${indikator}`}
+      tabIndex={0}
+    >
+      <div
+        style={{
+          width: `max(100%, ${Math.max(data.length * 38, 320)}px)`,
+          height: 320,
+        }}
+      >
+        <ResponsiveContainer width="100%" height="100%">
+          <BarChart
+            data={data}
+            margin={{ top: 16, right: 20, left: 0, bottom: 58 }}
+          >
+            <XAxis
+              dataKey="Provinsi"
+              interval={0}
+              angle={-35}
+              textAnchor="end"
+              height={72}
+              tick={{ fontSize: 11 }}
+            />
+            <YAxis
+              tickFormatter={(value: number | string) =>
+                indikator === "Kelas Rusak Total(%)" ? `${value}%` : String(value)
+              }
+            />
+            <Tooltip />
+            <Bar dataKey="value" name={indikator} radius={[4, 4, 0, 0]}>
+              {data.map((entry) => (
+                <Cell key={entry.Provinsi} fill={barColor} />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );
