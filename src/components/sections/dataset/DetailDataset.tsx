@@ -106,17 +106,7 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
         </ScrollReveal>
 
         <ScrollReveal>
-          <div className="mt-6 flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={() =>
-                navigator.clipboard?.writeText(window.location.href)
-              }
-              className="inline-flex items-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-            >
-              <Share2 size={15} aria-hidden="true" />
-              Bagikan tautan
-            </button>
+          <div className="mt-6">
             {fileUrl ? (
               <a
                 href={fileUrl}

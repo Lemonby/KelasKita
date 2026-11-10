@@ -109,7 +109,7 @@ export default function PrioritasDaerahPage() {
 
         <ScrollReveal>
           <div className="mt-5 overflow-x-auto rounded-2xl border border-slate-200 bg-white shadow-sm">
-            <div className="min-w-[950px]">
+            <div className="min-w-0 sm:min-w-[950px]">
               <div className="hidden w-full grid-cols-[0.8fr_1.4fr_2fr_1.2fr] gap-8 border-b border-slate-200 px-6 py-4 text-xs font-bold text-slate-600 sm:grid">
                 <span>Peringkat</span>
                 <span>Wilayah</span>

@@ -11,6 +11,7 @@ import {
   ClipboardCheck,
   Database,
   ArrowRight,
+  Layers,
 } from "lucide-react";
 import { datasets } from "@/data/dummy";
 import DatasetCard from "@/components/ui/DatasetCard";
@@ -22,6 +23,11 @@ export default function Home() {
   // Cards per view: 4 on desktop
   const cardsPerPage = 4;
   const maxIndex = Math.max(0, datasets.length - cardsPerPage);
+  const paginationSteps = Math.min(maxIndex + 1, 5);
+  const activePaginationStep =
+    maxIndex === 0
+      ? 0
+      : Math.round((carouselIndex / maxIndex) * (paginationSteps - 1));
 
   const handlePrev = () => {
     setCarouselIndex((prev) => (prev > 0 ? prev - 1 : maxIndex));
@@ -111,14 +117,11 @@ export default function Home() {
                 Data-Driven Decision Making
               </span>
               <h2 className="mt-4 max-w-xl text-2xl font-bold leading-tight tracking-tight text-secondary sm:text-3xl">
-                Memahami data pendidikan sebelum menentukan prioritas.
+                Empat indikator utama
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
-                KelasKita mengolah data pendidikan publik menjadi gambaran
-                kondisi antardaerah yang lebih mudah dibaca. Pengguna dapat
-                membandingkan indikator, mengenali wilayah yang perlu
-                diperhatikan, lalu menelaah saran tindak lanjut berdasarkan
-                temuan data.
+                KelasKita menggunakan indikator berikut untuk membandingkan
+                kondisi pendidikan antardaerah.
               </p>
 
               <div
@@ -215,68 +218,172 @@ export default function Home() {
         </section>
       </ScrollReveal>
 
+      {/* Section: Cara Kerja Cluster */}
+      <ScrollReveal>
+        <section className="border-y border-slate-200/80 bg-slate-50 py-14 sm:py-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-3xl text-center">
+              {/* <span className="inline-flex items-center gap-2 rounded-full bg-[#e9e7ff] px-3 py-1.5 text-xs font-bold text-primary">
+                <Layers className="h-4 w-4" aria-hidden="true" />
+                Transparansi klasifikasi
+              </span> */}
+              <h2 className="mt-4 text-2xl font-bold tracking-tight text-secondary sm:text-3xl">
+                Bagaimana cluster wilayah ditentukan?
+              </h2>
+              <p className="mt-3 text-sm leading-6 text-slate-600 sm:text-base sm:leading-7">
+                Pengelompokan dilakukan secara rule-based dengan membandingkan
+                tiga indikator terhadap ambang batas yang sama untuk setiap
+                provinsi.
+              </p>
+            </div>
+
+            <div className="stagger mt-8 grid gap-3 sm:grid-cols-3 sm:gap-4">
+              {[
+                { label: "Kelas rusak total", threshold: "≥ 20%" },
+                { label: "Rasio murid-guru", threshold: "≥ 25" },
+                { label: "Rasio murid-rombel", threshold: "≥ 25" },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="flex items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white px-4 py-4 shadow-xs sm:flex-col sm:items-start sm:px-5"
+                >
+                  <span className="text-sm font-medium text-slate-600">
+                    {item.label}
+                  </span>
+                  <span className="shrink-0 rounded-sm bg-secondary px-3 py-1.5 text-sm font-bold text-accent">
+                    {item.threshold}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="stagger mt-5 grid gap-4 md:grid-cols-3">
+              <article className="rounded-2xl border border-red-100 bg-white p-5 shadow-xs sm:p-6">
+                <span className="inline-flex rounded-full bg-red-100 px-3 py-1 text-xs font-bold text-red-700">
+                  Cluster 1
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-secondary">
+                  Kritis
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Minimal dua indikator melewati ambang batas. Wilayah ini
+                  memerlukan beberapa jenis intervensi.
+                </p>
+              </article>
+
+              <article className="rounded-2xl border border-amber-100 bg-white p-5 shadow-xs sm:p-6">
+                <span className="inline-flex rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-700">
+                  Cluster 2
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-secondary">
+                  Perlu Perhatian
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Satu indikator melewati ambang batas. Penanganan difokuskan
+                  pada indikator yang bermasalah tersebut.
+                </p>
+              </article>
+
+              <article className="rounded-2xl border border-lime-100 bg-white p-5 shadow-xs sm:p-6">
+                <span className="inline-flex rounded-full bg-lime-100 px-3 py-1 text-xs font-bold text-lime-700">
+                  Cluster 3
+                </span>
+                <h3 className="mt-3 text-lg font-bold text-secondary">
+                  Relatif Baik
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-slate-600">
+                  Tidak ada indikator yang melewati ambang batas. Kondisi tetap
+                  perlu dipantau dan dipelihara.
+                </p>
+              </article>
+            </div>
+
+            <p className="mt-5 rounded-xl border border-slate-200 bg-white px-4 py-3 text-center text-sm leading-6 text-slate-600">
+              Cluster ditentukan berdasarkan jumlah indikator yang melewati
+              ambang batas, bukan berdasarkan nama atau lokasi provinsi.
+            </p>
+          </div>
+        </section>
+      </ScrollReveal>
+
       {/* Section: Kumpulan Data Populer */}
       <ScrollReveal>
         <section className="bg-background py-16 lg:py-16">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="mb-10 flex flex-wrap items-center justify-between gap-4">
+            <div className="mb-8">
               <h2 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                 Kumpulan Data Populer
               </h2>
-
-              <div className="flex items-center gap-4">
-                <div
-                  className="flex items-center gap-1.5 sm:hidden"
-                  aria-hidden="true"
-                >
-                  {Array.from({ length: maxIndex + 1 }).map((_, i) => (
-                    <span
-                      key={i}
-                      className={`h-2 rounded-full transition-all ${
-                        i === carouselIndex
-                          ? "w-6 bg-primary"
-                          : "w-2 bg-slate-300"
-                      }`}
-                    />
-                  ))}
-                </div>
-                <Link
-                  href="/dataset"
-                  className="inline-flex shrink-0 items-center gap-1.5 text-sm font-semibold text-primary transition hover:text-primary-hover"
-                >
-                  Lihat semua dataset
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </div>
             </div>
 
             {/* Carousel Container */}
-            <div className="relative">
-              {/* Left Nav Button */}
-              <button
-                onClick={handlePrev}
-                type="button"
-                aria-label="Dataset sebelumnya"
-                className="absolute -left-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-md transition-all hover:bg-slate-50 hover:text-slate-900 hover:scale-105 active:scale-95 disabled:opacity-40"
-              >
-                <ChevronLeft size={22} />
-              </button>
-
-              {/* Right Nav Button */}
-              <button
-                onClick={handleNext}
-                type="button"
-                aria-label="Dataset selanjutnya"
-                className="absolute -right-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-md transition-all hover:bg-slate-50 hover:text-slate-900 hover:scale-105 active:scale-95 disabled:opacity-40"
-              >
-                <ChevronRight size={22} />
-              </button>
-
+            <div>
               {/* Cards Grid */}
               <div className="stagger grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
                 {visibleDatasets.map((dataset) => (
                   <DatasetCard key={dataset.id} dataset={dataset} />
                 ))}
+              </div>
+
+              <div className="mt-8 flex flex-col items-center gap-5 border-t border-slate-200 pt-6 sm:flex-row sm:justify-between">
+                <Link
+                  href="/dataset"
+                  className="order-2 inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition hover:text-primary-hover sm:order-1"
+                >
+                  Lihat semua dataset
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+
+                <div className="order-1 flex items-center gap-4 sm:order-2">
+                  <button
+                    onClick={handlePrev}
+                    type="button"
+                    aria-label="Dataset sebelumnya"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50 hover:text-slate-900 active:scale-95"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+
+                  <div
+                    role="group"
+                    aria-label={`Posisi ${activePaginationStep + 1} dari ${paginationSteps}`}
+                    className="flex items-center gap-1.5"
+                  >
+                    {Array.from({ length: paginationSteps }).map((_, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        aria-label={`Tampilkan kelompok dataset ${index + 1}`}
+                        aria-current={
+                          index === activePaginationStep ? "step" : undefined
+                        }
+                        onClick={() => {
+                          const targetIndex =
+                            paginationSteps <= 1
+                              ? 0
+                              : Math.round(
+                                  (index / (paginationSteps - 1)) * maxIndex,
+                                );
+                          setCarouselIndex(targetIndex);
+                        }}
+                        className={`h-2 rounded-full transition-all ${
+                          index === activePaginationStep
+                            ? "w-6 bg-primary"
+                            : "w-2 bg-slate-300 hover:bg-slate-400"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  <button
+                    onClick={handleNext}
+                    type="button"
+                    aria-label="Dataset selanjutnya"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50 hover:text-slate-900 active:scale-95"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

@@ -546,7 +546,7 @@ export const rekomendasi = [
     wilayah: "Nusa Tenggara Timur",
   },
   {
-    icon: "arrowRight" as const,
+    icon: "building" as const,
     title: "Tingkatkan program akses pendidikan menengah di Maluku",
     description:
       "Pertimbangkan bantuan transportasi, beasiswa, atau penambahan sekolah menengah di wilayah dengan akses terbatas.",
@@ -577,7 +577,7 @@ export const rekomendasi = [
   },
   {
     icon: "users" as const,
-    title: "Cluster 1 — Kritis",
+    title: "Rekomendasi untuk Cluster 1 (Bersifat Kritis)",
     description:
       "Provinsi yang memiliki setidaknya dua dari tiga indikator pendidikan yang melewati ambang batas. Provinsi dalam Cluster 1 menghadapi beberapa jenis permasalahan pendidikan secara bersamaan. Artinya, penanganannya mungkin membutuhkan lebih dari satu jenis intervensi.",
     descriptionItems: [
@@ -594,7 +594,7 @@ export const rekomendasi = [
   },
   {
     icon: "users" as const,
-    title: "Cluster 2 — Perlu Perhatian",
+    title: "Rekomendasi untuk Cluster 2 (Bersifat Perlu Perhatian)",
     description:
       "Provinsi yang hanya memiliki satu indikator pendidikan melewati ambang batas.",
     descriptionItems: [
@@ -611,7 +611,7 @@ export const rekomendasi = [
   },
   {
     icon: "users" as const,
-    title: "Cluster 3 — Relatif Baik",
+    title: "Rekomendasi untuk Cluster 3 (Bersifat Relatif Baik)",
     description:
       "Evaluasi kebutuhan guru dan pertimbangkan insentif untuk daerah dengan rasio guru/murid tinggi.",
     descriptionItems: [
@@ -1073,7 +1073,7 @@ export const faqData = [
     id: 3,
     question: "Bagaimana cara KelasKita menentukan prioritas wilayah penanganan?",
     answer:
-      "Sistem menghitung skor prioritas melalui algoritma klasterisasi berbasis indikator terbobot, seperti persentase ruang kelas rusak berat, rasio ketimpangan guru-murid, ketersediaan akses internet/digital, serta kapasitas anggaran pendidikan daerah.",
+      "Sistem menghitung nilai akhir berdasarkan tiga indikator utama: persentase kelas rusak total, rasio murid-guru, dan rasio murid-rombel. Berdasarkan nilai akhir ini, provinsi dikelompokkan ke dalam tiga cluster prioritas: Cluster 1 (Kritis), Cluster 2 (Perlu Perhatian), dan Cluster 3 (Relatif Baik).",
   },
   {
     id: 4,

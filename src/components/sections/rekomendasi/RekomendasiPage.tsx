@@ -105,7 +105,7 @@ export default function RekomendasiPage() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal>
+        <ScrollReveal className="relative z-20">
           <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-end">
             <FilterSelect
               label="Provinsi"

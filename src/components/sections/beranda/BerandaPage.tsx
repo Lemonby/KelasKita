@@ -135,7 +135,6 @@ export default function BerandaPage() {
                       indikator yang melewati ambang.
                     </p>
                   </div>
-                  <Layers className="mt-1 h-5 w-5 shrink-0 text-primary" />
                 </div>
 
                 <div className="space-y-3">

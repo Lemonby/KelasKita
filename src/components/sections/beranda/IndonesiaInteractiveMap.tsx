@@ -47,10 +47,10 @@ export default function IndonesiaInteractiveMap() {
             <h2 className="section-heading text-slate-900">
               Peta Prioritas Pendidikan
             </h2>
-            <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200">
+            {/* <span className="inline-flex items-center gap-1 text-[11px] font-semibold bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-full border border-emerald-200">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
               Interaktif Leaflet
-            </span>
+            </span> */}
           </div>
           <p className="section-copy mt-0.5 text-sm text-slate-500">
             Sebaran 38 provinsi di Indonesia berdasarkan hasil klasterisasi
@@ -230,7 +230,9 @@ export default function IndonesiaInteractiveMap() {
             <div className="grid grid-cols-2 gap-3 mb-5 sm:grid-cols-4">
               <div className="rounded-xl border border-slate-200 p-3 bg-white text-center">
                 <Construction className="w-4 h-4 text-amber-500 mx-auto mb-1" />
-                <p className="text-[10px] text-slate-500">Kelas Rusak Total(%)</p>
+                <p className="text-[10px] text-slate-500">
+                  Kelas Rusak Total(%)
+                </p>
                 <p className="text-base font-bold text-slate-900 mt-0.5">
                   {selectedProvince.data["Kelas Rusak Total(%)"].toFixed(2)}%
                 </p>

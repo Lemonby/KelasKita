@@ -211,7 +211,7 @@ export default function EkspolarasiWilayah() {
         </ScrollReveal>
 
         {/* FILTER SECTION */}
-        <ScrollReveal>
+        <ScrollReveal className="relative z-20">
           <section className="mx-auto mt-9 max-w-3xl">
             <h2 className="section-heading text-center sm:!text-3xl">
               Masukan Nama Daerahmu
@@ -297,7 +297,7 @@ export default function EkspolarasiWilayah() {
         </ScrollReveal>
 
         {/* CHART SECTION */}
-        <ScrollReveal>
+        <ScrollReveal className="relative z-10">
           <section className="mt-8 rounded-2xl border border-slate-200 bg-white p-4 shadow-md sm:mt-12 sm:p-6 md:p-8">
             <div className="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
               <div>
@@ -384,18 +384,19 @@ export default function EkspolarasiWilayah() {
             </div>
 
             {selectedProvinsi.length === 0 && totalTablePages > 1 && (
-              <div className="flex flex-wrap items-center justify-between gap-2 border-t border-slate-100 px-3 py-4 sm:px-6 md:px-8">
+              <div className="flex flex-nowrap items-center justify-between gap-1 border-t border-slate-100 px-2 py-3 sm:gap-2 sm:px-6 sm:py-4 md:px-8">
                 <button
                   type="button"
                   onClick={() => setTablePage((page) => Math.max(1, page - 1))}
                   disabled={tablePage === 1}
-                  className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+                  aria-label="Halaman sebelumnya"
+                  className="inline-flex h-9 shrink-0 items-center justify-center gap-1 rounded-lg px-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 sm:px-3"
                 >
                   <ChevronLeft size={16} />
-                  Sebelumnya
+                  <span className="sr-only sm:not-sr-only">Sebelumnya</span>
                 </button>
 
-                <div className="flex items-center gap-1">
+                <div className="flex shrink-0 items-center gap-0.5 sm:gap-1">
                   {Array.from(
                     { length: totalTablePages },
                     (_, index) => index + 1,
@@ -404,7 +405,8 @@ export default function EkspolarasiWilayah() {
                       key={page}
                       type="button"
                       onClick={() => setTablePage(page)}
-                      className={`h-8 min-w-8 rounded-lg px-2 text-sx font-semibold ${
+                      aria-current={page === tablePage ? "page" : undefined}
+                      className={`h-8 min-w-8 rounded-lg px-1.5 text-xs font-semibold sm:px-2 ${
                         page === tablePage
                           ? "bg-[#dff6e9] text-secondary"
                           : "text-slate-500 hover:bg-slate-100"
@@ -421,9 +423,10 @@ export default function EkspolarasiWilayah() {
                     setTablePage((page) => Math.min(totalTablePages, page + 1))
                   }
                   disabled={tablePage === totalTablePages}
-                  className="inline-flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+                  aria-label="Halaman berikutnya"
+                  className="inline-flex h-9 shrink-0 items-center justify-center gap-1 rounded-lg px-2 text-sm font-semibold text-secondary hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40 sm:px-3"
                 >
-                  Berikutnya
+                  <span className="sr-only sm:not-sr-only">Berikutnya</span>
                   <ChevronRight size={16} />
                 </button>
               </div>
