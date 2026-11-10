@@ -1109,7 +1109,7 @@ export const faqData = [
 
 export const footerLinks = {
   jelajahi: [
-    { label: "Overview", href: "/beranda" },
+    { label: "Beranda", href: "/beranda" },
     { label: "Dataset", href: "/dataset" },
     { label: "Prioritas Wilayah", href: "/prioritas-daerah" },
     { label: "Eksplorasi Wilayah", href: "/eksplorasi-daerah" },
