@@ -73,7 +73,7 @@ export default function DatasetPage() {
   return (
     <section className="page-shell bg-background px-4 py-9 sm:px-6 lg:px-8 lg:py-14">
       <div className="mx-auto max-w-7xl">
-        <ScrollReveal>
+        <ScrollReveal className="relative z-20">
           <header className="page-hero section-hero rounded-2xl bg-secondary text-white">
             <div className="section-hero-content">
               <h1 className="section-hero-title max-w-xl">

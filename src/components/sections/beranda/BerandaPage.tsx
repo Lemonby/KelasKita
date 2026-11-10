@@ -43,7 +43,7 @@ export default function BerandaPage() {
         {/* ==================== 1. HERO BANNER ==================== */}
         <ScrollReveal>
           <section className="relative w-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-xs">
-            <div className="relative w-full">
+            <div className="relative min-h-[132px] w-full sm:min-h-0">
               {/* Background Image Hero yang menentukan tinggi banner secara natural */}
               <Image
                 src="/hero-beranda.png"
@@ -51,14 +51,14 @@ export default function BerandaPage() {
                 width={1864}
                 height={262}
                 priority
-                className="block h-auto w-full select-none"
+                className="absolute inset-0 h-full w-full select-none object-cover object-center sm:relative sm:inset-auto sm:h-auto sm:object-contain"
               />
 
               {/* Gradient overlay lembut di layar kecil untuk keterbacaan teks */}
               <div className="absolute inset-0 bg-gradient-to-r from-white/95 via-white/80 to-transparent sm:from-white/80 sm:via-white/30 sm:to-transparent lg:bg-transparent" />
 
               {/* Teks Sambutan Hero */}
-              <div className="absolute inset-0 flex max-w-2xl flex-col justify-center px-6 sm:px-10 lg:px-14">
+              <div className="absolute inset-0 flex max-w-2xl flex-col justify-center px-5 sm:px-10 lg:px-14">
                 <h1 className="text-lg font-extrabold leading-tight tracking-tight text-slate-900 sm:text-2xl md:text-3xl lg:text-[35px]">
                   Selamat datang di{" "}
                   <span className="text-[#96C816] drop-shadow-xs">
