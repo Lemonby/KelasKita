@@ -120,37 +120,37 @@ export default function DatasetPage() {
         </ScrollReveal>
 
         <ScrollReveal>
-        <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
-          <p className="text-xs text-slate-500">
-            Menampilkan <strong>{filteredDatasets.length}</strong> dari{" "}
-            <strong>{datasets.length}</strong> dataset
-          </p>
-          <div className="flex rounded-md border border-slate-200 bg-white p-1 shadow-sm">
-            <ViewButton
-              label="Tampilan kartu"
-              active={viewMode === "card"}
-              onClick={() => setViewMode("card")}
-            >
-              <Grid2X2 size={15} />
-            </ViewButton>
-            <ViewButton
-              label="Tampilan list"
-              active={viewMode === "list"}
-              onClick={() => setViewMode("list")}
-            >
-              <List size={15} />
-            </ViewButton>
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4">
+            <p className="text-xs text-slate-500">
+              Menampilkan <strong>{filteredDatasets.length}</strong> dari{" "}
+              <strong>{datasets.length}</strong> dataset
+            </p>
+            <div className="flex rounded-md border border-slate-200 bg-white p-1 shadow-sm">
+              <ViewButton
+                label="Tampilan kartu"
+                active={viewMode === "card"}
+                onClick={() => setViewMode("card")}
+              >
+                <Grid2X2 size={15} />
+              </ViewButton>
+              <ViewButton
+                label="Tampilan list"
+                active={viewMode === "list"}
+                onClick={() => setViewMode("list")}
+              >
+                <List size={15} />
+              </ViewButton>
+            </div>
           </div>
-        </div>
         </ScrollReveal>
 
         {visibleDatasets.length > 0 ? (
-          <ScrollReveal className={viewMode === "card" ? "stagger" : ""}>
+          <ScrollReveal>
             <div
               className={
                 viewMode === "card"
-                  ? "mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
-                  : "mt-5 space-y-4"
+                  ? "stagger mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3"
+                  : "stagger mt-5 space-y-4"
               }
             >
               {visibleDatasets.map((dataset) => (
@@ -224,7 +224,7 @@ function DatasetItem({
   return (
     <Link
       href={`/dataset/${dataset.id}`}
-      className={`ui-card group block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:border-accent hover:shadow-md ${
+      className={`ui-card group block rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:border-accent hover:shadow-md ${
         viewMode === "list"
           ? "flex flex-col gap-4 px-5 sm:flex-row sm:items-center sm:gap-5 lg:gap-8 lg:px-7"
           : ""

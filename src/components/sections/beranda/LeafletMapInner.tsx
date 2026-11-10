@@ -1,18 +1,11 @@
 "use client";
 
-import React, {
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { GeoJSON, MapContainer, TileLayer, useMap } from "react-leaflet";
 import { usePathname } from "next/navigation";
 import type { FeatureCollection, Geometry } from "geojson";
 import type { Path } from "leaflet";
-import {
-  CLUSTER_THEME,
-} from "@/data/indonesiaGeoData";
+import { CLUSTER_THEME } from "@/data/indonesiaGeoData";
 import { berandaMapData, ProvinceMapItem } from "@/data/berandaMapData";
 
 interface LeafletMapInnerProps {

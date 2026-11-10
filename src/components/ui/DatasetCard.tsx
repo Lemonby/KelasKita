@@ -37,7 +37,7 @@ export default function DatasetCard({ dataset }: DatasetCardProps) {
   return (
     <Link
       href={`/dataset/${dataset.id}`}
-      className="ui-card group flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs transition-all duration-200 hover:-translate-y-1 hover:border-slate-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/25"
+      className="ui-card group flex flex-col justify-between rounded-2xl border border-slate-200/90 bg-white p-4 shadow-xs transition-all duration-200 hover:border-slate-300 hover:shadow-lg focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/25"
     >
       <div>
         {/* Top bar: Format Pill + Urgency indicator */}

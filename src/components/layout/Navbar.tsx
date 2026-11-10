@@ -52,7 +52,7 @@ export default function Navbar() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`nav-link relative py-2 text-[15px] font-medium transition-colors ${
+                className={`nav-link relative rounded-full px-2.5 py-2 text-[15px] font-medium transition-colors ${
                   isActive
                     ? "nav-link-active font-semibold text-slate-900"
                     : "text-slate-600 hover:text-slate-900"

@@ -15,13 +15,15 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     const element = ref.current;
 
     if (
       !element ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
     ) {
       setVisible(true);
       return;
@@ -29,6 +31,7 @@ export default function ScrollReveal({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
+        setReady(true);
         if (entry.isIntersecting) {
           setVisible(true);
           observer.disconnect();
@@ -44,7 +47,7 @@ export default function ScrollReveal({
   return (
     <div
       ref={ref}
-      className={`scroll-reveal ${visible ? "scroll-reveal-visible" : ""} ${className}`}
+      className={`scroll-reveal ${ready ? "scroll-reveal-ready" : ""} ${visible ? "scroll-reveal-visible" : ""} ${className}`}
       style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}
     >
       {children}

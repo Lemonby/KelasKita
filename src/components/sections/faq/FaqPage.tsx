@@ -49,52 +49,52 @@ export default function FaqPage() {
 
         {/* ==================== 2. SEARCH BAR ==================== */}
         <ScrollReveal>
-        <section className="relative mx-auto max-w-3xl">
-          <div
-            onClick={() => {
-              const el = document.getElementById(
-                "faq-search-input",
-              ) as HTMLInputElement;
-              el?.focus();
-            }}
-            className="relative cursor-text rounded-full shadow-xs"
-          >
-            {/* Search Icon with pointer-events-none */}
-            <div className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 flex items-center justify-center">
-              <Search className="h-5 w-5 text-slate-400" />
+          <section className="relative mx-auto max-w-3xl">
+            <div
+              onClick={() => {
+                const el = document.getElementById(
+                  "faq-search-input",
+                ) as HTMLInputElement;
+                el?.focus();
+              }}
+              className="relative cursor-text rounded-full shadow-xs"
+            >
+              {/* Search Icon with pointer-events-none */}
+              <div className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 flex items-center justify-center">
+                <Search className="h-5 w-5 text-slate-400" />
+              </div>
+
+              <input
+                ref={inputRef}
+                id="faq-search-input"
+                name="faq-search"
+                type="text"
+                placeholder="Cari pertanyaan..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onInput={(e) =>
+                  setSearchQuery((e.target as HTMLInputElement).value)
+                }
+                className="w-full cursor-text rounded-full border border-slate-200 bg-white py-3.5 pl-14 pr-12 text-sm text-slate-800 placeholder:text-slate-400 transition-all focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/10"
+              />
+
+              {/* Clear Button */}
+              {searchQuery && (
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setSearchQuery("");
+                    inputRef.current?.focus();
+                  }}
+                  className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer rounded-full p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition"
+                  aria-label="Hapus pencarian"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+              )}
             </div>
-
-            <input
-              ref={inputRef}
-              id="faq-search-input"
-              name="faq-search"
-              type="text"
-              placeholder="Cari pertanyaan..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              onInput={(e) =>
-                setSearchQuery((e.target as HTMLInputElement).value)
-              }
-              className="w-full cursor-text rounded-full border border-slate-200 bg-white py-3.5 pl-14 pr-12 text-sm text-slate-800 placeholder:text-slate-400 transition-all focus:border-primary focus:bg-white focus:outline-none focus:ring-4 focus:ring-primary/10"
-            />
-
-            {/* Clear Button */}
-            {searchQuery && (
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setSearchQuery("");
-                  inputRef.current?.focus();
-                }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer rounded-full p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition"
-                aria-label="Hapus pencarian"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            )}
-          </div>
-        </section>
+          </section>
         </ScrollReveal>
 
         {/* ==================== 3. FAQ ACCORDION LIST ==================== */}
@@ -117,8 +117,8 @@ export default function FaqPage() {
 
           {/* Accordion list */}
           {filteredFaq.length > 0 ? (
-            <ScrollReveal className="stagger">
-              <div className="space-y-3.5">
+            <ScrollReveal>
+              <div className="stagger space-y-3.5">
                 {filteredFaq.map((item) => {
                   const isOpen = openIds.includes(item.id);
 

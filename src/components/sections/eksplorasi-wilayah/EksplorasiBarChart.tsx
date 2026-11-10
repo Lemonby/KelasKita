@@ -9,6 +9,7 @@ import {
   Cell,
   ResponsiveContainer,
 } from "recharts";
+import { useEffect, useState } from "react";
 
 type IndikatorKey =
   | "Kelas Rusak Total(%)"
@@ -38,6 +39,16 @@ export default function EksplorasiBarChart({
   indikator,
 }: EksplorasiBarChartProps) {
   const barColor = indikatorColors[indikator];
+  const [reducedMotion, setReducedMotion] = useState(true);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => setReducedMotion(mediaQuery.matches);
+
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
+    return () => mediaQuery.removeEventListener("change", updatePreference);
+  }, []);
 
   return (
     <div
@@ -67,11 +78,22 @@ export default function EksplorasiBarChart({
             />
             <YAxis
               tickFormatter={(value: number | string) =>
-                indikator === "Kelas Rusak Total(%)" ? `${value}%` : String(value)
+                indikator === "Kelas Rusak Total(%)"
+                  ? `${value}%`
+                  : String(value)
               }
             />
             <Tooltip />
-            <Bar dataKey="value" name={indikator} radius={[4, 4, 0, 0]}>
+            <Bar
+              key={indikator}
+              dataKey="value"
+              name={indikator}
+              radius={[4, 4, 0, 0]}
+              isAnimationActive={!reducedMotion}
+              animationBegin={0}
+              animationDuration={700}
+              animationEasing="ease-out"
+            >
               {data.map((entry) => (
                 <Cell key={entry.Provinsi} fill={barColor} />
               ))}

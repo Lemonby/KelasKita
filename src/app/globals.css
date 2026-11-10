@@ -212,6 +212,14 @@
     box-shadow: var(--token-shadow-md);
   }
 
+  a.ui-card:hover,
+  a.ui-card:focus-visible,
+  button.ui-card:hover,
+  button.ui-card:focus-visible,
+  details.ui-card:hover {
+    transform: translateY(-4px);
+  }
+
   .ui-control {
     border: 1px solid var(--token-color-border);
     border-radius: var(--token-radius-md);
@@ -229,12 +237,17 @@
   }
 
   .scroll-reveal {
-    opacity: 0;
-    transform: translateY(0.75rem);
+    opacity: 1;
+    transform: translateY(0);
     transition:
-      opacity 350ms var(--ease-standard),
-      transform 350ms var(--ease-standard);
+      opacity 600ms var(--ease-standard),
+      transform 600ms var(--ease-standard);
     transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .scroll-reveal-ready:not(.scroll-reveal-visible) {
+    opacity: 0;
+    transform: translateY(20px);
   }
 
   .scroll-reveal-visible {
@@ -242,24 +255,40 @@
     transform: translateY(0);
   }
 
-  .stagger > * {
-    animation: stagger-enter 350ms var(--ease-standard) both;
+  .scroll-reveal-ready.stagger > *,
+  .scroll-reveal-ready .stagger > * {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 600ms var(--ease-standard),
+      transform 600ms var(--ease-standard);
+    transition-delay: var(--stagger-delay, 0ms);
+  }
+
+  .scroll-reveal-visible.stagger > *,
+  .scroll-reveal-visible .stagger > * {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .stagger > *:nth-child(2) {
-    animation-delay: 40ms;
+    --stagger-delay: 80ms;
   }
 
   .stagger > *:nth-child(3) {
-    animation-delay: 80ms;
+    --stagger-delay: 160ms;
   }
 
   .stagger > *:nth-child(4) {
-    animation-delay: 120ms;
+    --stagger-delay: 240ms;
   }
 
-  .stagger > *:nth-child(n + 5) {
-    animation-delay: 160ms;
+  .stagger > *:nth-child(5) {
+    --stagger-delay: 320ms;
+  }
+
+  .stagger > *:nth-child(n + 6) {
+    --stagger-delay: 400ms;
   }
 
   .page-transition {
@@ -299,24 +328,34 @@
     animation-delay: 100ms;
   }
 
-  .nav-link::after {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    height: 3px;
-    border-radius: 9999px;
-    background: var(--token-color-primary);
-    content: "";
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform var(--duration-normal) var(--ease-standard);
+  .nav-link {
+    isolation: isolate;
   }
 
-  .nav-link-active::after,
-  .nav-link:hover::after,
-  .nav-link:focus-visible::after {
-    transform: scaleX(1);
+  .nav-link::before {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: var(--token-color-surface-muted);
+    content: "";
+    opacity: 0;
+    transform: scale(0.94);
+    transition:
+      opacity var(--duration-normal) var(--ease-standard),
+      transform var(--duration-normal) var(--ease-standard);
+    z-index: -1;
+  }
+
+  .nav-link-active::before {
+    background: rgb(200 238 68 / 28%);
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .nav-link:hover::before,
+  .nav-link:focus-visible::before {
+    opacity: 1;
+    transform: scale(1);
   }
 
   .accordion-answer {
@@ -349,6 +388,11 @@
 .leaflet-tooltip-left:before,
 .leaflet-tooltip-right:before {
   border-top-color: rgb(32 45 65 / 0.95) !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 body {
@@ -436,17 +480,6 @@ a:active {
   }
 }
 
-@keyframes stagger-enter {
-  from {
-    opacity: 0;
-    transform: translateY(0.5rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -457,13 +490,17 @@ a:active {
     transition-duration: 1ms !important;
   }
 
-  .scroll-reveal {
+  .scroll-reveal,
+  .scroll-reveal-ready:not(.scroll-reveal-visible) {
     opacity: 1;
     transform: none;
   }
 
-  .stagger > * {
-    animation: none;
+  .scroll-reveal-ready.stagger > *,
+  .scroll-reveal-ready .stagger > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
   }
 }
 

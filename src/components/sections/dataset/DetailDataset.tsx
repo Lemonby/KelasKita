@@ -178,27 +178,49 @@ export default function DetailDataset({ dataset }: { dataset: Dataset }) {
                 </div>
               </div>
               <div className="max-h-[620px] overflow-auto">
-                <table className="w-max min-w-full text-left text-xs">
+                <table className="w-max min-w-full table-auto text-left text-xs">
                   <tbody>
-                    {(sheets[sheetName] ?? []).map((row, rowIndex) => (
-                      <tr
-                        key={rowIndex}
-                        className={
-                          rowIndex === 0
-                            ? "bg-[#e6e3ff] font-bold text-secondary"
-                            : "border-t border-slate-100 text-slate-600"
-                        }
-                      >
-                        {row.map((cell, cellIndex) => (
-                          <td
-                            key={cellIndex}
-                            className="whitespace-nowrap px-3 py-2.5"
+                    {(() => {
+                      const rows = sheets[sheetName] ?? [];
+                      const columnCount = Math.max(
+                        ...rows.map((row) => row.length),
+                        1,
+                      );
+
+                      return rows.map((row, rowIndex) => {
+                        const isTitleRow =
+                          rowIndex === 0 && row.filter(Boolean).length === 1;
+
+                        return (
+                          <tr
+                            key={rowIndex}
+                            className={
+                              isTitleRow
+                                ? "bg-[#e6e3ff] font-bold text-secondary"
+                                : "border-t border-slate-100 text-slate-600"
+                            }
                           >
-                            {String(cell)}
-                          </td>
-                        ))}
-                      </tr>
-                    ))}
+                            {isTitleRow ? (
+                              <td
+                                colSpan={columnCount}
+                                className="break-words px-3 py-2.5"
+                              >
+                                {String(row[0])}
+                              </td>
+                            ) : (
+                              row.map((cell, cellIndex) => (
+                                <td
+                                  key={cellIndex}
+                                  className="whitespace-nowrap px-3 py-2.5"
+                                >
+                                  {String(cell)}
+                                </td>
+                              ))
+                            )}
+                          </tr>
+                        );
+                      });
+                    })()}
                   </tbody>
                 </table>
               </div>
