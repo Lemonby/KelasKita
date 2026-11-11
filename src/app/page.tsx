@@ -83,7 +83,7 @@ export default function Home() {
 
                 {/* Lihat Peta Kesenjangan Button */}
                 <Link
-                  href="/prioritas-daerah"
+                  href="/beranda"
                   className="inline-flex items-center justify-center rounded-xl bg-primary px-7 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-primary-hover hover:shadow-md"
                 >
                   Lihat Peta Kesenjangan
