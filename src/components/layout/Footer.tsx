@@ -23,7 +23,7 @@ export default function Footer() {
             </p>
             <div>
               <Link
-                href="/prioritas-daerah"
+                href="/beranda"
                 className="inline-flex items-center justify-center rounded-full bg-accent px-6 py-2.5 text-sm font-bold text-secondary shadow-sm transition hover:bg-accent-hover hover:scale-[1.02]"
               >
                 Lihat peta kesenjangan

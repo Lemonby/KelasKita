@@ -1118,8 +1118,9 @@ export const footerLinks = {
   kategoriData: [
     { label: "Infrastruktur", href: "#" },
     { label: "Tenaga pendidik", href: "#" },
-    { label: "Kualitas pembelajaran", href: "#" },
     { label: "Civitas Akademik", href: "#" },
+    { label: "Kesejahteraan Siswa", href: "#" },
+    { label: "Aksesibilitas", href: "#" },
   ],
   sumberData: [
     { label: "Komdigi", href: "https://data.komdigi.go.id/opendata/dataset" },
